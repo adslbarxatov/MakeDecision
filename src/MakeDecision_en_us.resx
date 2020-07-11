@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppExit" xml:space="preserve">
+    <value>Exit application?</value>
+  </data>
+  <data name="HelpMessage" xml:space="preserve">
+    <value>    This application illustrates a nonlinear hierarchy analysis method. The method allows comparing some objects based on a set of criteria and choosing the most “quality” object, i.e. the one with the highest rating. User is invited to independently select objects and criteria for their comparison, as well as evaluate the significance of each criterion and the "cost" of the object for each criterion. Each step of method is provided with explanations explaining the essence of method. If necessary, all steps can be repeated again.
+    First version of application was created in Microsoft Visual Basic 6.0 development environment. This tool and, accordingly, the programming language 8 years ago were no longer the best development solutions. However, in this case, their capabilities were quite enough. In addition, their simplicity made it possible to complete the program as soon as possible. This implementation only transfers the solution to our common ecosystem for all other projects.
+    During the development, only lecture material was used, the understanding of which is more than enough to create this (and similar) illustrative application</value>
+  </data>
+  <data name="IncorrectValueError" xml:space="preserve">
+    <value>Value must be an integer</value>
+  </data>
+  <data name="MakeDecisionForm_BExit" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="MakeDecisionForm_BNext" xml:space="preserve">
+    <value>&amp;Next</value>
+  </data>
+  <data name="MakeDecisionForm_BReset" xml:space="preserve">
+    <value>&amp;Reset</value>
+  </data>
+  <data name="MakeDecisionForm_SkipUnnecessarySteps" xml:space="preserve">
+    <value>Skip unnecessary steps</value>
+  </data>
+  <data name="NotEnoughCriteria" xml:space="preserve">
+    <value>Not enough criteria to compare</value>
+  </data>
+  <data name="NotEnoughData" xml:space="preserve">
+    <value>Not all cells are filled or one of them got zero value</value>
+  </data>
+  <data name="NotEnoughObjects" xml:space="preserve">
+    <value>Not enough elements to compare</value>
+  </data>
+  <data name="ResultLabel" xml:space="preserve">
+    <value>It follows from them that the element “{0: S}” is the best by given criteria</value>
+  </data>
+  <data name="Tab01_Label01" xml:space="preserve">
+    <value>This application illustrates the use of nonlinear hierarchy analysis method for decision making.
+
+Click “Next” to start the illustration</value>
+  </data>
+  <data name="Tab02_Label02" xml:space="preserve">
+    <value>The hierarchy analysis method allows you to compare objects, phenomena or scenarios based on a set of criteria and select the most “correct” one, that is, one for which the final coefficient will be the highest.
+
+Therefore, for starters, you must select the elements that you want to compare. To do this, simply enter their names in the list below</value>
+  </data>
+  <data name="Tab03_Label03" xml:space="preserve">
+    <value>Now you need to select the criteria for comparing previously specified elements in the same way, as well as indicate their “price” – the degree of significance, priority.
+
+It can be set "on a scale from 1 to 10" (to 100, to 1000), points, ratings – as you like. The main thing is that a HIGHER number determines a MORE SIGNIFICANT criterion</value>
+  </data>
+  <data name="Tab04_Label04" xml:space="preserve">
+    <value>At this step, the comparison matrix is restored from obtained vector of priorities. To do this, a simple duplication of the original vector is performed until the matrix becomes square.
+
+After this each column is divided by its own element, number of which is equal to number of column in the matrix. As a result, in matrix on the main diagonal, all elements become equal to 1</value>
+  </data>
+  <data name="Tab05_Label05" xml:space="preserve">
+    <value>Similarly, elements evaluation vectors are set and processed according to each criterion. The only remark: HIGHER priority value should correspond to BETTER element, i.e. more suitable, compatible, cheaper, etc.</value>
+  </data>
+  <data name="Tab06_Label06" xml:space="preserve">
+    <value>Now everything is ready to obtain final estimates of elements. This is done as follows:
+
+• For all normalized matrices (both criteria and elements), harmonic vectors are compiled: each element of the vector is equal to product of elements of corresponding row of matrix raised to power inverse to number of elements in the row;
+• Then matrices are multiplied by these vectors;
+• Next, resulting price vectors of elements according to different criteria are merged into the matrix in the order in which these criteria were announced;
+• Finally, this matrix is ​​multiplied by the price vector of the criteria.
+
+Resulting vector will be the result of the method. The highest number in it will indicate the "best" element in given conditions</value>
+  </data>
+  <data name="Tab07_Label07" xml:space="preserve">
+    <value>Results of hierarchy analysis method are as follows:</value>
+  </data>
+  <data name="TooManyCriteria" xml:space="preserve">
+    <value>Too many criteria to compare</value>
+  </data>
+  <data name="TooManyObjects" xml:space="preserve">
+    <value>Too many elements to compare</value>
+  </data>
+</root>
