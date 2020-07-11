@@ -7,9 +7,9 @@ Making decisions support tool
 #
 
 This application illustrates a nonlinear hierarchy analysis method. The method allows comparing
-some objects based on a set of criteria and choosing the most “quality” object, i.e. the one
-with the highest rating. User is invited to independently select objects and criteria for their
-comparison, as well as evaluate the significance of each criterion and the "cost" of the object
+some objects or events based on a set of criteria and choosing the most “quality” one, i.e. the one
+with the highest rating. User is invited to independently select elements and criteria for their
+comparison, as well as evaluate the significance of each criterion and the "cost" of the element
 for each criterion. Each step of method is provided with explanations explaining the essence of
 method. If necessary, all steps can be repeated again.
 
@@ -24,12 +24,12 @@ than enough to create this (and similar) illustrative application
 
 #
 
-Программа иллюстрирует нелинейный метод анализа иерархий. Метод предполагает сравнение некоторых
-объектов на основе набора критериев и выбор наиболее «качественного» объекта, т.е. того,
-у которого итоговый коэффициент будет наивысшим. Пользователю предлагается самостоятельно выбрать
-объекты и критерии для их сравнения, а также оценить значимость каждого критерия и «стоимость»
-объекта по каждому критерию. Каждый шаг метода снабжён пояснениями, излагающими суть метода.
-При необходимости, все шаги можно повторить заново.
+Программа MakeDecision иллюстрирует нелинейный метод анализа иерархий. Метод предполагает сравнение
+некоторых объектов, явлений или исходов событий на основе набора критериев и выбор наиболее «качественного»
+из них, т.е. того, у которого итоговый коэффициент будет наивысшим. Пользователю предлагается
+самостоятельно выбрать элементы и критерии для их сравнения, а также оценить значимость
+каждого критерия и «стоимость» элемента по каждому критерию. Каждый шаг метода снабжён пояснениями,
+излагающими суть метода. При необходимости, все шаги можно повторить заново.
 
 Первая версия программы была выполнена в среде разработки Microsoft Visual Basic 6.0.
 Данная среда разработки и, соответственно, язык программирования 8 лет назад уже не являлись
