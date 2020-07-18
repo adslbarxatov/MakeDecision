@@ -121,9 +121,11 @@
     <value>Exit application?</value>
   </data>
   <data name="HelpMessage" xml:space="preserve">
-    <value>    This application illustrates a nonlinear hierarchy analysis method. The method allows comparing some objects based on a set of criteria and choosing the most “quality” object, i.e. the one with the highest rating. User is invited to independently select objects and criteria for their comparison, as well as evaluate the significance of each criterion and the "cost" of the object for each criterion. Each step of method is provided with explanations explaining the essence of method. If necessary, all steps can be repeated again.
-    First version of application was created in Microsoft Visual Basic 6.0 development environment. This tool and, accordingly, the programming language 8 years ago were no longer the best development solutions. However, in this case, their capabilities were quite enough. In addition, their simplicity made it possible to complete the program as soon as possible. This implementation only transfers the solution to our common ecosystem for all other projects.
-    During the development, only lecture material was used, the understanding of which is more than enough to create this (and similar) illustrative application</value>
+    <value>This application illustrates a nonlinear hierarchy analysis method. The method allows comparing some objects based on a set of criteria and choosing the most “quality” object, i.e. the one with the highest rating. User is invited to independently select objects and criteria for their comparison, as well as evaluate the significance of each criterion and the "cost" of the object for each criterion. Each step of method is provided with explanations explaining the essence of method. If necessary, all steps can be repeated again.
+
+First version of application was created in Microsoft Visual Basic 6.0 development environment. This tool and, accordingly, the programming language 8 years ago were no longer the best development solutions. However, in this case, their capabilities were quite enough. In addition, their simplicity made it possible to complete the program as soon as possible. This implementation only transfers the solution to our common ecosystem for all other projects.
+
+During the development, only lecture material was used, the understanding of which is more than enough to create this (and similar) illustrative application</value>
   </data>
   <data name="IncorrectValueError" xml:space="preserve">
     <value>Value must be an integer</value>

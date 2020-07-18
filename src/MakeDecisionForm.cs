@@ -360,12 +360,8 @@ namespace RD_AAOW
 		private void MakeDecisionForm_HelpButtonClicked (object sender, System.ComponentModel.CancelEventArgs e)
 			{
 			e.Cancel = true;
-			AboutForm af = new AboutForm (al,
-				"",
-				"https://github.com/adslbarxatov/MakeDecision/releases",
-				"https://github.com/adslbarxatov/MakeDecision",
 
-				Localization.GetText ("HelpMessage", al));
+			AboutForm af = new AboutForm (al, "*", "*", "", Localization.GetText ("HelpMessage", al));
 			}
 		}
 	}
