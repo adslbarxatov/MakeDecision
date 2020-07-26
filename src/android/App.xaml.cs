@@ -12,12 +12,13 @@ namespace RD_AAOW
 	/// </summary>
 	public partial class App:Application
 		{
-		#region Настройки стилей отображения
+		#region Общие переменные и константы
 
 		private int masterFontSize = 18;
 		private Thickness margin = new Thickness (6);
-		private const int masterLinesCount = 5;
+		private const int masterLinesCount = 10;
 		private uint phase = 1;
+		private bool firstStart = true;
 
 		private List<string> objects = new List<string> (),
 			criteria = new List<string> ();
@@ -181,17 +182,18 @@ namespace RD_AAOW
 				}
 
 			// Получение настроек перед инициализацией
-			for (int i = 0; i < masterLinesCount; i++)
+			try
 				{
-				try
+				for (int i = 0; i < masterLinesCount; i++)
 					{
 					objects.Add (Preferences.Get ("Object" + i.ToString ("D2"), ""));
 					criteria.Add (Preferences.Get ("Criteria" + i.ToString ("D2"), ""));
 					}
-				catch { }
+				firstStart = Preferences.Get ("FirstStart", "") == "";
 				}
+			catch { }
 
-
+			// Инициализация зависимых полей
 			ResetButton_Clicked (null, null);
 
 			#endregion
@@ -215,9 +217,64 @@ namespace RD_AAOW
 				"Политика и EULA", aboutFieldBackColor, ADPButton_Clicked);
 			ApplyButtonSettings (aboutPage, "CommunityPage",
 				"RD AAOW Free utilities production lab", aboutFieldBackColor, CommunityButton_Clicked);
+			ApplyButtonSettings (aboutPage, "SolutionAboutPage",
+				"Как выполняется решение", aboutFieldBackColor, SolutionAboutButton_Clicked);
 
 			#endregion
 
+			// Отображение подсказок первого старта
+			ShowTips (1);
+			}
+
+		// Метод отображает подсказки при первом запуске
+		private async void ShowTips (uint TipsNumber)
+			{
+			if (!firstStart)
+				return;
+
+			switch (TipsNumber)
+				{
+				case 1:
+					await solutionPage.DisplayAlert ("Здравствуйте, уважаемый пользователь!",
+						"Вас приветствует служба помощи в принятии сложных решений. Этот инструмент помогает применить " +
+						"математику, чтобы сравнить варианты и выбрать лучший из них", "Далее");
+					await solutionPage.DisplayAlert ("Подсказка №1",
+						"Для начала укажите названия того, что Вы хотите сравнить (не более " +
+						masterLinesCount.ToString () + "-и). Затем нажмите кнопку «Далее»", "OK");
+					break;
+
+				case 2:
+					await solutionPage.DisplayAlert ("Подсказка №2",
+						"Теперь укажите критерии, по которым необходимо выполнить сравнение (не более " +
+						masterLinesCount.ToString () + "-и). " +
+						"После этого оцените важность каждого из них с помощью бегунков справа. " +
+						"Чем правее бегунок, тем выше ценность критерия", "OK");
+					break;
+
+				case 3:
+					await solutionPage.DisplayAlert ("Подсказка №3",
+						"Наконец, оцените указанные Вами варианты по каждому критерию. " +
+						"Для перехода к следующему критерию нажимайте кнопку «Далее»", "OK");
+					break;
+
+				case 4:
+					await solutionPage.DisplayAlert ("Подсказка №4",
+						"Если где-то случилась ошибка, нажмите кнопку «Заново», чтобы " +
+						"начать сначала", "OK");
+					break;
+
+				case 5:
+					await solutionPage.DisplayAlert ("Подсказка №5",
+						"На последнем шаге приложение отобразит результат сравнения. Как именно оно выполняется, " +
+						"можно узнать, смахнув экран приложения влево.\nНа появившейся странице Вы также сможете " +
+						"найти контакты нашей лаборатории и дополнительную информацию о приложении", "Далее");
+					await solutionPage.DisplayAlert ("Подсказка №6",
+						"Кнопка «Далее» запустит приложение заново. При этом все введённые названия " +
+						"будут сохранены.\nНе потеряются они и при открытии приложения в следующий раз, " +
+						"когда Вам снова потребуется сделать сложный выбор", "OK");
+					firstStart = false;
+					break;
+				}
 			}
 
 		// Страница проекта
@@ -230,6 +287,12 @@ namespace RD_AAOW
 		private void CommunityButton_Clicked (object sender, EventArgs e)
 			{
 			Launcher.OpenAsync ("https://vk.com/rdaaow_fupl");
+			}
+
+		// Страница метода иерархий
+		private void SolutionAboutButton_Clicked (object sender, EventArgs e)
+			{
+			Launcher.OpenAsync ("https://vk.com/@rdaaow_fupl-makedecision");
 			}
 
 		// Страница политики и EULA
@@ -313,6 +376,8 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
+					ShowTips (2);
+
 					break;
 
 				// Переход к ранжированию критериев сравнения
@@ -362,6 +427,8 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
+					ShowTips (3);
+
 					break;
 
 				// Последовательные попытки перехода к результату (ввод рангов объектов по критериям)
@@ -383,6 +450,9 @@ namespace RD_AAOW
 						for (int i = 0; i < objects.Count; i++)
 							valueFields[i].Value = valueFields[i].Minimum;
 						activityLabel.Text = "Оцените варианты по критерию «" + criteria[objectsMaths.Count] + "»";
+
+						if (objectsMaths.Count == 1)
+							ShowTips (4);
 						}
 
 					// Переход к результату
@@ -412,6 +482,8 @@ namespace RD_AAOW
 							textFields[i].IsVisible = valueFields[i].IsVisible = false;
 
 						phase++;
+
+						ShowTips (5);
 						}
 					break;
 
@@ -440,17 +512,24 @@ namespace RD_AAOW
 		/// </summary>
 		protected override void OnSleep ()
 			{
-			for (int i = 0; i < masterLinesCount; i++)
+			try
 				{
-				try
+				for (int i = 0; i < masterLinesCount; i++)
 					{
-					Preferences.Set ("Object" + i.ToString ("D2"),
-						(phase < 2) ? objectsFields[i].Text : objects[i]);
-					Preferences.Set ("Criteria" + i.ToString ("D2"),
-						(phase < 2) ? textFields[i].Text : criteria[i]);
+					if (phase < 3)
+						{
+						Preferences.Set ("Object" + i.ToString ("D2"), objectsFields[i].Text);
+						Preferences.Set ("Criteria" + i.ToString ("D2"), textFields[i].Text);
+						}
+					else
+						{
+						Preferences.Set ("Object" + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
+						Preferences.Set ("Criteria" + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
+						}
 					}
-				catch { }
+				Preferences.Set ("FirstStart", "No");
 				}
+			catch { }
 			}
 
 		#region Стандартные обработчики
