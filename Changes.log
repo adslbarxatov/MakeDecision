@@ -1,5 +1,11 @@
 ﻿MakeDecision changes log
 
+Version 2.3 / Android:
+• Added English (US) localization for Android version;
+• Added abitily to select application language (in addition to auto-detection) for Android version;
+• Windows version accepted all current updates;
+• Target API for Android version increased to 29 (Android Q), according to Google play requirements
+
 Version 2.2 / Android:
 • Added first start tips;
 • Variants count increased up to 10;

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
@@ -14,11 +16,12 @@ namespace RD_AAOW
 		{
 		#region Общие переменные и константы
 
-		private int masterFontSize = 18;
+		private int masterFontSize = 14;
 		private Thickness margin = new Thickness (6);
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
 		private bool firstStart = true;
+		private SupportedLanguages al = Localization.CurrentLanguage;
 
 		private List<string> objects = new List<string> (),
 			criteria = new List<string> ();
@@ -51,14 +54,14 @@ namespace RD_AAOW
 
 		#region Вспомогательные методы
 
-		private ContentPage ApplyPageSettings (string PageName, string PageTitle, Color PageBackColor)
+		private ContentPage ApplyPageSettings (string PageName, Color PageBackColor)
 			{
 			// Инициализация страницы
 			ContentPage page = (ContentPage)MainPage.FindByName (PageName);
-			page.Title = PageTitle;
+			page.Title = Localization.GetText (PageName, al);
 			page.BackgroundColor = PageBackColor;
 
-			ApplyHeaderLabelSettings (page, PageTitle, PageBackColor);
+			ApplyHeaderLabelSettings (page, page.Title, PageBackColor);
 
 			return page;
 			}
@@ -159,14 +162,14 @@ namespace RD_AAOW
 			// Общая конструкция страниц приложения
 			MainPage = new MasterPage ();
 
-			solutionPage = ApplyPageSettings ("SolutionPage", "Принятие решений", solutionMasterBackColor);
-			aboutPage = ApplyPageSettings ("AboutPage", "О приложении", aboutMasterBackColor);
+			solutionPage = ApplyPageSettings ("SolutionPage", solutionMasterBackColor);
+			aboutPage = ApplyPageSettings ("AboutPage", aboutMasterBackColor);
 
 			#region Основная страница
 
-			resetButton = ApplyButtonSettings (solutionPage, "ResetButton", "Заново",
+			resetButton = ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
 				solutionFieldBackColor, ResetButton_Clicked);
-			nextButton = ApplyButtonSettings (solutionPage, "NextButton", "Далее",
+			nextButton = ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
 				solutionFieldBackColor, NextButton_Clicked);
 
 			activityLabel = ApplyLabelSettings (solutionPage, "ActivityLabel", "",
@@ -211,19 +214,38 @@ namespace RD_AAOW
 			aboutLabel.HorizontalOptions = LayoutOptions.Fill;
 			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
-			ApplyButtonSettings (aboutPage, "AppPage",
-				"Перейти на страницу проекта", aboutFieldBackColor, AppButton_Clicked);
-			ApplyButtonSettings (aboutPage, "ADPPage",
-				"Политика и EULA", aboutFieldBackColor, ADPButton_Clicked);
+			ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
+				aboutFieldBackColor, AppButton_Clicked);
+			ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
+				aboutFieldBackColor, ADPButton_Clicked);
 			ApplyButtonSettings (aboutPage, "CommunityPage",
 				"RD AAOW Free utilities production lab", aboutFieldBackColor, CommunityButton_Clicked);
-			ApplyButtonSettings (aboutPage, "SolutionAboutPage",
-				"Как выполняется решение", aboutFieldBackColor, SolutionAboutButton_Clicked);
+			ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
+				aboutFieldBackColor, SolutionAboutButton_Clicked);
+
+			ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
+				aboutFieldBackColor, SelectLanguage_Clicked);
 
 			#endregion
 
 			// Отображение подсказок первого старта
 			ShowTips (1);
+			}
+
+		// Выбор языка приложения
+		private async void SelectLanguage_Clicked (object sender, EventArgs e)
+			{
+			// Запрос
+			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("SelectLanguage", al),
+				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);
+
+			// Сохранение
+			if (Localization.LanguagesNames.Contains (res))
+				{
+				al = (SupportedLanguages)Localization.LanguagesNames.IndexOf (res);
+				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					Localization.GetText ("RestartApp", al), "OK");
+				}
 			}
 
 		// Метод отображает подсказки при первом запуске
@@ -235,43 +257,32 @@ namespace RD_AAOW
 			switch (TipsNumber)
 				{
 				case 1:
-					await solutionPage.DisplayAlert ("Здравствуйте, уважаемый пользователь!",
-						"Вас приветствует служба помощи в принятии сложных решений. Этот инструмент помогает применить " +
-						"математику, чтобы сравнить варианты и выбрать лучший из них", "Далее");
-					await solutionPage.DisplayAlert ("Подсказка №1",
-						"Для начала укажите названия того, что Вы хотите сравнить (не более " +
-						masterLinesCount.ToString () + "-и). Затем нажмите кнопку «Далее»", "OK");
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader01", al),
+						Localization.GetText ("Tip00", al), Localization.GetText ("NextButton", al));
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "1",
+						string.Format (Localization.GetText ("Tip01", al), masterLinesCount), "OK");
 					break;
 
 				case 2:
-					await solutionPage.DisplayAlert ("Подсказка №2",
-						"Теперь укажите критерии, по которым необходимо выполнить сравнение (не более " +
-						masterLinesCount.ToString () + "-и). " +
-						"После этого оцените важность каждого из них с помощью бегунков справа. " +
-						"Чем правее бегунок, тем выше ценность критерия", "OK");
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "2",
+						string.Format (Localization.GetText ("Tip02", al), masterLinesCount), "OK");
 					break;
 
 				case 3:
-					await solutionPage.DisplayAlert ("Подсказка №3",
-						"Наконец, оцените указанные Вами варианты по каждому критерию. " +
-						"Для перехода к следующему критерию нажимайте кнопку «Далее»", "OK");
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "3",
+						Localization.GetText ("Tip03", al), "OK");
 					break;
 
 				case 4:
-					await solutionPage.DisplayAlert ("Подсказка №4",
-						"Если где-то случилась ошибка, нажмите кнопку «Заново», чтобы " +
-						"начать сначала", "OK");
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "4",
+						Localization.GetText ("Tip04", al), "OK");
 					break;
 
 				case 5:
-					await solutionPage.DisplayAlert ("Подсказка №5",
-						"На последнем шаге приложение отобразит результат сравнения. Как именно оно выполняется, " +
-						"можно узнать, смахнув экран приложения влево.\nНа появившейся странице Вы также сможете " +
-						"найти контакты нашей лаборатории и дополнительную информацию о приложении", "Далее");
-					await solutionPage.DisplayAlert ("Подсказка №6",
-						"Кнопка «Далее» запустит приложение заново. При этом все введённые названия " +
-						"будут сохранены.\nНе потеряются они и при открытии приложения в следующий раз, " +
-						"когда Вам снова потребуется сделать сложный выбор", "OK");
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "5",
+						Localization.GetText ("Tip05", al), Localization.GetText ("NextButton", al));
+					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "6",
+						Localization.GetText ("Tip06", al), "OK");
 					firstStart = false;
 					break;
 				}
@@ -306,7 +317,7 @@ namespace RD_AAOW
 			{
 			// Сброс состояния
 			phase = 1;
-			activityLabel.Text = "Укажите, что необходимо сравнить";
+			activityLabel.Text = Localization.GetText ("ActivityLabelText01", al);
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
@@ -335,6 +346,11 @@ namespace RD_AAOW
 		// Реакция на изменение состава объектов
 		private void ObjectName_TextChanged (object sender, TextChangedEventArgs e)
 			{
+			// Контроль
+			if (phase > 1)
+				return;
+
+			// Обновление
 			for (int i = 1; i < masterLinesCount; i++)
 				objectsFields[i].IsVisible = (objectsFields[i - 1].Text != "") && objectsFields[i - 1].IsVisible;
 			}
@@ -350,7 +366,7 @@ namespace RD_AAOW
 					if (!objectsFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
 						solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-							"Недостаточно вариантов для сравнения", "OK");
+							Localization.GetText ("NotEnoughVariants", al), "OK");
 						return;
 						}
 
@@ -368,7 +384,7 @@ namespace RD_AAOW
 						objectsFields[i].IsVisible = false;
 					textFields[0].IsVisible = valueFields[0].IsVisible = true;
 
-					activityLabel.Text = "Задайте критерии сравнения и оцените важность каждого из них";
+					activityLabel.Text = Localization.GetText ("ActivityLabelText02", al);
 
 					// Принудительный вызов на случай уже имеющихся значений полей
 					CriteriaName_TextChanged (null, null);
@@ -386,7 +402,7 @@ namespace RD_AAOW
 					if (!textFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
 						solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-							"Недостаточно критериев для сравнения", "OK");
+							Localization.GetText ("NotEnoughCriteria", al), "OK");
 						return;
 						}
 
@@ -422,7 +438,7 @@ namespace RD_AAOW
 							}
 						}
 
-					activityLabel.Text = "Оцените варианты по критерию «" + criteria[0] + "»";
+					activityLabel.Text = string.Format (Localization.GetText ("ActivityLabelText03", al), criteria[0]);
 
 					// Переход далее
 					phase++;
@@ -449,7 +465,8 @@ namespace RD_AAOW
 						{
 						for (int i = 0; i < objects.Count; i++)
 							valueFields[i].Value = valueFields[i].Minimum;
-						activityLabel.Text = "Оцените варианты по критерию «" + criteria[objectsMaths.Count] + "»";
+						activityLabel.Text = string.Format (Localization.GetText ("ActivityLabelText03", al),
+							criteria[objectsMaths.Count]);
 
 						if (objectsMaths.Count == 1)
 							ShowTips (4);
@@ -464,7 +481,7 @@ namespace RD_AAOW
 						double max = result[maxIndex];
 
 						// Результат
-						activityLabel.Text = "Результаты анализа иерархий:\n\n";
+						activityLabel.Text = Localization.GetText ("ActivityLabelText04", al);
 						for (int i = 0; i < objects.Count; i++)
 							{
 							activityLabel.Text += (objects[i] + " – " + result[i].ToString ("0.0##") + "\n");
@@ -475,7 +492,7 @@ namespace RD_AAOW
 								maxIndex = i;
 								}
 							}
-						activityLabel.Text += ("\n\nСамый подходящий вариант – " + objects[maxIndex]);
+						activityLabel.Text += (Localization.GetText ("ActivityLabelText05", al) + objects[maxIndex]);
 
 						// Завершение
 						for (int i = 0; i < masterLinesCount; i++)
@@ -527,7 +544,9 @@ namespace RD_AAOW
 						Preferences.Set ("Criteria" + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
 						}
 					}
+
 				Preferences.Set ("FirstStart", "No");
+				Localization.CurrentLanguage = al;
 				}
 			catch { }
 			}
