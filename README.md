@@ -52,10 +52,10 @@ than enough to create this (and similar) illustrative application
 ## Requirements / Требования
 
 Windows version needs Windows XP or newer, Framework 4.0 or newer. Interface languages: ru_ru, en_us.
-Android version needs OS version 4.4 or newer. Interface languages: ru_ru, en_us
+[Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 4.4 or newer. Interface languages: ru_ru, en_us
 
 Для Windows-версии требуется ОС Windows XP или новее, Framework 4.0 или новее. Языки интерфейса: ru_ru, en_us.
-Для Android-версии требуется ОС версии 4.4 или новее. Языки интерфейса: ru_ru, en_us
+Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 4.4 или новее. Языки интерфейса: ru_ru, en_us
 
 
 
