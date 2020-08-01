@@ -1,5 +1,12 @@
 ﻿MakeDecision changes log
 
+Version 2.4 / Android:
+• Accuracy of priority sliders has been seriously improved;
+• App now can remember priorities of criteria; priorities of objects are still required to be set anytime you get to corresponding interface;
+• More friendly results interface implemented;
+• Added full fields cleanup function;
+• Fixed minor interface bugs
+
 Version 2.3 / Android:
 • Added English (US) localization for Android version;
 • Added abitily to select application language (in addition to auto-detection) for Android version;

@@ -121,7 +121,9 @@
     <value>Exit application?</value>
   </data>
   <data name="HelpMessage" xml:space="preserve">
-    <value>This application illustrates a nonlinear hierarchy analysis method. The method allows comparing some objects based on a set of criteria and choosing the most “quality” object, i.e. the one with the highest rating. User is invited to independently select objects and criteria for their comparison, as well as evaluate the significance of each criterion and the "cost" of the object for each criterion. Each step of method is provided with explanations explaining the essence of method. If necessary, all steps can be repeated again.
+    <value>This application illustrates a nonlinear hierarchy analysis method. The method allows comparing some objects or events based on a set of criteria and choosing the most “correct” one. User is invited to independently select variants and criteria for their comparison, as well as evaluate the significance of each criterion and the “cost” of the element for each criterion. You'll get the answer for the next question as a result: “what way is the best”.
+
+Each step of Windows version is provided with explanations explaining the essence of method. If necessary, all steps can be repeated again. Texts will be saved in Android version on restart.
 
 First version of application was created in Microsoft Visual Basic 6.0 development environment. This tool and, accordingly, the programming language 8 years ago were no longer the best development solutions. However, in this case, their capabilities were quite enough. In addition, their simplicity made it possible to complete the program as soon as possible. This implementation only transfers the solution to our common ecosystem for all other projects.
 
@@ -188,7 +190,7 @@ After this each column is divided by its own element, number of which is equal t
 Resulting vector will be the result of the method. The highest number in it will indicate the "best" element in given conditions</value>
   </data>
   <data name="Tab07_Label07" xml:space="preserve">
-    <value>Results of hierarchy analysis method are as follows:</value>
+    <value>Results of hierarchy analysis:</value>
   </data>
   <data name="TooManyCriteria" xml:space="preserve">
     <value>Too many criteria to compare</value>

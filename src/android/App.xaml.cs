@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
@@ -16,7 +14,7 @@ namespace RD_AAOW
 		{
 		#region Общие переменные и константы
 
-		private int masterFontSize = 14;
+		private const int masterFontSize = 14;
 		private Thickness margin = new Thickness (6);
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
@@ -25,6 +23,7 @@ namespace RD_AAOW
 
 		private List<string> objects = new List<string> (),
 			criteria = new List<string> ();
+		private List<int> values = new List<int> ();
 		private MakeDecisionMath criteriaMath;
 		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
 
@@ -48,7 +47,7 @@ namespace RD_AAOW
 		private Editor[] textFields = new Editor[masterLinesCount],
 			objectsFields = new Editor[masterLinesCount];
 		private Slider[] valueFields = new Slider[masterLinesCount];
-		private Button resetButton, nextButton;
+		//private Button resetButton, restartButton, nextButton;
 
 		#endregion
 
@@ -140,7 +139,7 @@ namespace RD_AAOW
 			{
 			Slider childSlider = (Slider)ParentPage.FindByName (SliderName);
 
-			childSlider.Maximum = 10;
+			childSlider.Maximum = 100;
 			childSlider.Minimum = 1;
 			childSlider.MaximumTrackColor = childSlider.MinimumTrackColor =
 				childSlider.ThumbColor = masterTextColor;
@@ -167,13 +166,14 @@ namespace RD_AAOW
 
 			#region Основная страница
 
-			resetButton = ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
+			/*resetButton =*/ ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
 				solutionFieldBackColor, ResetButton_Clicked);
-			nextButton = ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
+			/*restartButton =*/ ApplyButtonSettings (solutionPage, "RestartButton", Localization.GetText ("RestartButton", al),
+				solutionFieldBackColor, RestartButton_Clicked);
+			/*nextButton =*/ ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
 				solutionFieldBackColor, NextButton_Clicked);
 
-			activityLabel = ApplyLabelSettings (solutionPage, "ActivityLabel", "",
-				masterTextColor);
+			activityLabel = ApplyLabelSettings (solutionPage, "ActivityLabel", "", masterTextColor);
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
@@ -191,13 +191,16 @@ namespace RD_AAOW
 					{
 					objects.Add (Preferences.Get ("Object" + i.ToString ("D2"), ""));
 					criteria.Add (Preferences.Get ("Criteria" + i.ToString ("D2"), ""));
+					values.Add (int.Parse (Preferences.Get ("Value" + i.ToString ("D2"), "1")));
 					}
 				firstStart = Preferences.Get ("FirstStart", "") == "";
 				}
-			catch { }
+			catch
+				{
+				}
 
 			// Инициализация зависимых полей
-			ResetButton_Clicked (null, null);
+			ResetApp (false);
 
 			#endregion
 
@@ -240,9 +243,10 @@ namespace RD_AAOW
 				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);
 
 			// Сохранение
-			if (Localization.LanguagesNames.Contains (res))
+			List<string> lngs = new List<string> (Localization.LanguagesNames);
+			if (lngs.Contains (res))
 				{
-				al = (SupportedLanguages)Localization.LanguagesNames.IndexOf (res);
+				al = (SupportedLanguages)lngs.IndexOf (res);
 				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
 					Localization.GetText ("RestartApp", al), "OK");
 				}
@@ -315,6 +319,17 @@ namespace RD_AAOW
 		// Сброс на исходное состояние
 		private void ResetButton_Clicked (object sender, EventArgs e)
 			{
+			ResetApp (true);
+			}
+
+		// Запуск с начала
+		private void RestartButton_Clicked (object sender, EventArgs e)
+			{
+			ResetApp (false);
+			}
+
+		private void ResetApp (bool Fully)
+			{
 			// Сброс состояния
 			phase = 1;
 			activityLabel.Text = Localization.GetText ("ActivityLabelText01", al);
@@ -332,14 +347,23 @@ namespace RD_AAOW
 				}
 			objectsFields[0].IsVisible = true;
 
-			for (int i = 0; i < objects.Count; i++)
-				objectsFields[i].Text = objects[i];
+			// Востановление значений из кэша
+			if (!Fully)
+				{
+				for (int i = 0; i < objects.Count; i++)
+					objectsFields[i].Text = objects[i];
+
+				for (int i = 0; i < criteria.Count; i++)
+					textFields[i].Text = criteria[i];
+
+				for (int i = 0; i < values.Count; i++)
+					valueFields[i].Value = values[i];
+				}
+
+			// Обнуление
 			objects.Clear ();
-
-			for (int i = 0; i < criteria.Count; i++)
-				textFields[i].Text = criteria[i];
 			criteria.Clear ();
-
+			values.Clear ();
 			objectsMaths.Clear ();
 			}
 
@@ -407,7 +431,6 @@ namespace RD_AAOW
 						}
 
 					// Перенос
-					List<int> criteriaVector = new List<int> ();
 					for (int i = 0; i < masterLinesCount; i++)
 						{
 						if (textFields[i].Text == "")
@@ -417,10 +440,10 @@ namespace RD_AAOW
 						else
 							{
 							criteria.Add (textFields[i].Text);
-							criteriaVector.Add ((int)valueFields[i].Value);
+							values.Add ((int)valueFields[i].Value);
 							}
 						}
-					criteriaMath = new MakeDecisionMath (criteriaVector);
+					criteriaMath = new MakeDecisionMath (values);
 
 					// Изменение состояния
 					for (int i = 0; i < masterLinesCount; i++)
@@ -477,22 +500,47 @@ namespace RD_AAOW
 						{
 						// Расчёт
 						List<double> result = MakeDecisionMath.EvaluateHierarchy (criteriaMath, objectsMaths);
-						int maxIndex = 0;
-						double max = result[maxIndex];
 
-						// Результат
+						// Ра
 						activityLabel.Text = Localization.GetText ("ActivityLabelText04", al);
-						for (int i = 0; i < objects.Count; i++)
-							{
-							activityLabel.Text += (objects[i] + " – " + result[i].ToString ("0.0##") + "\n");
 
+						// Подготовка максимума
+						double max = result[0];
+						for (int i = 1; i < objects.Count; i++)
+							{
 							if (max < result[i])
-								{
 								max = result[i];
-								maxIndex = i;
+							}
+
+						// Сортировка
+						List<string> sortedObjects = new List<string> (objects);
+						bool sorted = false;
+
+						while (!sorted)
+							{
+							sorted = true;
+							for (int i = 1; i < sortedObjects.Count; i++)
+								{
+								if (result[i] > result[i - 1])
+									{
+									double v = result[i];
+									string s = sortedObjects[i];
+
+									result[i] = result[i - 1];
+									sortedObjects[i] = sortedObjects[i - 1];
+
+									result[i - 1] = v;
+									sortedObjects[i - 1] = s;
+
+									sorted = false;
+									}
 								}
 							}
-						activityLabel.Text += (Localization.GetText ("ActivityLabelText05", al) + objects[maxIndex]);
+
+						// Вывод результата
+						for (int i = 0; i < sortedObjects.Count; i++)
+							activityLabel.Text += ((i + 1).ToString () + ". " + sortedObjects[i] + " (" +
+								((int)(100.0 * result[i] / max)).ToString () + " / 100)\n");
 
 						// Завершение
 						for (int i = 0; i < masterLinesCount; i++)
@@ -506,7 +554,7 @@ namespace RD_AAOW
 
 				// Начать сначала
 				case 4:
-					ResetButton_Clicked (null, null);
+					ResetApp (false);
 					break;
 				}
 			}
@@ -537,11 +585,14 @@ namespace RD_AAOW
 						{
 						Preferences.Set ("Object" + i.ToString ("D2"), objectsFields[i].Text);
 						Preferences.Set ("Criteria" + i.ToString ("D2"), textFields[i].Text);
+						Preferences.Set ("Value" + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());
 						}
 					else
 						{
 						Preferences.Set ("Object" + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
 						Preferences.Set ("Criteria" + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
+						Preferences.Set ("Value" + i.ToString ("D2"), ((i < values.Count) ?
+							((int)values[i]).ToString () : "1"));
 						}
 					}
 

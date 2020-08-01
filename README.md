@@ -1,4 +1,4 @@
-# MakeDecision v 2.3
+# MakeDecision v 2.4
 
 Making decisions support tool
 

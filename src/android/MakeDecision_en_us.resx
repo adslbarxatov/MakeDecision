@@ -158,10 +158,13 @@ The most suitable option is </value>
     <value>Not enough variants to compare</value>
   </data>
   <data name="ResetButton" xml:space="preserve">
-    <value>Restart</value>
+    <value>Clear</value>
   </data>
   <data name="RestartApp" xml:space="preserve">
     <value>Restart the application</value>
+  </data>
+  <data name="RestartButton" xml:space="preserve">
+    <value>Restart</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select language:</value>
@@ -176,10 +179,10 @@ The most suitable option is </value>
     <value>Welcome to making difficult decisions service. This tool will help you apply math to compare options and choose the best one</value>
   </data>
   <data name="Tip01" xml:space="preserve">
-    <value>First, specify names of what you want to compare (no more than {0:D}). Then click “Next” button</value>
+    <value>First, specify names of what you want to compare (not more than {0:D}). Then click “Next” button</value>
   </data>
   <data name="Tip02" xml:space="preserve">
-    <value>Now specify criteria by which you want to compare (no more than {0:D}).
+    <value>Now specify criteria by which you want to compare (not more than {0:D}).
 After that, rate importance of each of them using sliders on the right. The more to the right the position of slider, the higher value of criterion</value>
   </data>
   <data name="Tip03" xml:space="preserve">

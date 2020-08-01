@@ -158,10 +158,13 @@
     <value>Недостаточно вариантов для сравнения</value>
   </data>
   <data name="ResetButton" xml:space="preserve">
-    <value>Заново</value>
+    <value>Сброс</value>
   </data>
   <data name="RestartApp" xml:space="preserve">
     <value>Перезапустите приложение</value>
+  </data>
+  <data name="RestartButton" xml:space="preserve">
+    <value>Заново</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Выберите язык:</value>

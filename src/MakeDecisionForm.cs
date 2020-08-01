@@ -191,22 +191,49 @@ namespace RD_AAOW
 					// Определение результата
 					List<double> result = MakeDecisionMath.EvaluateHierarchy (criteriaMath, objectsMaths);
 
-					int maxIndex = 0;
-					double max = result[maxIndex];
+					// Расчёт максимума
+					double max = result[0];
 					ResultsList.Items.Clear ();
-					for (int i = 0; i < result.Count; i++)
-						{
-						ResultsList.Items.Add (ObjectsList.Items[i].ToString () + " – " + result[i].ToString ("0.0###"));
 
+					for (int i = 1; i < result.Count; i++)
+						{
 						if (max < result[i])
-							{
 							max = result[i];
-							maxIndex = i;
+						}
+
+					// Сортировка
+					List<string> sortedObjects = new List<string> ();
+					for (int i = 0; i < ObjectsList.Items.Count; i++)
+						sortedObjects.Add (ObjectsList.Items[i].ToString ());
+					bool sorted = false;
+
+					while (!sorted)
+						{
+						sorted = true;
+						for (int i = 1; i < sortedObjects.Count; i++)
+							{
+							if (result[i] > result[i - 1])
+								{
+								double v = result[i];
+								string s = sortedObjects[i];
+
+								result[i] = result[i - 1];
+								sortedObjects[i] = sortedObjects[i - 1];
+
+								result[i - 1] = v;
+								sortedObjects[i - 1] = s;
+
+								sorted = false;
+								}
 							}
 						}
 
+					// Вывод результата
+					for (int i = 0; i < sortedObjects.Count; i++)
+						ResultsList.Items.Add (((i + 1).ToString () + ". " + sortedObjects[i] + " (" +
+							((int)(100.0 * result[i] / max)).ToString () + " / 100)\n"));
+
 					// Завершение
-					ResultLabel.Text = string.Format (Localization.GetText ("ResultLabel", al), ObjectsList.Items[maxIndex].ToString ());
 					break;
 				}
 

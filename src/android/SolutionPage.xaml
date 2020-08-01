@@ -9,6 +9,7 @@
 
 			<StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
 				<Button x:Name="ResetButton" HorizontalOptions="CenterAndExpand" />
+				<Button x:Name="RestartButton" HorizontalOptions="CenterAndExpand" />
 				<Button x:Name="NextButton" HorizontalOptions="CenterAndExpand" />
 			</StackLayout>
 
@@ -31,7 +32,15 @@
 				<!-- Таблица определена как саморасширяющаяся по вертикали и с фиксированным размером второго столбца -->
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition />
