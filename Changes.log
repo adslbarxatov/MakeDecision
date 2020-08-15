@@ -1,5 +1,8 @@
 ﻿MakeDecision changes log
 
+Version 2.4.1p:
+• Added ability to accept/decline ADP at first start to the application info interface
+
 Version 2.4 / Android:
 • Accuracy of priority sliders has been seriously improved;
 • App now can remember priorities of criteria; priorities of objects are still required to be set anytime you get to corresponding interface;

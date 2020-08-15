@@ -16,7 +16,14 @@ namespace RD_AAOW
 			{
 			// Инициализация
 			Application.EnableVisualStyles ();
-			Application.SetCompatibleTextRenderingDefault (false);			
+			Application.SetCompatibleTextRenderingDefault (false);
+
+			// Отображение справки и запроса на принятие Политики
+			if (!ProgramDescription.AcceptEULA ())
+				return;
+			ProgramDescription.ShowAbout (true);
+
+			// Запуск
 			Application.Run (new MakeDecisionForm ());
 			}
 		}

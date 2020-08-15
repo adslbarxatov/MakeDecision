@@ -388,7 +388,7 @@ namespace RD_AAOW
 			{
 			e.Cancel = true;
 
-			AboutForm af = new AboutForm (al, "*", "*", "", Localization.GetText ("HelpMessage", al));
+			ProgramDescription.ShowAbout (false);
 			}
 		}
 	}
