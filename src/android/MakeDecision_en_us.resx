@@ -120,6 +120,9 @@
   <data name="AboutPage" xml:space="preserve">
     <value>About application</value>
   </data>
+  <data name="AcceptButton" xml:space="preserve">
+    <value>No, I already read and completely accepted them</value>
+  </data>
   <data name="ActivityLabelText01" xml:space="preserve">
     <value>Specify, what you want to compare</value>
   </data>
@@ -148,6 +151,9 @@ The most suitable option is </value>
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="DeclineButton" xml:space="preserve">
+    <value>Yes, I want to read them</value>
+  </data>
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
   </data>
@@ -156,6 +162,9 @@ The most suitable option is </value>
   </data>
   <data name="NotEnoughVariants" xml:space="preserve">
     <value>Not enough variants to compare</value>
+  </data>
+  <data name="PolicyMessage" xml:space="preserve">
+    <value>Before you can start using this tool, you must accept or decline Application development policy and EULA. Do you want to open them in browser?</value>
   </data>
   <data name="ResetButton" xml:space="preserve">
     <value>Clear</value>

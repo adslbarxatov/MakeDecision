@@ -28,14 +28,19 @@ namespace RD_AAOW
 		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
 
 		private readonly Color
-			solutionMasterBackColor = Color.FromHex ("#FFFFF0"),
-			solutionFieldBackColor = Color.FromHex ("#FFFFD0"),
+			solutionMasterBackColor = Color.FromHex ("#F0FFF0"),
+			solutionFieldBackColor = Color.FromHex ("#D0FFD0"),
 
 			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
 			aboutFieldBackColor = Color.FromHex ("#D0FFD0"),
 
 			masterTextColor = Color.FromHex ("#000080"),
 			masterHeaderColor = Color.FromHex ("#202020");
+
+		private const string objectsRegKey = "Object";
+		private const string criteriaRegKey = "Criteria";
+		private const string valuesRegKey = "Value";
+		private const string firstStartRegKey = "HelpShownAt";
 
 		#endregion
 
@@ -47,7 +52,6 @@ namespace RD_AAOW
 		private Editor[] textFields = new Editor[masterLinesCount],
 			objectsFields = new Editor[masterLinesCount];
 		private Slider[] valueFields = new Slider[masterLinesCount];
-		//private Button resetButton, restartButton, nextButton;
 
 		#endregion
 
@@ -166,11 +170,11 @@ namespace RD_AAOW
 
 			#region Основная страница
 
-			/*resetButton =*/ ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
+			ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
 				solutionFieldBackColor, ResetButton_Clicked);
-			/*restartButton =*/ ApplyButtonSettings (solutionPage, "RestartButton", Localization.GetText ("RestartButton", al),
+			ApplyButtonSettings (solutionPage, "RestartButton", Localization.GetText ("RestartButton", al),
 				solutionFieldBackColor, RestartButton_Clicked);
-			/*nextButton =*/ ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
+			ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
 				solutionFieldBackColor, NextButton_Clicked);
 
 			activityLabel = ApplyLabelSettings (solutionPage, "ActivityLabel", "", masterTextColor);
@@ -189,11 +193,11 @@ namespace RD_AAOW
 				{
 				for (int i = 0; i < masterLinesCount; i++)
 					{
-					objects.Add (Preferences.Get ("Object" + i.ToString ("D2"), ""));
-					criteria.Add (Preferences.Get ("Criteria" + i.ToString ("D2"), ""));
-					values.Add (int.Parse (Preferences.Get ("Value" + i.ToString ("D2"), "1")));
+					objects.Add (Preferences.Get (objectsRegKey + i.ToString ("D2"), ""));
+					criteria.Add (Preferences.Get (criteriaRegKey + i.ToString ("D2"), ""));
+					values.Add (int.Parse (Preferences.Get (valuesRegKey + i.ToString ("D2"), "1")));
 					}
-				firstStart = Preferences.Get ("FirstStart", "") == "";
+				firstStart = Preferences.Get (firstStartRegKey, "") == "";
 				}
 			catch
 				{
@@ -261,6 +265,17 @@ namespace RD_AAOW
 			switch (TipsNumber)
 				{
 				case 1:
+					// Требование принятия Политики
+					while (await solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+										Localization.GetText ("PolicyMessage", al),
+										Localization.GetText ("DeclineButton", al),
+										Localization.GetText ("AcceptButton", al)))
+						{
+						ADPButton_Clicked (null, null);
+						}
+					Preferences.Set (firstStartRegKey, ProgramDescription.AssemblyVersion); // Только после принятия
+
+					// Первая подсказка
 					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader01", al),
 						Localization.GetText ("Tip00", al), Localization.GetText ("NextButton", al));
 					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "1",
@@ -583,20 +598,19 @@ namespace RD_AAOW
 					{
 					if (phase < 3)
 						{
-						Preferences.Set ("Object" + i.ToString ("D2"), objectsFields[i].Text);
-						Preferences.Set ("Criteria" + i.ToString ("D2"), textFields[i].Text);
-						Preferences.Set ("Value" + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());
+						Preferences.Set (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
+						Preferences.Set (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
+						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());
 						}
 					else
 						{
-						Preferences.Set ("Object" + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
-						Preferences.Set ("Criteria" + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
-						Preferences.Set ("Value" + i.ToString ("D2"), ((i < values.Count) ?
+						Preferences.Set (objectsRegKey + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
+						Preferences.Set (criteriaRegKey + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
+						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((i < values.Count) ?
 							((int)values[i]).ToString () : "1"));
 						}
 					}
 
-				Preferences.Set ("FirstStart", "No");
 				Localization.CurrentLanguage = al;
 				}
 			catch { }
