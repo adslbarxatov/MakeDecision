@@ -1,5 +1,10 @@
 ﻿MakeDecision changes log
 
+Version 2.4.2i:
+• Windows: found and fixed hidden bug that caused an error when starting the application from local network;
+• Windows: fixed bug that caused the Policy text request method to fail if server disconnected;
+• Windows: updated application identity
+
 Version 2.4.1p / Android:
 • Added ability to accept/decline ADP at first start to the application info interface;
 • Minor interface changes applied
