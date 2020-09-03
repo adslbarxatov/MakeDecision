@@ -164,7 +164,9 @@ The most suitable option is </value>
     <value>Not enough variants to compare</value>
   </data>
   <data name="PolicyMessage" xml:space="preserve">
-    <value>Before you can start using this tool, you must accept or decline Application development policy and EULA. Do you want to open them in browser?</value>
+    <value>Before you can start using this tool, you must accept Application development policy and EULA. Do you want to open them in browser?
+
+To decline them just close the application</value>
   </data>
   <data name="ResetButton" xml:space="preserve">
     <value>Clear</value>
