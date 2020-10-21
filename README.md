@@ -1,10 +1,13 @@
 # MakeDecision v 2.5
+> PCC: 0002E30992B716CF
+
 
 Making decisions support tool
 
 Инструмент помощи в принятии решений
 
 
+#
 
 ## About
 
@@ -25,6 +28,8 @@ method. If necessary, all steps can be repeated again. Input will be saved in An
 >
 > During the development, only lecture material was used, the understanding of which is more
 > than enough to create this (and similar) illustrative applications
+
+&nbsp;
 
 
 
@@ -47,6 +52,8 @@ method. If necessary, all steps can be repeated again. Input will be saved in An
 > При разработке использовался только лекционный материал, понимания которого более чем достаточно
 > для создания данного (и ему подобных) иллюстративного приложения
 
+&nbsp;
+
 
 
 ## Requirements / Требования
@@ -59,6 +66,8 @@ method. If necessary, all steps can be repeated again. Input will be saved in An
 - Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 4.4 или новее. Языки интерфейса: ru_ru, en_us;
 - Android-версия на платформе AppGallery также доступна для загрузки
 
+&nbsp;
+
 
 
 ## Development policy and EULA / Политика разработки и EULA
@@ -68,6 +77,8 @@ describes general rules that we follow in all of our development processes, rele
 ideas.
 **It must be acquainted by participants and users before using any of laboratory's products.
 By downloading them, you agree to this Policy**
+
+#
 
 Данная [Политика (ADP)](https://vk.com/@rdaaow_fupl-adp), её положения, заключение, EULA и способы применения
 описывают общие правила, которым мы следуем во всех наших процессах разработки, вышедших в релиз приложениях
