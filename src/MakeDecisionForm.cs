@@ -7,7 +7,7 @@ namespace RD_AAOW
 	/// <summary>
 	/// Класс описывает главную форму приложения
 	/// </summary>
-	public partial class MakeDecisionForm:Form
+	public partial class MakeDecisionForm: Form
 		{
 		// Переменные
 		private SupportedLanguages al = Localization.CurrentLanguage;
