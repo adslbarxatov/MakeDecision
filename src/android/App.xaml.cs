@@ -10,11 +10,11 @@ namespace RD_AAOW
 	/// <summary>
 	/// Класс описывает функционал приложения
 	/// </summary>
-	public partial class App:Application
+	public partial class App: Application
 		{
 		#region Общие переменные и константы
 
-		private const int masterFontSize = 14;
+		private const int masterFontSize = 13;
 		private Thickness margin = new Thickness (6);
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
@@ -95,6 +95,7 @@ namespace RD_AAOW
 			childButton.TextColor = masterTextColor;
 			childButton.Margin = margin;
 			childButton.Text = ButtonTitle;
+			childButton.TextTransform = TextTransform.None;
 			if (ButtonMethod != null)
 				childButton.Clicked += ButtonMethod;
 

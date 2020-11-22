@@ -1,3 +1,8 @@
-_Changes for v 2.5.2_:
-- Added protection against multiple launch;
-- Applied cumulative changes of versions 2.4.x for all platforms
+_Changes for v 2.6_:
+- Windows: ADP loader has been rebuilt; policy text now formatted properly;
+- Windows: app about and Policy windows are now fully expandaple;
+- Android: fixed some interface bugs;
+- Android: trying to reduce size of an app;
+- Android: updating app core assemblies;
+- Android: updating forms styling;
+- Windows: added protection against multiple launch
