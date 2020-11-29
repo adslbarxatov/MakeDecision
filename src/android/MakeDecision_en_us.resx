@@ -154,6 +154,9 @@ The most suitable option is </value>
   <data name="DeclineButton" xml:space="preserve">
     <value>Read</value>
   </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Interface language:</value>
+  </data>
   <data name="NextButton" xml:space="preserve">
     <value>Next</value>
   </data>

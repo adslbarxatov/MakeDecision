@@ -233,6 +233,7 @@ namespace RD_AAOW
 
 			ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
 				aboutFieldBackColor, SelectLanguage_Clicked);
+			ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel", al), masterTextColor);
 
 			#endregion
 

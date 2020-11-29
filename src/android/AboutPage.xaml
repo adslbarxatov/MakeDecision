@@ -3,26 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RD_AAOW.AboutPage">
 
-	<ScrollView>
-		<StackLayout>
-			<Label x:Name="HeaderLabel" />
+	<StackLayout>
+		<Label x:Name="HeaderLabel" />
 
-			<Label x:Name="AboutLabel" />
+		<ScrollView>
+			<StackLayout>
 
-			<Button x:Name="AppPage" />
-			<Button x:Name="SolutionAboutPage" />
+				<Label x:Name="AboutLabel" />
+				<BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" 
+					WidthRequest="200" Color="#606060" Margin="9" />
 
-			<Label x:Name="Filler1" />
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Label x:Name="LanguageLabel" VerticalOptions="Center" />
+					<Button x:Name="LanguageSelector" />
+				</StackLayout>
 
-			<Button x:Name="ADPPage" />
-			<Button x:Name="CommunityPage" />
+				<Button x:Name="SolutionAboutPage" />
+				<BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" 
+					WidthRequest="200" Color="#606060" Margin="9" />
 
-			<Label x:Name="Filler2" />
+				<Button x:Name="AppPage" />
+				<Button x:Name="ADPPage" />
+				<Button x:Name="CommunityPage" />
 
-            <Button x:Name="LanguageSelector" />
+				<Label x:Name="Filler3" />
 
-            <Label x:Name="Filler3" />
-        </StackLayout>
-	</ScrollView>
+			</StackLayout>
+		</ScrollView>
+	</StackLayout>
 </ContentPage>
     
