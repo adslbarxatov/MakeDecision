@@ -146,13 +146,16 @@
     <value>Политика и EULA</value>
   </data>
   <data name="AppPage" xml:space="preserve">
-    <value>Перейти на страницу проекта</value>
+    <value>Страница проекта</value>
   </data>
   <data name="CancelButton" xml:space="preserve">
     <value>Отмена</value>
   </data>
   <data name="DeclineButton" xml:space="preserve">
     <value>Читать</value>
+  </data>
+  <data name="DevPage" xml:space="preserve">
+    <value>Спросить разработчика</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Язык интерфейса:</value>

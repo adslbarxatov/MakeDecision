@@ -146,13 +146,16 @@ The most suitable option is </value>
     <value>Policy and EULA</value>
   </data>
   <data name="AppPage" xml:space="preserve">
-    <value>Go to app webpage</value>
+    <value>App webpage</value>
   </data>
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="DeclineButton" xml:space="preserve">
     <value>Read</value>
+  </data>
+  <data name="DevPage" xml:space="preserve">
+    <value>Ask developer</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Interface language:</value>

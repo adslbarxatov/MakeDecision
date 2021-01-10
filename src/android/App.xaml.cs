@@ -14,8 +14,6 @@ namespace RD_AAOW
 		{
 		#region Общие переменные и константы
 
-		private const int masterFontSize = 13;
-		private Thickness margin = new Thickness (6);
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
 		private bool firstStart = true;
@@ -32,10 +30,7 @@ namespace RD_AAOW
 			solutionFieldBackColor = Color.FromHex ("#D0FFD0"),
 
 			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
-			aboutFieldBackColor = Color.FromHex ("#D0FFD0"),
-
-			masterTextColor = Color.FromHex ("#000080"),
-			masterHeaderColor = Color.FromHex ("#202020");
+			aboutFieldBackColor = Color.FromHex ("#D0FFD0");
 
 		private const string objectsRegKey = "Object";
 		private const string criteriaRegKey = "Criteria";
@@ -55,106 +50,6 @@ namespace RD_AAOW
 
 		#endregion
 
-		#region Вспомогательные методы
-
-		private ContentPage ApplyPageSettings (string PageName, Color PageBackColor)
-			{
-			// Инициализация страницы
-			ContentPage page = (ContentPage)MainPage.FindByName (PageName);
-			page.Title = Localization.GetText (PageName, al);
-			page.BackgroundColor = PageBackColor;
-
-			ApplyHeaderLabelSettings (page, page.Title, PageBackColor);
-
-			return page;
-			}
-
-		private Label ApplyLabelSettings (ContentPage ParentPage, string LabelName,
-			string LabelTitle, Color LabelTextColor)
-			{
-			Label childLabel = (Label)ParentPage.FindByName (LabelName);
-
-			childLabel.Text = LabelTitle;
-			childLabel.HorizontalOptions = LayoutOptions.Center;
-			childLabel.FontAttributes = FontAttributes.Bold;
-			childLabel.FontSize = masterFontSize;
-			childLabel.TextColor = LabelTextColor;
-			childLabel.Margin = margin;
-
-			return childLabel;
-			}
-
-		private Button ApplyButtonSettings (ContentPage ParentPage, string ButtonName,
-			string ButtonTitle, Color ButtonColor, EventHandler ButtonMethod)
-			{
-			Button childButton = (Button)ParentPage.FindByName (ButtonName);
-
-			childButton.BackgroundColor = ButtonColor;
-			childButton.FontAttributes = FontAttributes.None;
-			childButton.FontSize = masterFontSize;
-			childButton.TextColor = masterTextColor;
-			childButton.Margin = margin;
-			childButton.Text = ButtonTitle;
-			childButton.TextTransform = TextTransform.None;
-			if (ButtonMethod != null)
-				childButton.Clicked += ButtonMethod;
-
-			return childButton;
-			}
-
-		private Editor ApplyEditorSettings (ContentPage ParentPage, string EditorName,
-			Color EditorColor, Keyboard EditorKeyboard, uint MaxLength,
-			string InitialText, EventHandler<TextChangedEventArgs> EditMethod)
-			{
-			Editor childEditor = (Editor)ParentPage.FindByName (EditorName);
-
-			childEditor.AutoSize = EditorAutoSizeOption.TextChanges;
-			childEditor.BackgroundColor = EditorColor;
-			childEditor.FontAttributes = FontAttributes.None;
-			childEditor.FontFamily = "Serif";
-			childEditor.FontSize = masterFontSize;
-			childEditor.Keyboard = EditorKeyboard;
-			childEditor.MaxLength = (int)MaxLength;
-			//childEditor.Placeholder = "...";
-			//childEditor.PlaceholderColor = Color.FromRgb (255, 255, 0);
-			childEditor.TextColor = masterTextColor;
-			childEditor.Margin = margin;
-
-			childEditor.Text = InitialText;
-			childEditor.TextChanged += EditMethod;
-
-			return childEditor;
-			}
-
-		private void ApplyHeaderLabelSettings (ContentPage ParentPage, string LabelTitle, Color BackColor)
-			{
-			Label childLabel = (Label)ParentPage.FindByName ("HeaderLabel");
-
-			childLabel.BackgroundColor = masterHeaderColor;
-			childLabel.FontAttributes = FontAttributes.Bold;
-			childLabel.FontSize = masterFontSize;
-			childLabel.HorizontalTextAlignment = TextAlignment.Center;
-			childLabel.HorizontalOptions = LayoutOptions.Fill;
-			childLabel.Padding = margin;
-			childLabel.Text = LabelTitle;
-			childLabel.TextColor = BackColor;
-			}
-
-		private Slider ApplySliderSettings (ContentPage ParentPage, string SliderName)
-			{
-			Slider childSlider = (Slider)ParentPage.FindByName (SliderName);
-
-			childSlider.Maximum = 100;
-			childSlider.Minimum = 1;
-			childSlider.MaximumTrackColor = childSlider.MinimumTrackColor =
-				childSlider.ThumbColor = masterTextColor;
-			childSlider.Value = 1;
-
-			return childSlider;
-			}
-
-		#endregion
-
 		/// <summary>
 		/// Конструктор. Точка входа приложения
 		/// </summary>
@@ -166,27 +61,29 @@ namespace RD_AAOW
 			// Общая конструкция страниц приложения
 			MainPage = new MasterPage ();
 
-			solutionPage = ApplyPageSettings ("SolutionPage", solutionMasterBackColor);
-			aboutPage = ApplyPageSettings ("AboutPage", aboutMasterBackColor);
+			solutionPage = AndroidSupport.ApplyPageSettings (MainPage, "SolutionPage",
+				Localization.GetText ("SolutionPage", al), solutionMasterBackColor);
+			aboutPage = AndroidSupport.ApplyPageSettings (MainPage, "AboutPage",
+				Localization.GetText ("AboutPage", al), aboutMasterBackColor);
 
 			#region Основная страница
 
-			ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
+			AndroidSupport.ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
 				solutionFieldBackColor, ResetButton_Clicked);
-			ApplyButtonSettings (solutionPage, "RestartButton", Localization.GetText ("RestartButton", al),
+			AndroidSupport.ApplyButtonSettings (solutionPage, "RestartButton", Localization.GetText ("RestartButton", al),
 				solutionFieldBackColor, RestartButton_Clicked);
-			ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
+			AndroidSupport.ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
 				solutionFieldBackColor, NextButton_Clicked);
 
-			activityLabel = ApplyLabelSettings (solutionPage, "ActivityLabel", "", masterTextColor);
+			activityLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel");
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
-				objectsFields[i] = ApplyEditorSettings (solutionPage, "ObjectField" + i.ToString ("D02"),
+				objectsFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + i.ToString ("D02"),
 					solutionFieldBackColor, Keyboard.Default, 50, "", ObjectName_TextChanged);
-				textFields[i] = ApplyEditorSettings (solutionPage, "TextField" + i.ToString ("D02"),
+				textFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + i.ToString ("D02"),
 					solutionFieldBackColor, Keyboard.Default, 50, "", CriteriaName_TextChanged);
-				valueFields[i] = ApplySliderSettings (solutionPage, "ValueField" + i.ToString ("D02"));
+				valueFields[i] = AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + i.ToString ("D02"));
 				}
 
 			// Получение настроек перед инициализацией
@@ -211,7 +108,7 @@ namespace RD_AAOW
 
 			#region Страница "О программе"
 
-			aboutLabel = ApplyLabelSettings (aboutPage, "AboutLabel",
+			aboutLabel = AndroidSupport.ApplyLabelSettings (aboutPage, "AboutLabel",
 				ProgramDescription.AssemblyTitle + "\n" +
 				ProgramDescription.AssemblyDescription + "\n\n" +
 				ProgramDescription.AssemblyCopyright + "\nv " +
@@ -222,18 +119,20 @@ namespace RD_AAOW
 			aboutLabel.HorizontalOptions = LayoutOptions.Fill;
 			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
-			ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
 				aboutFieldBackColor, AppButton_Clicked);
-			ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
 				aboutFieldBackColor, ADPButton_Clicked);
-			ApplyButtonSettings (aboutPage, "CommunityPage",
+			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage",
 				"RD AAOW Free utilities production lab", aboutFieldBackColor, CommunityButton_Clicked);
-			ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
+				aboutFieldBackColor, DevButton_Clicked);
+			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
 				aboutFieldBackColor, SolutionAboutButton_Clicked);
 
-			ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
+			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
 				aboutFieldBackColor, SelectLanguage_Clicked);
-			ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel", al), masterTextColor);
+			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel", al));
 
 			#endregion
 
@@ -312,25 +211,61 @@ namespace RD_AAOW
 		// Страница проекта
 		private void AppButton_Clicked (object sender, EventArgs e)
 			{
-			Launcher.OpenAsync ("https://github.com/adslbarxatov/MakeDecision");
+			try
+				{
+				Launcher.OpenAsync (AndroidSupport.MasterGitLink + "MakeDecision");
+				}
+			catch { }
 			}
 
 		// Страница лаборатории
 		private void CommunityButton_Clicked (object sender, EventArgs e)
 			{
-			Launcher.OpenAsync ("https://vk.com/rdaaow_fupl");
+			try
+				{
+				Launcher.OpenAsync (AndroidSupport.MasterCommunityLink);
+				}
+			catch { }
 			}
 
 		// Страница метода иерархий
 		private void SolutionAboutButton_Clicked (object sender, EventArgs e)
 			{
-			Launcher.OpenAsync ("https://vk.com/@rdaaow_fupl-makedecision");
+			try
+				{
+				Launcher.OpenAsync ("https://vk.com/@rdaaow_fupl-makedecision");
+				}
+			catch { }
 			}
 
 		// Страница политики и EULA
 		private void ADPButton_Clicked (object sender, EventArgs e)
 			{
-			Launcher.OpenAsync ("https://vk.com/@rdaaow_fupl-adp");
+			try
+				{
+				Launcher.OpenAsync (AndroidSupport.ADPLink);
+				}
+			catch { }
+			}
+
+		// Страница политики и EULA
+		private async void DevButton_Clicked (object sender, EventArgs e)
+			{
+			try
+				{
+				EmailMessage message = new EmailMessage
+					{
+					Subject = "Wish, advice or bug in " + ProgramDescription.AssemblyTitle,
+					Body = "",
+					To = new List<string> () { AndroidSupport.MasterDeveloperLink }
+					};
+				await Email.ComposeAsync (message);
+				}
+			catch
+				{
+				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					Localization.GetText ("EmailsAreUnavailable", al), Localization.GetText ("NextButton", al));
+				}
 			}
 
 		// Сброс на исходное состояние
