@@ -1,5 +1,8 @@
 ﻿MakeDecision changes log
 
+Version 2.6.4:
+• Android: fixed some buttons sizes and appearance
+
 Version 2.6.3:
 • Added ability to 'ask developer' via E-mail for help, or send wish, advice or bug report;
 • Android: updated app about interface;
