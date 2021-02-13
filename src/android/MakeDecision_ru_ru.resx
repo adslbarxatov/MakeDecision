@@ -157,6 +157,9 @@
   <data name="DevPage" xml:space="preserve">
     <value>Спросить разработчика</value>
   </data>
+  <data name="EmailsAreUnavailable" xml:space="preserve">
+    <value>Почтовый агент отсутствует на этом устройстве</value>
+  </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Язык интерфейса:</value>
   </data>
@@ -223,5 +226,8 @@
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Подсказка №</value>
+  </data>
+  <data name="WebIsUnavailable" xml:space="preserve">
+    <value>Веб-браузер отсутствует на этом устройстве</value>
   </data>
 </root>

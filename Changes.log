@@ -1,5 +1,9 @@
 ﻿MakeDecision changes log
 
+Version 2.7:
+• Android: interface libraries have been updated;
+• Android: some code fixes applied
+
 Version 2.6.4:
 • Android: fixed some buttons sizes and appearance
 

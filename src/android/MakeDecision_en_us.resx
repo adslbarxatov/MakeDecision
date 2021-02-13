@@ -157,6 +157,9 @@ The most suitable option is </value>
   <data name="DevPage" xml:space="preserve">
     <value>Ask developer</value>
   </data>
+  <data name="EmailsAreUnavailable" xml:space="preserve">
+    <value>This device has no mail agent</value>
+  </data>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Interface language:</value>
   </data>
@@ -223,5 +226,8 @@ They will not be lost when you open the application the next time you need to ma
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Hint #</value>
+  </data>
+  <data name="WebIsUnavailable" xml:space="preserve">
+    <value>This device has no web browser</value>
   </data>
 </root>

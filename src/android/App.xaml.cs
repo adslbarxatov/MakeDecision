@@ -116,7 +116,6 @@ namespace RD_AAOW
 				"; " + ProgramDescription.AssemblyLastUpdate,
 				Color.FromHex ("#000080"));
 			aboutLabel.FontAttributes = FontAttributes.Bold;
-			aboutLabel.HorizontalOptions = LayoutOptions.Fill;
 			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
 			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
@@ -209,43 +208,63 @@ namespace RD_AAOW
 			}
 
 		// Страница проекта
-		private void AppButton_Clicked (object sender, EventArgs e)
+		private async void AppButton_Clicked (object sender, EventArgs e)
 			{
 			try
 				{
 				Launcher.OpenAsync (AndroidSupport.MasterGitLink + "MakeDecision");
 				}
-			catch { }
+			catch
+				{
+				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					Localization.GetText ("WebIsUnavailable", al),
+					Localization.GetText ("NextButton", al));
+				}
 			}
 
 		// Страница лаборатории
-		private void CommunityButton_Clicked (object sender, EventArgs e)
+		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
 			try
 				{
 				Launcher.OpenAsync (AndroidSupport.MasterCommunityLink);
 				}
-			catch { }
+			catch
+				{
+				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					Localization.GetText ("WebIsUnavailable", al),
+					Localization.GetText ("NextButton", al));
+				}
 			}
 
 		// Страница метода иерархий
-		private void SolutionAboutButton_Clicked (object sender, EventArgs e)
+		private async void SolutionAboutButton_Clicked (object sender, EventArgs e)
 			{
 			try
 				{
 				Launcher.OpenAsync ("https://vk.com/@rdaaow_fupl-makedecision");
 				}
-			catch { }
+			catch
+				{
+				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					Localization.GetText ("WebIsUnavailable", al),
+					Localization.GetText ("NextButton", al));
+				}
 			}
 
 		// Страница политики и EULA
-		private void ADPButton_Clicked (object sender, EventArgs e)
+		private async void ADPButton_Clicked (object sender, EventArgs e)
 			{
 			try
 				{
 				Launcher.OpenAsync (AndroidSupport.ADPLink);
 				}
-			catch { }
+			catch
+				{
+				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					Localization.GetText ("WebIsUnavailable", al),
+					Localization.GetText ("NextButton", al));
+				}
 			}
 
 		// Страница политики и EULA

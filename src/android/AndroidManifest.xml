@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--package="makedecision.huawei" package="com.RD_AAOW.MakeDecision"-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.RD_AAOW.MakeDecision"
-		  android:installLocation="internalOnly" android:versionCode="600211" android:versionName="2.6.4">
+		  android:installLocation="internalOnly" android:versionCode="600212" android:versionName="2.7">
 
 	<uses-sdk android:minSdkVersion="17" android:targetSdkVersion="29" />
 
