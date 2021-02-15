@@ -59,12 +59,12 @@ method. If necessary, all steps can be repeated again. Input will be saved in An
 ## Requirements / Требования
 
 - Windows version requires Windows XP or newer, Framework 4.0 or newer. Interface languages: ru_ru, en_us;
-- [Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 4.4 or newer. Interface languages: ru_ru, en_us;
-- Android version on the AppGallery platform is available for download
+- [Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 5.0 or newer. Interface languages: ru_ru, en_us;
+- Android version is also available for download on AppGallery platform
 
 - Для Windows-версии требуется ОС Windows XP или новее, Framework 4.0 или новее. Языки интерфейса: ru_ru, en_us;
-- Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 4.4 или новее. Языки интерфейса: ru_ru, en_us;
-- Android-версия на платформе AppGallery также доступна для загрузки
+- Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 5.0 или новее. Языки интерфейса: ru_ru, en_us;
+- Android-версия также доступна для загрузки на платформе AppGallery
 
 &nbsp;
 
