@@ -1,5 +1,5 @@
-_Changes for v 2.7_:
-- Android: interface libraries have been updated;
-- Android: some code fixes applied;
-- Android: fixed some buttons sizes and appearance;
-- Added ability to 'ask developer' via E-mail for help, or send wish, advice or bug report
+_Changes for v 2.7.1_:
+- Windows: new identity applied;
+- New links to RD AAOW FDL added;
+- Added direct lab link to VK and Telegram;
+- Android: target API changed to 30 (Android R), according to Google's attribution

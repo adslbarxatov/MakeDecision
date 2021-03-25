@@ -151,6 +151,15 @@
   <data name="CancelButton" xml:space="preserve">
     <value>Отмена</value>
   </data>
+  <data name="CommunitySelect" xml:space="preserve">
+    <value>Выберите сообщество:</value>
+  </data>
+  <data name="CommunityTG" xml:space="preserve">
+    <value>Телеграм</value>
+  </data>
+  <data name="CommunityVK" xml:space="preserve">
+    <value>ВКонтакте</value>
+  </data>
   <data name="DeclineButton" xml:space="preserve">
     <value>Читать</value>
   </data>

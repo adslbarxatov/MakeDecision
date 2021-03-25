@@ -151,6 +151,15 @@ The most suitable option is </value>
   <data name="CancelButton" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CommunitySelect" xml:space="preserve">
+    <value>Select community:</value>
+  </data>
+  <data name="CommunityTG" xml:space="preserve">
+    <value>Telegram feed</value>
+  </data>
+  <data name="CommunityVK" xml:space="preserve">
+    <value>Main community</value>
+  </data>
   <data name="DeclineButton" xml:space="preserve">
     <value>Read</value>
   </data>

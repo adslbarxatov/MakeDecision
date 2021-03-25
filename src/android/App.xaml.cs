@@ -123,7 +123,7 @@ namespace RD_AAOW
 			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
 				aboutFieldBackColor, ADPButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage",
-				"RD AAOW Free utilities production lab", aboutFieldBackColor, CommunityButton_Clicked);
+				AndroidSupport.MasterLabName, aboutFieldBackColor, CommunityButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
 				aboutFieldBackColor, DevButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
@@ -227,7 +227,12 @@ namespace RD_AAOW
 			{
 			try
 				{
-				Launcher.OpenAsync (AndroidSupport.MasterCommunityLink);
+				if (await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+						Localization.GetText ("CommunitySelect", al), Localization.GetText ("CommunityVK", al),
+						Localization.GetText ("CommunityTG", al)))
+					Launcher.OpenAsync (AndroidSupport.CommunityFrontPage);
+				else
+					Launcher.OpenAsync (AndroidSupport.CommunityInTelegram);
 				}
 			catch
 				{
@@ -242,7 +247,7 @@ namespace RD_AAOW
 			{
 			try
 				{
-				Launcher.OpenAsync ("https://vk.com/@rdaaow_fupl-makedecision");
+				Launcher.OpenAsync ("https://vk.com/@rd_aaow_fdl-makedecision");
 				}
 			catch
 				{
@@ -572,7 +577,7 @@ namespace RD_AAOW
 			catch { }
 			}
 
-		#region Стандартные обработчики
+		/*#region Стандартные обработчики
 
 		/// <summary>
 		/// Обработчик события запуска приложения
@@ -588,6 +593,6 @@ namespace RD_AAOW
 			{
 			}
 
-		#endregion
+		#endregion*/
 		}
 	}
