@@ -1,4 +1,4 @@
-_Changes for v 2.7.1_:
+_Changes for v 2.7.1b_:
 - Windows: new identity applied;
 - New links to RD AAOW FDL added;
 - Added direct lab link to VK and Telegram;

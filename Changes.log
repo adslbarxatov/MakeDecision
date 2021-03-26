@@ -1,10 +1,11 @@
 ﻿MakeDecision changes log
 
-Version 2.7.1:
+Version 2.7.1b:
 • Windows: new identity applied;
 • New links to RD AAOW FDL added;
 • Added direct lab link to VK and Telegram;
-• Android: target API changed to 30 (Android R), according to Google's attribution
+• Android: target API changed to 30 (Android R), according to Google's attribution;
+• Android: removed support for x86 and x64
 
 Version 2.7:
 • Android: interface libraries have been updated;
