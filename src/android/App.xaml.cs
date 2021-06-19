@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.Widget;
+using System;
 using System.Collections.Generic;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -151,8 +152,8 @@ namespace RD_AAOW
 			if (lngs.Contains (res))
 				{
 				al = (SupportedLanguages)lngs.IndexOf (res);
-				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-					Localization.GetText ("RestartApp", al), "OK");
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp", al),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -166,10 +167,10 @@ namespace RD_AAOW
 				{
 				case 1:
 					// Требование принятия Политики
-					while (await solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					while (!await solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
 										Localization.GetText ("PolicyMessage", al),
-										Localization.GetText ("DeclineButton", al),
-										Localization.GetText ("AcceptButton", al)))
+										Localization.GetText ("AcceptButton", al),
+										Localization.GetText ("DeclineButton", al)))
 						{
 						ADPButton_Clicked (null, null);
 						}
@@ -212,13 +213,12 @@ namespace RD_AAOW
 			{
 			try
 				{
-				Launcher.OpenAsync (AndroidSupport.MasterGitLink + "MakeDecision");
+				await Launcher.OpenAsync (AndroidSupport.MasterGitLink + "MakeDecision");
 				}
 			catch
 				{
-				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-					Localization.GetText ("WebIsUnavailable", al),
-					Localization.GetText ("NextButton", al));
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -230,15 +230,14 @@ namespace RD_AAOW
 				if (await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
 						Localization.GetText ("CommunitySelect", al), Localization.GetText ("CommunityVK", al),
 						Localization.GetText ("CommunityTG", al)))
-					Launcher.OpenAsync (AndroidSupport.CommunityFrontPage);
+					await Launcher.OpenAsync (AndroidSupport.CommunityFrontPage);
 				else
-					Launcher.OpenAsync (AndroidSupport.CommunityInTelegram);
+					await Launcher.OpenAsync (AndroidSupport.CommunityInTelegram);
 				}
 			catch
 				{
-				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-					Localization.GetText ("WebIsUnavailable", al),
-					Localization.GetText ("NextButton", al));
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -247,13 +246,12 @@ namespace RD_AAOW
 			{
 			try
 				{
-				Launcher.OpenAsync ("https://vk.com/@rd_aaow_fdl-makedecision");
+				await Launcher.OpenAsync ("https://vk.com/@rd_aaow_fdl-makedecision");
 				}
 			catch
 				{
-				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-					Localization.GetText ("WebIsUnavailable", al),
-					Localization.GetText ("NextButton", al));
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -262,13 +260,12 @@ namespace RD_AAOW
 			{
 			try
 				{
-				Launcher.OpenAsync (AndroidSupport.ADPLink);
+				await Launcher.OpenAsync (AndroidSupport.ADPLink);
 				}
 			catch
 				{
-				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-					Localization.GetText ("WebIsUnavailable", al),
-					Localization.GetText ("NextButton", al));
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -287,8 +284,8 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-					Localization.GetText ("EmailsAreUnavailable", al), Localization.GetText ("NextButton", al));
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("EmailsAreUnavailable", al),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -576,23 +573,5 @@ namespace RD_AAOW
 				}
 			catch { }
 			}
-
-		/*#region Стандартные обработчики
-
-		/// <summary>
-		/// Обработчик события запуска приложения
-		/// </summary>
-		protected override void OnStart ()
-			{
-			}
-
-		/// <summary>
-		/// Обработчик события выхода из ждущего режима
-		/// </summary>
-		protected override void OnResume ()
-			{
-			}
-
-		#endregion*/
 		}
 	}

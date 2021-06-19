@@ -1,5 +1,3 @@
-_Changes for v 2.7.1b_:
-- Windows: new identity applied;
-- New links to RD AAOW FDL added;
-- Added direct lab link to VK and Telegram;
-- Android: target API changed to 30 (Android R), according to Google's attribution
+_Changes for v 2.7.2_:
+- Current minor fixes applied;
+- Windows: applied fixed icons
