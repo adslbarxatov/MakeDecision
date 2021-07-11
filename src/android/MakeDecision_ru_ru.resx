@@ -160,6 +160,12 @@
   <data name="CommunityVK" xml:space="preserve">
     <value>ВКонтакте</value>
   </data>
+  <data name="ComparisonCriteria" xml:space="preserve">
+    <value>Критерии сравнения:</value>
+  </data>
+  <data name="ComparisonObjects" xml:space="preserve">
+    <value>Сравниваемые элементы:</value>
+  </data>
   <data name="DeclineButton" xml:space="preserve">
     <value>Читать</value>
   </data>
@@ -201,7 +207,7 @@
     <value>Выберите язык:</value>
   </data>
   <data name="SolutionAboutPage" xml:space="preserve">
-    <value>Как принимается решение</value>
+    <value>Руководство пользователя</value>
   </data>
   <data name="SolutionPage" xml:space="preserve">
     <value>Принятие решений</value>
@@ -223,8 +229,7 @@
     <value>Если где-то случилась ошибка, нажмите кнопку «Заново», чтобы начать сначала</value>
   </data>
   <data name="Tip05" xml:space="preserve">
-    <value>На последнем шаге приложение отобразит результат сравнения. Как именно оно выполняется, можно узнать, смахнув экран приложения влево.
-На появившейся странице Вы также сможете найти контакты нашей лаборатории и дополнительную информацию о приложении</value>
+    <value>На последнем шаге приложение отобразит результат сравнения. Смахнув экран приложения влево, Вы также сможете найти контакты нашей лаборатории и дополнительную информацию о том, как выполняется поиск решения</value>
   </data>
   <data name="Tip06" xml:space="preserve">
     <value>Кнопка «Далее» запустит приложение заново. При этом все введённые названия будут сохранены.

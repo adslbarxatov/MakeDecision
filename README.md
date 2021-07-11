@@ -1,5 +1,5 @@
-# MakeDecision v 2.7.2
-> PCC: 0002F60072695D0B
+# MakeDecision v 2.8
+> PCC: 0002F5FE19168C87
 
 
 Making decisions support tool
@@ -15,10 +15,9 @@ This application illustrates a math method that allows comparing
 some objects or events based on a set of criteria and choosing the most “correct” one.
 User is invited to independently select variants and criteria for their
 comparison, as well as specify significance of each criterion and each element.
-As a result, you'll get the answer for the next question: “what way is the best”.
+As a result, you’ll get the answer for the next question: “what way is the best”.
 
-Each step is provided with explanations for this
-method. If necessary, all steps can be repeated again. Input will be saved in Android version on restart.
+Each step is provided with explanations for this method. If necessary, all steps can be repeated again.
 
 > First version of application was created in Microsoft Visual Basic 6.0 development environment.
 > This tool and, accordingly, the programming language 8 years ago were no longer the best development
@@ -36,12 +35,12 @@ method. If necessary, all steps can be repeated again. Input will be saved in An
 ## Описание
 
 Программа иллюстрирует математический метод, позволяющий сравнивать некоторые объекты,
-явления или исходы событий на основе набора критериев и выбор наиболее «подходящего» из них. Пользователю
-предлагается самостоятельно выбрать варианты и критерии для их сравнения, а также оценить значимость каждого
+явления или исходы событий на основе набора критериев и выбирать наиболее «подходящий» из них. Пользователю
+предлагается самостоятельно задать варианты и критерии для их сравнения, а также оценить значимость каждого
 критерия и варианта. Результатом будет ответ на вопрос: «какой выбор наиболее удачный».
 
-Каждый шаг метода снабжён пояснениями, излагающими суть метода. При необходимости, все шаги можно
-повторить заново. Введённые наименования сохраняются при перезапуске Android-приложения.
+Каждый шаг снабжён пояснениями, излагающими суть метода. При необходимости, все шаги можно
+повторить заново.
 
 > Первая версия программы была выполнена в среде разработки Microsoft Visual Basic 6.0.
 > Данная среда разработки и, соответственно, язык программирования 8 лет назад уже не являлись

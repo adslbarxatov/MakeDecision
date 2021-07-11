@@ -6,122 +6,139 @@
 	<StackLayout>
 		<Label x:Name="HeaderLabel" />
 
-		<ScrollView>
-			<StackLayout>
+		<Label x:Name="ActivityLabel" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
 
-				<StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
-					<Button x:Name="ResetButton" HorizontalOptions="CenterAndExpand" />
-					<Button x:Name="RestartButton" HorizontalOptions="CenterAndExpand" />
-					<Button x:Name="NextButton" HorizontalOptions="CenterAndExpand" />
+		<!-- Общее поле ввода с кнопкой перехода -->
+		<Grid ColumnSpacing="0">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="60" />
+			</Grid.ColumnDefinitions>
+
+			<ScrollView Grid.Row="0" Grid.Column="0">
+				<StackLayout>
+
+					<!-- Поля для объектов -->
+					<Editor x:Name="ObjectField00" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField01" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField02" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField03" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField04" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField05" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField06" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField07" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField08" HorizontalOptions="FillAndExpand" />
+					<Editor x:Name="ObjectField09" HorizontalOptions="FillAndExpand" />
+
+					<!-- Табличная форма для настраиваемых параметров -->
+					<Grid ColumnSpacing="0">
+						<!-- Таблица определена как саморасширяющаяся по вертикали и с фиксированным размером второго столбца -->
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition />
+							<ColumnDefinition Width="180" />
+						</Grid.ColumnDefinitions>
+
+						<StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField00" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField00" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField01" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField01" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="2" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField02" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField02" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="3" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField03" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="3" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField03" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="4" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField04" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField04" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="5" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField05" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="5" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField05" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="6" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField06" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="6" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField06" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="7" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField07" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="7" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField07" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="8" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField08" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="8" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField08" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+
+						<StackLayout Grid.Row="9" Grid.Column="0" VerticalOptions="Center">
+							<Editor x:Name="TextField09" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+						</StackLayout>
+						<StackLayout Grid.Row="9" Grid.Column="1" VerticalOptions="Center">
+							<Slider x:Name="ValueField09" VerticalOptions="Center" HorizontalOptions="Fill" />
+						</StackLayout>
+					</Grid>
+
 				</StackLayout>
+			</ScrollView>
 
-				<Label x:Name="ActivityLabel" />
+			<Button Grid.Row="0" Grid.Column="1" x:Name="NextButton" HorizontalOptions="Center" VerticalOptions="Center" />
 
-				<!-- Поля для объектов -->
-				<Editor x:Name="ObjectField00" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField01" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField02" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField03" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField04" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField05" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField06" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField07" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField08" HorizontalOptions="FillAndExpand" />
-				<Editor x:Name="ObjectField09" HorizontalOptions="FillAndExpand" />
+		</Grid>
 
-				<!-- Табличная форма для настраиваемых параметров -->
-				<Grid ColumnSpacing="0">
-					<!-- Таблица определена как саморасширяющаяся по вертикали и с фиксированным размером второго столбца -->
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-						<RowDefinition Height="Auto" />
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition />
-						<ColumnDefinition Width="180" />
-					</Grid.ColumnDefinitions>
-
-					<StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField00" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField00" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField01" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField01" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="2" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField02" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField02" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="3" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField03" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="3" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField03" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="4" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField04" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField04" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="5" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField05" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="5" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField05" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="6" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField06" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="6" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField06" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="7" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField07" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="7" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField07" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="8" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField08" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="8" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField08" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-
-					<StackLayout Grid.Row="9" Grid.Column="0" VerticalOptions="Center">
-						<Editor x:Name="TextField09" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
-					</StackLayout>
-					<StackLayout Grid.Row="9" Grid.Column="1" VerticalOptions="Center">
-						<Slider x:Name="ValueField09" VerticalOptions="Center" HorizontalOptions="Fill" />
-					</StackLayout>
-				</Grid>
-
-			</StackLayout>
-		</ScrollView>
+		<!-- Поле кнопок управления -->
+		<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+			<Button x:Name="ResetButton" />
+			<Label Text="   " />
+			<Button x:Name="RestartButton" />
+			<Label Text="   " />
+			<Button x:Name="ShareButton" />
+		</StackLayout>
 
 	</StackLayout>
 </ContentPage>

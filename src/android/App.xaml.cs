@@ -48,6 +48,7 @@ namespace RD_AAOW
 		private Editor[] textFields = new Editor[masterLinesCount],
 			objectsFields = new Editor[masterLinesCount];
 		private Slider[] valueFields = new Slider[masterLinesCount];
+		private Xamarin.Forms.Button restartButton, shareButton;
 
 		#endregion
 
@@ -69,12 +70,18 @@ namespace RD_AAOW
 
 			#region Основная страница
 
-			AndroidSupport.ApplyButtonSettings (solutionPage, "ResetButton", Localization.GetText ("ResetButton", al),
+			AndroidSupport.ApplyButtonSettings (solutionPage, "ResetButton",
+				AndroidSupport.GetDefaultButtonName (AndroidSupport.ButtonsDefaultNames.Delete),
 				solutionFieldBackColor, ResetButton_Clicked);
-			AndroidSupport.ApplyButtonSettings (solutionPage, "RestartButton", Localization.GetText ("RestartButton", al),
+			restartButton = AndroidSupport.ApplyButtonSettings (solutionPage, "RestartButton",
+				AndroidSupport.GetDefaultButtonName (AndroidSupport.ButtonsDefaultNames.Refresh),
 				solutionFieldBackColor, RestartButton_Clicked);
-			AndroidSupport.ApplyButtonSettings (solutionPage, "NextButton", Localization.GetText ("NextButton", al),
+			AndroidSupport.ApplyButtonSettings (solutionPage, "NextButton",
+				AndroidSupport.GetDefaultButtonName (AndroidSupport.ButtonsDefaultNames.Start),
 				solutionFieldBackColor, NextButton_Clicked);
+			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
+				AndroidSupport.GetDefaultButtonName (AndroidSupport.ButtonsDefaultNames.Share),
+				solutionFieldBackColor, ShareResults);
 
 			activityLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel");
 
@@ -116,8 +123,6 @@ namespace RD_AAOW
 				ProgramDescription.AssemblyVersion +
 				"; " + ProgramDescription.AssemblyLastUpdate,
 				Color.FromHex ("#000080"));
-			aboutLabel.FontAttributes = FontAttributes.Bold;
-			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
 			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
 				aboutFieldBackColor, AppButton_Clicked);
@@ -225,12 +230,18 @@ namespace RD_AAOW
 		// Страница лаборатории
 		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
+			List<string> comm = new List<string> {
+				Localization.GetText ("CommunityVK", al), Localization.GetText ("CommunityTG", al) };
+			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("CommunitySelect", al),
+				Localization.GetText ("CancelButton", al), null, comm.ToArray ());
+
+			if (!comm.Contains (res))
+				return;
+
 			try
 				{
-				if (await aboutPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-						Localization.GetText ("CommunitySelect", al), Localization.GetText ("CommunityVK", al),
-						Localization.GetText ("CommunityTG", al)))
-					await Launcher.OpenAsync (AndroidSupport.CommunityFrontPage);
+				if (comm.IndexOf (res) == 0)
+					await Launcher.OpenAsync (AndroidSupport.MasterCommunityLink);
 				else
 					await Launcher.OpenAsync (AndroidSupport.CommunityInTelegram);
 				}
@@ -246,7 +257,7 @@ namespace RD_AAOW
 			{
 			try
 				{
-				await Launcher.OpenAsync ("https://vk.com/@rd_aaow_fdl-makedecision");
+				await Launcher.OpenAsync (ProgramDescription.AssemblyManualLink);
 				}
 			catch
 				{
@@ -306,10 +317,11 @@ namespace RD_AAOW
 			// Сброс состояния
 			phase = 1;
 			activityLabel.Text = Localization.GetText ("ActivityLabelText01", al);
+			restartButton.IsEnabled = shareButton.IsEnabled = false;
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
-				objectsFields[i].IsVisible = false;
+				objectsFields[i].IsVisible = (i == 0);
 				objectsFields[i].Text = "";
 
 				textFields[i].IsVisible = textFields[i].IsReadOnly = false;
@@ -318,7 +330,6 @@ namespace RD_AAOW
 				valueFields[i].IsVisible = false;
 				valueFields[i].Value = valueFields[i].Minimum;
 				}
-			objectsFields[0].IsVisible = true;
 
 			// Востановление значений из кэша
 			if (!Fully)
@@ -362,8 +373,8 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!objectsFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-							Localization.GetText ("NotEnoughVariants", al), "OK");
+						Toast.MakeText (Android.App.Application.Context,
+							Localization.GetText ("NotEnoughVariants", al), ToastLength.Long).Show ();
 						return;
 						}
 
@@ -398,8 +409,8 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!textFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
-							Localization.GetText ("NotEnoughCriteria", al), "OK");
+						Toast.MakeText (Android.App.Application.Context,
+							Localization.GetText ("NotEnoughCriteria", al), ToastLength.Long).Show ();
 						return;
 						}
 
@@ -473,8 +484,6 @@ namespace RD_AAOW
 						{
 						// Расчёт
 						List<double> result = MakeDecisionMath.EvaluateHierarchy (criteriaMath, objectsMaths);
-
-						// Ра
 						activityLabel.Text = Localization.GetText ("ActivityLabelText04", al);
 
 						// Подготовка максимума
@@ -530,6 +539,10 @@ namespace RD_AAOW
 					ResetApp (false);
 					break;
 				}
+
+			// Обновление состояния
+			restartButton.IsEnabled = (phase > 1);
+			shareButton.IsEnabled = (phase == 4);
 			}
 
 		// Реакция на изменение состава объектов
@@ -543,6 +556,27 @@ namespace RD_AAOW
 			for (int i = 1; i < masterLinesCount; i++)
 				textFields[i].IsVisible = valueFields[i].IsVisible =
 					(textFields[i - 1].Text != "") && textFields[i - 1].IsVisible;
+			}
+
+		// Метод формирует и отправляет результаты
+		private async void ShareResults (object sender, EventArgs e)
+			{
+			// Сборка результата
+			string text = ProgramDescription.AssemblyTitle + "\n\n";
+			text += (Localization.GetText ("ComparisonObjects", al) + "\n");
+			for (int i = 0; i < objects.Count; i++)
+				text += ("• " + objects[i] + "\n");
+			text += ("\n" + Localization.GetText ("ComparisonCriteria", al) + "\n");
+			for (int i = 0; i < criteria.Count; i++)
+				text += ("• " + criteria[i] + "\n");
+			text += ("\n" + activityLabel.Text);
+
+			// Отправка
+			await Share.RequestAsync (new ShareTextRequest
+				{
+				Text = text,
+				Title = ProgramDescription.AssemblyTitle
+				});
 			}
 
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace RD_AAOW
@@ -384,9 +385,10 @@ namespace RD_AAOW
 			}
 
 		// Запрос справки
-		private void MakeDecisionForm_HelpButtonClicked (object sender, System.ComponentModel.CancelEventArgs e)
+		private void MakeDecisionForm_HelpButtonClicked (object sender, CancelEventArgs e)
 			{
-			e.Cancel = true;
+			if (e != null)
+				e.Cancel = true;
 
 			ProgramDescription.ShowAbout (false);
 			}
