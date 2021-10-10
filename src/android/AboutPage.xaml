@@ -22,14 +22,15 @@
 				<BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" 
 					WidthRequest="200" Color="#606060" Margin="9" />
 
-				<FlexLayout JustifyContent="Center" Direction="Row" Wrap="Wrap">
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
 					<Button x:Name="AppPage" HorizontalOptions="Center" />
 					<Button x:Name="ADPPage" HorizontalOptions="Center" />
-					<Button x:Name="DevPage" HorizontalOptions="Center" />
-					<Button x:Name="CommunityPage" HorizontalOptions="Center" />
-				</FlexLayout>
+				</StackLayout>
 
-				<Label x:Name="Filler3" />
+				<Button x:Name="DevPage" HorizontalOptions="Center" />
+				<Button x:Name="CommunityPage" HorizontalOptions="Center" />
+
+				<Label />
 
 			</StackLayout>
 		</ScrollView>
