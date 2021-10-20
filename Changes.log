@@ -1,5 +1,8 @@
 ﻿MakeDecision changes log
 
+ToDo:
+- AboutForm and HardWorkExecutor universal classes have been upgraded and improved
+
 Version 2.8.2:
 • Android: updated Xamarin support packages;
 • Updated link for ADP
