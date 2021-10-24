@@ -32,7 +32,7 @@ Version 2.7.1b:
 • Windows: new identity applied;
 • New links to RD AAOW FDL added;
 • Added direct lab link to VK and Telegram;
-• Android: target API changed to 30 (Android R), according to Google's attribution;
+• Android: target API changed to 30 (Android R), according to Google’s attribution;
 • Android: removed support for x86 and x64
 
 Version 2.7:
@@ -43,7 +43,7 @@ Version 2.6.4:
 • Android: fixed some buttons sizes and appearance
 
 Version 2.6.3:
-• Added ability to 'ask developer' via E-mail for help, or send wish, advice or bug report;
+• Added ability to “ask developer” via E-mail for help, or send wish, advice or bug report;
 • Android: updated app about interface;
 • Android: interface code improvements applied;
 • Android: updated runtime libraries
@@ -91,7 +91,7 @@ Version 2.3 / Android:
 Version 2.2 / Android:
 • Added first start tips;
 • Variants count increased up to 10;
-• Added link to solution method's page;
+• Added link to solution method’s page;
 • Some minor bugs fixed
 
 Version 2.1 / Android:
