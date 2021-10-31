@@ -1,7 +1,6 @@
-_Changes for v 2.8.15_:
+_Changes for v 2.8.17_:
+- Windows: updated internal mechanism of checking for updates (applied compatibility with new GitHub theme);
 - Windows: added the registry access checker: it will show recommended actions for the executable file when Windows doesn’t allow saving settings;
 - Windows: applied new elements in user interface;
-- AboutForm and HardWorkExecutor universal classes have been upgraded and improved
-- Android: updated Xamarin support packages;
-- Updated link for ADP;
-- Updated videomanual link; added corresponding button to Android version
+- Windows: AboutForm and HardWorkExecutor universal classes have been upgraded and improved
+- Updated link for ADP
