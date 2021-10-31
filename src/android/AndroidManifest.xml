@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--package="makedecision.huawei" package="com.RD_AAOW.MakeDecision"-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.RD_AAOW.MakeDecision"
-		  android:installLocation="internalOnly" android:versionCode="600219" android:versionName="2.8.2">
+		  android:installLocation="internalOnly" android:versionCode="600220" android:versionName="2.8.17">
 
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
 
-	<application android:label="Make decision" android:icon="@mipmap/icon"></application>
+	<application android:label="Decide it" android:icon="@mipmap/icon"></application>
 </manifest>

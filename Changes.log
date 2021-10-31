@@ -1,7 +1,8 @@
 ﻿MakeDecision changes log
 
 Version 2.8.17:
-• Windows: updated internal mechanism of checking for updates (applied compatibility with new GitHub theme)
+• Windows: updated internal mechanism of checking for updates (applied compatibility with new GitHub theme);
+• Visible app name changed to “Decide it”
 
 Version 2.8.15:
 • Windows: added the registry access checker: it will show recommended actions for the executable file

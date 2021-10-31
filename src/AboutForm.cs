@@ -374,7 +374,7 @@ namespace RD_AAOW
 
 		private void ToLaboratory_Click (object sender, EventArgs e)
 			{
-			string msg = "";
+			string msg;
 			if (al == SupportedLanguages.ru_ru)
 				msg = "• «Да» – перейти на страницу Лаборатории в ВКонтакте;\n" +
 					"• «Нет» – перейти в группу Лаборатории в Telegram";
@@ -382,7 +382,7 @@ namespace RD_AAOW
 				msg = "• “Yes” – go to Laboratory's page in VK;\n" +
 					"• “No” – go to Laboratory's group in Telegram";
 
-			string link = "";
+			string link;
 			switch (MessageBox.Show (msg, ProgramDescription.AssemblyTitle, MessageBoxButtons.YesNoCancel,
 				MessageBoxIcon.Question))
 				{

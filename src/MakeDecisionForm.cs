@@ -8,7 +8,7 @@ namespace RD_AAOW
 	/// <summary>
 	/// Класс описывает главную форму приложения
 	/// </summary>
-	public partial class MakeDecisionForm: Form
+	public partial class MakeDecisionForm:Form
 		{
 		// Переменные
 		private SupportedLanguages al = Localization.CurrentLanguage;
@@ -22,7 +22,7 @@ namespace RD_AAOW
 			{
 			// Инициализация
 			InitializeComponent ();
-			this.Text = ProgramDescription.AssemblyTitle;
+			this.Text = ProgramDescription.AssemblyVisibleName;
 
 			LanguageCombo.Items.AddRange (Localization.LanguagesNames);
 			try
@@ -83,7 +83,7 @@ namespace RD_AAOW
 		// Закрытие приложения
 		private void BExit_Click (object sender, EventArgs e)
 			{
-			if (MessageBox.Show (Localization.GetText ("AppExit", al), ProgramDescription.AssemblyTitle,
+			if (MessageBox.Show (Localization.GetText ("AppExit", al), ProgramDescription.AssemblyVisibleName,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 				this.Close ();
 			}
@@ -105,7 +105,7 @@ namespace RD_AAOW
 				case 1:
 					if (ObjectsList.Items.Count < 2)
 						{
-						MessageBox.Show (Localization.GetText ("NotEnoughObjects", al), ProgramDescription.AssemblyTitle,
+						MessageBox.Show (Localization.GetText ("NotEnoughObjects", al), ProgramDescription.AssemblyVisibleName,
 							MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 						return;
 						}
@@ -115,7 +115,7 @@ namespace RD_AAOW
 				case 2:
 					if (CriteriaList.Items.Count < 2)
 						{
-						MessageBox.Show (Localization.GetText ("NotEnoughCriteria", al), ProgramDescription.AssemblyTitle,
+						MessageBox.Show (Localization.GetText ("NotEnoughCriteria", al), ProgramDescription.AssemblyVisibleName,
 							MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 						return;
 						}
@@ -168,11 +168,12 @@ namespace RD_AAOW
 					// Контроль данных на выходе с интерфейса ввода оценок
 					for (int r = 0; r < ValuesGrid.Rows.Count; r++)
 						for (int c = 0; c < ValuesGrid.Columns.Count; c++)
-							if ((ValuesGrid.Rows[r].Cells[c].Value == null) || (ValuesGrid.Rows[r].Cells[c].Value.ToString () == "") ||
+							if ((ValuesGrid.Rows[r].Cells[c].Value == null) ||
+								(ValuesGrid.Rows[r].Cells[c].Value.ToString () == "") ||
 								(ValuesGrid.Rows[r].Cells[c].Value.ToString () == "0"))
 								{
-								MessageBox.Show (Localization.GetText ("NotEnoughData", al), ProgramDescription.AssemblyTitle,
-									MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+								MessageBox.Show (Localization.GetText ("NotEnoughData", al),
+									ProgramDescription.AssemblyVisibleName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 								return;
 								}
 
@@ -275,7 +276,7 @@ namespace RD_AAOW
 			{
 			if (ObjectsList.Items.Count >= 100)
 				{
-				MessageBox.Show (Localization.GetText ("TooManyObjects", al), ProgramDescription.AssemblyTitle,
+				MessageBox.Show (Localization.GetText ("TooManyObjects", al), ProgramDescription.AssemblyVisibleName,
 					MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 				}
@@ -324,7 +325,7 @@ namespace RD_AAOW
 			{
 			if (CriteriaList.Items.Count >= 100)
 				{
-				MessageBox.Show (Localization.GetText ("TooManyCriteria", al), ProgramDescription.AssemblyTitle,
+				MessageBox.Show (Localization.GetText ("TooManyCriteria", al), ProgramDescription.AssemblyVisibleName,
 					MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 				}
@@ -381,7 +382,7 @@ namespace RD_AAOW
 		private void ValuesGrid_DataError (object sender, DataGridViewDataErrorEventArgs e)
 			{
 			MessageBox.Show (Localization.GetText ("IncorrectValueError", al),
-				ProgramDescription.AssemblyTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				ProgramDescription.AssemblyVisibleName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 
 		// Запрос справки

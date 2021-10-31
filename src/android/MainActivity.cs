@@ -15,7 +15,7 @@ namespace RD_AAOW.Droid
 	/// <summary>
 	/// Класс описывает загрузчик приложения
 	/// </summary>
-	[Activity (Label = "Make decision", Icon = "@mipmap/icon", Theme = "@style/MainTheme",
+	[Activity (Label = "Decide it", Icon = "@mipmap/icon", Theme = "@style/MainTheme",
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity:global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 		{

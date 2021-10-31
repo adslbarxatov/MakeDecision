@@ -11,7 +11,7 @@ namespace RD_AAOW
 	/// <summary>
 	/// Класс описывает функционал приложения
 	/// </summary>
-	public partial class App: Application
+	public partial class App:Application
 		{
 		#region Общие переменные и константы
 
@@ -123,6 +123,8 @@ namespace RD_AAOW
 				ProgramDescription.AssemblyVersion +
 				"; " + ProgramDescription.AssemblyLastUpdate,
 				Color.FromHex ("#000080"));
+			aboutLabel.FontAttributes = FontAttributes.Bold;
+			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
 			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
 				aboutFieldBackColor, AppButton_Clicked);
@@ -562,7 +564,7 @@ namespace RD_AAOW
 		private async void ShareResults (object sender, EventArgs e)
 			{
 			// Сборка результата
-			string text = ProgramDescription.AssemblyTitle + "\n\n";
+			string text = ProgramDescription.AssemblyVisibleName + "\n\n";
 			text += (Localization.GetText ("ComparisonObjects", al) + "\n");
 			for (int i = 0; i < objects.Count; i++)
 				text += ("• " + objects[i] + "\n");
@@ -572,11 +574,7 @@ namespace RD_AAOW
 			text += ("\n" + activityLabel.Text);
 
 			// Отправка
-			await Share.RequestAsync (new ShareTextRequest
-				{
-				Text = text,
-				Title = ProgramDescription.AssemblyTitle
-				});
+			await Share.RequestAsync (text, ProgramDescription.AssemblyVisibleName);
 			}
 
 		/// <summary>
