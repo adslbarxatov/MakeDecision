@@ -1,5 +1,9 @@
 ﻿MakeDecision changes log
 
+Version 2.9:
+• Cumulative updates applied;
+• Updated links for FDL communities
+
 Version 2.8.17:
 • Windows: updated internal mechanism of checking for updates (applied compatibility with new GitHub theme);
 • Visible app name changed to “Decide it”

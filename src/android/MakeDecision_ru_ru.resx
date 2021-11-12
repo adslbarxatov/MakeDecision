@@ -155,10 +155,10 @@
     <value>Выберите сообщество:</value>
   </data>
   <data name="CommunityTG" xml:space="preserve">
-    <value>Телеграм</value>
+    <value>Сообщество ВК</value>
   </data>
-  <data name="CommunityVK" xml:space="preserve">
-    <value>ВКонтакте</value>
+  <data name="CommunityWelcome" xml:space="preserve">
+    <value>Начальная страница</value>
   </data>
   <data name="ComparisonCriteria" xml:space="preserve">
     <value>Критерии сравнения:</value>

@@ -52,6 +52,8 @@ namespace RD_AAOW
 
 		#endregion
 
+		#region Запуск и настройка
+
 		/// <summary>
 		/// Конструктор. Точка входа приложения
 		/// </summary>
@@ -147,23 +149,6 @@ namespace RD_AAOW
 			ShowTips (1);
 			}
 
-		// Выбор языка приложения
-		private async void SelectLanguage_Clicked (object sender, EventArgs e)
-			{
-			// Запрос
-			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("SelectLanguage", al),
-				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);
-
-			// Сохранение
-			List<string> lngs = new List<string> (Localization.LanguagesNames);
-			if (lngs.Contains (res))
-				{
-				al = (SupportedLanguages)lngs.IndexOf (res);
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp", al),
-					ToastLength.Long).Show ();
-				}
-			}
-
 		// Метод отображает подсказки при первом запуске
 		private async void ShowTips (uint TipsNumber)
 			{
@@ -215,6 +200,56 @@ namespace RD_AAOW
 				}
 			}
 
+		/// <summary>
+		/// Сохранение настроек программы
+		/// </summary>
+		protected override void OnSleep ()
+			{
+			try
+				{
+				for (int i = 0; i < masterLinesCount; i++)
+					{
+					if (phase < 3)
+						{
+						Preferences.Set (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
+						Preferences.Set (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
+						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());
+						}
+					else
+						{
+						Preferences.Set (objectsRegKey + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
+						Preferences.Set (criteriaRegKey + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
+						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((i < values.Count) ?
+							((int)values[i]).ToString () : "1"));
+						}
+					}
+
+				Localization.CurrentLanguage = al;
+				}
+			catch { }
+			}
+
+		#endregion
+
+		#region О приложении
+
+		// Выбор языка приложения
+		private async void SelectLanguage_Clicked (object sender, EventArgs e)
+			{
+			// Запрос
+			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("SelectLanguage", al),
+				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);
+
+			// Сохранение
+			List<string> lngs = new List<string> (Localization.LanguagesNames);
+			if (lngs.Contains (res))
+				{
+				al = (SupportedLanguages)lngs.IndexOf (res);
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp", al),
+					ToastLength.Long).Show ();
+				}
+			}
+
 		// Страница проекта
 		private async void AppButton_Clicked (object sender, EventArgs e)
 			{
@@ -233,7 +268,7 @@ namespace RD_AAOW
 		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
 			List<string> comm = new List<string> {
-				Localization.GetText ("CommunityVK", al), Localization.GetText ("CommunityTG", al) };
+				Localization.GetText ("CommunityWelcome", al), Localization.GetText ("CommunityTG", al) };
 			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("CommunitySelect", al),
 				Localization.GetText ("CancelButton", al), null, comm.ToArray ());
 
@@ -243,9 +278,10 @@ namespace RD_AAOW
 			try
 				{
 				if (comm.IndexOf (res) == 0)
-					await Launcher.OpenAsync (AndroidSupport.MasterCommunityLink);
+					await Launcher.OpenAsync (AndroidSupport.WelcomeLink);
 				else
-					await Launcher.OpenAsync (AndroidSupport.CommunityInTelegram);
+					await Launcher.OpenAsync ((al == SupportedLanguages.ru_ru) ? AndroidSupport.MasterCommunityLink :
+						AndroidSupport.CommunityInTelegram);
 				}
 			catch
 				{
@@ -301,6 +337,10 @@ namespace RD_AAOW
 					ToastLength.Long).Show ();
 				}
 			}
+
+		#endregion
+
+		#region Рабочая зона
 
 		// Сброс на исходное состояние
 		private void ResetButton_Clicked (object sender, EventArgs e)
@@ -577,33 +617,6 @@ namespace RD_AAOW
 			await Share.RequestAsync (text, ProgramDescription.AssemblyVisibleName);
 			}
 
-		/// <summary>
-		/// Сохранение настроек программы
-		/// </summary>
-		protected override void OnSleep ()
-			{
-			try
-				{
-				for (int i = 0; i < masterLinesCount; i++)
-					{
-					if (phase < 3)
-						{
-						Preferences.Set (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
-						Preferences.Set (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
-						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());
-						}
-					else
-						{
-						Preferences.Set (objectsRegKey + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
-						Preferences.Set (criteriaRegKey + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
-						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((i < values.Count) ?
-							((int)values[i]).ToString () : "1"));
-						}
-					}
-
-				Localization.CurrentLanguage = al;
-				}
-			catch { }
-			}
+		#endregion
 		}
 	}

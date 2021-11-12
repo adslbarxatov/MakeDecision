@@ -157,8 +157,8 @@ The most suitable option is </value>
   <data name="CommunityTG" xml:space="preserve">
     <value>Telegram feed</value>
   </data>
-  <data name="CommunityVK" xml:space="preserve">
-    <value>Main community</value>
+  <data name="CommunityWelcome" xml:space="preserve">
+    <value>Welcome page</value>
   </data>
   <data name="ComparisonCriteria" xml:space="preserve">
     <value>Comparison criteria:</value>
