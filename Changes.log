@@ -1,5 +1,8 @@
 ﻿MakeDecision changes log
 
+Version 2.9.3:
+• Current updates and improvements applied
+
 Version 2.9.1:
 • Windows: app got the scalable icon and the digital signature (only self-signed for now);
 • Android: implemented new mechanism for evaluation of font sizes in the main interface;

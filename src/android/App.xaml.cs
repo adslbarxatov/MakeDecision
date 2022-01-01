@@ -121,7 +121,7 @@ namespace RD_AAOW
 			aboutLabel = AndroidSupport.ApplyLabelSettings (aboutPage, "AboutLabel",
 				ProgramDescription.AssemblyTitle + "\n" +
 				ProgramDescription.AssemblyDescription + "\n\n" +
-				ProgramDescription.AssemblyCopyright + "\nv " +
+				RDGenerics.AssemblyCopyright + "\nv " +
 				ProgramDescription.AssemblyVersion +
 				"; " + ProgramDescription.AssemblyLastUpdate,
 				Color.FromHex ("#000080"));
@@ -133,7 +133,7 @@ namespace RD_AAOW
 			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
 				aboutFieldBackColor, ADPButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage",
-				AndroidSupport.MasterLabName, aboutFieldBackColor, CommunityButton_Clicked);
+				RDGenerics.AssemblyCompany, aboutFieldBackColor, CommunityButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
 				aboutFieldBackColor, DevButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
@@ -255,7 +255,7 @@ namespace RD_AAOW
 			{
 			try
 				{
-				await Launcher.OpenAsync (AndroidSupport.MasterGitLink + "MakeDecision");
+				await Launcher.OpenAsync (RDGenerics.AssemblyGitLink + ProgramDescription.AssemblyMainName);
 				}
 			catch
 				{
@@ -278,10 +278,10 @@ namespace RD_AAOW
 			try
 				{
 				if (comm.IndexOf (res) == 0)
-					await Launcher.OpenAsync (AndroidSupport.WelcomeLink);
+					await Launcher.OpenAsync (RDGenerics.DPModuleLink);
 				else
-					await Launcher.OpenAsync ((al == SupportedLanguages.ru_ru) ? AndroidSupport.MasterCommunityLink :
-						AndroidSupport.CommunityInTelegram);
+					await Launcher.OpenAsync ((al == SupportedLanguages.ru_ru) ? RDGenerics.LabVKLink :
+						RDGenerics.LabTGLink);
 				}
 			catch
 				{
@@ -309,7 +309,7 @@ namespace RD_AAOW
 			{
 			try
 				{
-				await Launcher.OpenAsync (AndroidSupport.ADPLink);
+				await Launcher.OpenAsync (RDGenerics.ADPLink);
 				}
 			catch
 				{
@@ -327,7 +327,7 @@ namespace RD_AAOW
 					{
 					Subject = "Wish, advice or bug in " + ProgramDescription.AssemblyTitle,
 					Body = "",
-					To = new List<string> () { AndroidSupport.MasterDeveloperLink }
+					To = new List<string> () { RDGenerics.LabMailLink }
 					};
 				await Email.ComposeAsync (message);
 				}
