@@ -2,16 +2,16 @@
 > PCC: 0003B7A4BADCF4B9
 
 
-Decide it (MakeDecision), the making decisions support tool
+Make decision, a tool for making exact decisions
 
-Decide it (MakeDecision) – инструмент помощи в принятии решений
+Make decision) – инструмент принятия точных решений
 
 
 #
 
 ## About
 
-This application (formerly known as “Make decision”) illustrates a math method that allows comparing
+This application illustrates a math method that allows comparing
 some objects or events based on a set of criteria and choosing the most “correct” one.
 User is invited to independently select variants and criteria for their
 comparison, as well as specify significance of each criterion and each element.
@@ -34,7 +34,7 @@ Each step is provided with explanations for this method. If necessary, all steps
 
 ## Описание
 
-Программа (ранее известная как «Make decision») иллюстрирует математический метод, позволяющий сравнивать некоторые объекты,
+Программа иллюстрирует математический метод, позволяющий сравнивать некоторые объекты,
 явления или исходы событий на основе набора критериев и выбирать наиболее «подходящий» из них. Пользователю
 предлагается самостоятельно задать варианты и критерии для их сравнения, а также оценить значимость каждого
 критерия и варианта. Результатом будет ответ на вопрос: «какой выбор наиболее удачный».
