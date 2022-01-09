@@ -1,10 +1,10 @@
-# MakeDecision v 2.9.3
-> PCC: 0003B7A4BADCF4B9
+# MakeDecision v 2.10
+> PCC: 00042DA3AE3FC3EC
 
 
 Make decision, a tool for making exact decisions
 
-Make decision) – инструмент принятия точных решений
+Make decision – инструмент принятия точных решений
 
 
 #

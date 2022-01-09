@@ -1,5 +1,10 @@
 ﻿MakeDecision changes log
 
+Version 2.10:
+• App name changed back to “Make decision”;
+• Changed app visual style;
+• Android: fixed bug with font size on large screens
+
 Version 2.9.3:
 • Current updates and improvements applied
 
