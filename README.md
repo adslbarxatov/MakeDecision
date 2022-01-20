@@ -1,5 +1,5 @@
-# MakeDecision v 2.10
-> PCC: 00042DA3AE3FC3EC
+# MakeDecision v 2.10.3
+> PCC: 000433D240EAA214
 
 
 Make decision, a tool for making exact decisions
@@ -57,13 +57,18 @@ Each step is provided with explanations for this method. If necessary, all steps
 
 ## Requirements / Требования
 
-- Windows version requires Windows XP or newer, Framework 4.0 or newer. Interface languages: ru_ru, en_us;
-- [Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 5.0 or newer. Interface languages: ru_ru, en_us;
-- Android version is also available for download on AppGallery platform
+- Windows XP or newer / или новее;
+- [Microsoft .NET Framework 4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17718).
 
-- Для Windows-версии требуется ОС Windows XP или новее, Framework 4.0 или новее. Языки интерфейса: ru_ru, en_us;
+Interface languages / языки интерфейса: ru_ru, en_us.
+
+#
+
+- [Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 5.0 or newer. Interface languages: ru_ru, en_us;
+- Android version is also available for download on AppGallery platform.
+
 - Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 5.0 или новее. Языки интерфейса: ru_ru, en_us;
-- Android-версия также доступна для загрузки на платформе AppGallery
+- Android-версия также доступна для загрузки на платформе AppGallery.
 
 &nbsp;
 

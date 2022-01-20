@@ -398,7 +398,8 @@ namespace RD_AAOW
 
 			// Обновление
 			for (int i = 1; i < masterLinesCount; i++)
-				objectsFields[i].IsVisible = (objectsFields[i - 1].Text != "") && objectsFields[i - 1].IsVisible;
+				objectsFields[i].IsVisible = (!string.IsNullOrWhiteSpace (objectsFields[i - 1].Text)) &&
+					objectsFields[i - 1].IsVisible;
 			}
 
 		// Смена состояния
