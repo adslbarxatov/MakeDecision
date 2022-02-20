@@ -1,4 +1,8 @@
-﻿MakeDecision changes log
+﻿Make decision changes log
+
+Version 2.10.4:
+• Android: font size in lists and tooltips now corresponds to the system one;
+• Android: some other UI fixes applied
 
 Version 2.10.3:
 • Current updates and improvements applied
