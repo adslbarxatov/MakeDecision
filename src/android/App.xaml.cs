@@ -72,22 +72,22 @@ namespace RD_AAOW
 
 			#region Основная страница
 
-			AndroidSupport.ApplyButtonSettings_Fix (solutionPage, "ResetButton",
+			AndroidSupport.ApplyButtonSettings (solutionPage, "ResetButton",
 				AndroidSupport.ButtonsDefaultNames.Delete, solutionFieldBackColor, ResetButton_Clicked);
-			restartButton = AndroidSupport.ApplyButtonSettings_Fix (solutionPage, "RestartButton",
+			restartButton = AndroidSupport.ApplyButtonSettings (solutionPage, "RestartButton",
 				AndroidSupport.ButtonsDefaultNames.Refresh, solutionFieldBackColor, RestartButton_Clicked);
-			AndroidSupport.ApplyButtonSettings_Fix (solutionPage, "NextButton",
+			AndroidSupport.ApplyButtonSettings (solutionPage, "NextButton",
 				AndroidSupport.ButtonsDefaultNames.Start, solutionFieldBackColor, NextButton_Clicked);
-			shareButton = AndroidSupport.ApplyButtonSettings_Fix (solutionPage, "ShareButton",
+			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
 				AndroidSupport.ButtonsDefaultNames.Share, solutionFieldBackColor, ShareResults);
 
 			activityLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel");
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
-				objectsFields[i] = AndroidSupport.ApplyEditorSettings_Fix (solutionPage, "ObjectField" + i.ToString ("D02"),
+				objectsFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + i.ToString ("D02"),
 					solutionFieldBackColor, Keyboard.Default, 50, "", ObjectName_TextChanged, true);
-				textFields[i] = AndroidSupport.ApplyEditorSettings_Fix (solutionPage, "TextField" + i.ToString ("D02"),
+				textFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + i.ToString ("D02"),
 					solutionFieldBackColor, Keyboard.Default, 50, "", CriteriaName_TextChanged, true);
 				valueFields[i] = AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + i.ToString ("D02"));
 				}
@@ -103,9 +103,7 @@ namespace RD_AAOW
 					}
 				firstStart = Preferences.Get (firstStartRegKey, "") == "";
 				}
-			catch
-				{
-				}
+			catch { }
 
 			// Инициализация зависимых полей
 			ResetApp (false);
@@ -124,18 +122,18 @@ namespace RD_AAOW
 			aboutLabel.FontAttributes = FontAttributes.Bold;
 			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
-			AndroidSupport.ApplyButtonSettings_Fix (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
 				aboutFieldBackColor, AppButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings_Fix (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
 				aboutFieldBackColor, ADPButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings_Fix (aboutPage, "CommunityPage", RDGenerics.AssemblyCompany,
+			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage", RDGenerics.AssemblyCompany,
 				aboutFieldBackColor, CommunityButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings_Fix (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
 				aboutFieldBackColor, DevButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings_Fix (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
 				aboutFieldBackColor, SolutionAboutButton_Clicked, false);
 
-			AndroidSupport.ApplyButtonSettings_Fix (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
+			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
 			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel", al));
 
