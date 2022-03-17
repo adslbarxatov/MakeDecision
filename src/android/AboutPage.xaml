@@ -27,8 +27,10 @@
 					<Button x:Name="ADPPage" HorizontalOptions="Center" />
 				</StackLayout>
 
-				<Button x:Name="DevPage" HorizontalOptions="Center" />
+				<Label x:Name="Alert" />
 				<Button x:Name="CommunityPage" HorizontalOptions="Center" />
+
+				<Button x:Name="DevPage" HorizontalOptions="Center" />
 
 				<Label />
 

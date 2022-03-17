@@ -137,6 +137,10 @@ namespace RD_AAOW
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
 			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel", al));
 
+			if (al == SupportedLanguages.ru_ru)
+				AndroidSupport.ApplyLabelSettingsForKKT (aboutPage, "Alert", RDGenerics.RuAlertMessage,
+					false, false);
+
 			#endregion
 
 			// Отображение подсказок первого старта
@@ -262,7 +266,8 @@ namespace RD_AAOW
 		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
 			List<string> comm = new List<string> {
-				Localization.GetText ("CommunityWelcome", al), Localization.GetText ("CommunityTG", al) };
+				Localization.GetText ("CommunityWelcome", al), Localization.GetText ("CommunityVK", al),
+				Localization.GetText ("CommunityTG", al) };
 			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("CommunitySelect", al),
 				Localization.GetText ("CancelButton", al), null, comm.ToArray ());
 
@@ -271,11 +276,20 @@ namespace RD_AAOW
 
 			try
 				{
-				if (comm.IndexOf (res) == 0)
-					await Launcher.OpenAsync (RDGenerics.DPModuleLink);
-				else
-					await Launcher.OpenAsync ((al == SupportedLanguages.ru_ru) ? RDGenerics.LabVKLink :
-						RDGenerics.LabTGLink);
+				switch (comm.IndexOf (res))
+					{
+					case 1:
+						await Launcher.OpenAsync (RDGenerics.LabVKLink);
+						break;
+
+					case 2:
+						await Launcher.OpenAsync (RDGenerics.LabTGLink);
+						break;
+
+					case 0:
+						await Launcher.OpenAsync (RDGenerics.DPModuleLink);
+						break;
+					}
 				}
 			catch
 				{
