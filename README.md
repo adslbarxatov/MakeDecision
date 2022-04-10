@@ -1,5 +1,5 @@
-# MakeDecision v 2.11.1
-> PCC: 000357D25816E3CD
+# MakeDecision v 2.11.2
+> PCC: 00035C02DC7467FA
 
 
 Make decision, a tool for making exact decisions
@@ -58,7 +58,7 @@ Each step is provided with explanations for this method. If necessary, all steps
 ## Requirements / Требования
 
 - Windows XP or newer / или новее;
-- [Microsoft .NET Framework 4.0](https://www.microsoft.com/en-us/download/details.aspx?id=17718).
+- [Microsoft .NET Framework 4.0](https://microsoft.com/en-us/download/details.aspx?id=17718).
 
 Interface languages / языки интерфейса: ru_ru, en_us.
 
