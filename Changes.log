@@ -1,5 +1,8 @@
 ﻿Make decision changes log
 
+Version 2.11.3:
+• Windows: parsing methods for ADP and projects descriptions have been upgraded
+
 Version 2.11.2:
 • Android: Xamarin support libraries have been updated
 
