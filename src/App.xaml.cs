@@ -27,8 +27,8 @@ namespace RD_AAOW
 		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
 
 		private readonly Color
-			solutionMasterBackColor = Color.FromHex ("#F0FFF0"),
-			solutionFieldBackColor = Color.FromHex ("#D0FFD0"),
+			solutionMasterBackColor = Color.FromHex ("#FFC0E0"),
+			solutionFieldBackColor = Color.FromHex ("#FFA0D0"),
 
 			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
 			aboutFieldBackColor = Color.FromHex ("#D0FFD0");

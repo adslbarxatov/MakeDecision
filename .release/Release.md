@@ -1,3 +1,3 @@
-_Changes for v 2.11.3_:
-- Windows: parsing methods for ADP and projects descriptions have been upgraded;
-- Android: Xamarin support libraries have been updated
+_Changes for v 2.12_:
+- Upgraded the user interface: applied correct icon, fixed flickering splash screen, fixed white navigation bar;
+- Windows version of the app is no longer supported

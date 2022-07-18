@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- makedecision.huawei -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.RD_AAOW.MakeDecision"
-		  android:installLocation="internalOnly" android:versionCode="600229" android:versionName="2.11.2">
+		  android:installLocation="internalOnly" android:versionCode="600230" android:versionName="2.12">
 
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="31" />
 
-	<application android:label="Make decision" android:icon="@mipmap/icon" />
+	<application android:label="Make decision" android:icon="@drawable/launcher_foreground" />
 </manifest>

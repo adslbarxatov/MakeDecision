@@ -117,94 +117,125 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyStarted" xml:space="preserve">
-    <value>{0:S} is already running</value>
+  <data name="AboutPage" xml:space="preserve">
+    <value>About application</value>
   </data>
-  <data name="AppExit" xml:space="preserve">
-    <value>Exit application?</value>
+  <data name="AcceptButton" xml:space="preserve">
+    <value>Accept</value>
   </data>
-  <data name="HelpText" xml:space="preserve">
-    <value>This application illustrates a math method that allows comparing some objects or events based on a set of criteria and choosing the most “correct” one. User is invited to independently select variants and criteria for their comparison, as well as specify significance of each criterion and each element. As a result, you’ll get the answer for the next question: “what way is the best”.
+  <data name="ActivityLabelText01" xml:space="preserve">
+    <value>Specify, what you want to compare</value>
+  </data>
+  <data name="ActivityLabelText02" xml:space="preserve">
+    <value>Specify comparison criteria and rate the importance of each</value>
+  </data>
+  <data name="ActivityLabelText03" xml:space="preserve">
+    <value>Rate variants according to criterion “{0:S}”</value>
+  </data>
+  <data name="ActivityLabelText04" xml:space="preserve">
+    <value>Hierarchy analysis results:
 
-Each step is provided with explanations for this method. If necessary, all steps can be repeated again
+</value>
+  </data>
+  <data name="ActivityLabelText05" xml:space="preserve">
+    <value>
 
-***
-
-Hotkeys:
-Home – restarts the application (without losing the text);
-PageDown – go to the next step;
-Esc – exit the application;
-F1 – call this help window;
-Enter – enter a value and move to the next one;
-Del – remove selected value from the list</value>
+The most suitable option is </value>
   </data>
-  <data name="IncorrectValueError" xml:space="preserve">
-    <value>Value must be an integer</value>
+  <data name="ADPPage" xml:space="preserve">
+    <value>Policy and EULA</value>
   </data>
-  <data name="MakeDecisionForm_BExit" xml:space="preserve">
-    <value>E&amp;xit</value>
+  <data name="AppPage" xml:space="preserve">
+    <value>App webpage</value>
   </data>
-  <data name="MakeDecisionForm_BNext" xml:space="preserve">
-    <value>&amp;Next</value>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="MakeDecisionForm_BReset" xml:space="preserve">
-    <value>&amp;Restart</value>
+  <data name="CommunitySelect" xml:space="preserve">
+    <value>Select community:</value>
   </data>
-  <data name="MakeDecisionForm_SkipUnnecessarySteps" xml:space="preserve">
-    <value>Skip unnecessary steps</value>
+  <data name="ComparisonCriteria" xml:space="preserve">
+    <value>Comparison criteria:</value>
+  </data>
+  <data name="ComparisonObjects" xml:space="preserve">
+    <value>Comparison elements:</value>
+  </data>
+  <data name="DeclineButton" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="DevPage" xml:space="preserve">
+    <value>Ask developer</value>
+  </data>
+  <data name="EmailsAreUnavailable" xml:space="preserve">
+    <value>This device has no mail agent</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Interface language:</value>
+  </data>
+  <data name="NextButton" xml:space="preserve">
+    <value>Next</value>
   </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
-    <value>Not enough criteria to compare</value>
+    <value>Not enough criteria for comparison</value>
   </data>
-  <data name="NotEnoughData" xml:space="preserve">
-    <value>Not all cells are filled or one of them got zero value</value>
+  <data name="NotEnoughVariants" xml:space="preserve">
+    <value>Not enough variants to compare</value>
   </data>
-  <data name="NotEnoughObjects" xml:space="preserve">
-    <value>Not enough elements to compare</value>
-  </data>
-  <data name="ResultLabel" xml:space="preserve">
-    <value>It follows from them that the element “{0: S}” is the best by given criteria</value>
-  </data>
-  <data name="Tab01_Label01" xml:space="preserve">
-    <value>This application illustrates the use of nonlinear hierarchy analysis method for decision making.
+  <data name="PolicyMessage" xml:space="preserve">
+    <value>Before you can start using this tool, you must accept Application development policy and EULA. Do you want to open them in browser?
 
-Click “Next” to start the illustration</value>
+• Click “Accept” if you are already familiar and fully accepted them;
+• Click “Read” if you want to open them in browser;
+• To decline them, close the application</value>
   </data>
-  <data name="Tab02_Label02" xml:space="preserve">
-    <value>This method allows you to compare objects, phenomena or scenarios based on a set of criteria and select the most “correct” one, i. e. one for which the final coefficient will be the highest.
-
-Therefore, firstly you must specify elements that you want to compare. To do this, simply enter their names into the list below</value>
+  <data name="ResetButton" xml:space="preserve">
+    <value>Clear</value>
   </data>
-  <data name="Tab03_Label03" xml:space="preserve">
-    <value>Now you need to select the criteria for comparing previously specified elements in the same way, as well as indicate their “price” – the degree of significance, priority.
-
-It can be set “on a scale from 1 to 10” (to 100, to 1000), points, ratings – as you like. The main thing is that a HIGHER number determines a MORE SIGNIFICANT criterion</value>
+  <data name="RestartApp" xml:space="preserve">
+    <value>Restart the application</value>
   </data>
-  <data name="Tab04_Label04" xml:space="preserve">
-    <value>At this step, the comparison matrix is restored from obtained vector of priorities. To do this, a simple duplication of the original vector is performed until the matrix becomes square.
-
-After this each column is divided by its own element, number of which is equal to number of column in the matrix. As a result, in matrix on the main diagonal, all elements become equal to 1</value>
+  <data name="RestartButton" xml:space="preserve">
+    <value>Restart</value>
   </data>
-  <data name="Tab05_Label05" xml:space="preserve">
-    <value>Similarly, elements evaluation vectors are set and processed according to each criterion. The only remark: HIGHER priority value should correspond to BETTER element, i. e. more suitable, compatible, cheaper, etc.</value>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Select language:</value>
   </data>
-  <data name="Tab06_Label06" xml:space="preserve">
-    <value>Now everything is ready to obtain final estimates of elements. This is done as follows:
-
-• For all normalized matrices (both criteria and elements), harmonic vectors are compiled: each element of the vector is equal to product of elements of corresponding row of matrix raised to power inverse to number of elements in the row;
-• Then matrices are multiplied by these vectors;
-• Next, resulting price vectors of elements according to different criteria are merged into the matrix in the order in which these criteria were announced;
-• Finally, this matrix is ​​multiplied by the price vector of the criteria.
-
-Resulting vector will be the result of the method. The highest number in it will indicate the “best” element in given conditions</value>
+  <data name="SolutionAboutPage" xml:space="preserve">
+    <value>User manual</value>
   </data>
-  <data name="Tab07_Label07" xml:space="preserve">
-    <value>Results of hierarchy analysis:</value>
+  <data name="SolutionPage" xml:space="preserve">
+    <value>Making decisions</value>
   </data>
-  <data name="TooManyCriteria" xml:space="preserve">
-    <value>Too many criteria to compare</value>
+  <data name="Tip00" xml:space="preserve">
+    <value>Welcome to making difficult decisions service. This tool will help you apply math to compare options and choose the best one</value>
   </data>
-  <data name="TooManyObjects" xml:space="preserve">
-    <value>Too many elements to compare</value>
+  <data name="Tip01" xml:space="preserve">
+    <value>First, specify names of what you want to compare (not more than {0:D}). Then click “Next” button</value>
+  </data>
+  <data name="Tip02" xml:space="preserve">
+    <value>Now specify criteria by which you want to compare (not more than {0:D}).
+After that, rate importance of each of them using sliders on the right. The more to the right the position of slider, the higher value of criterion</value>
+  </data>
+  <data name="Tip03" xml:space="preserve">
+    <value>Finally, rate options listed for each criterion. To go to the next criterion, click “Next” button</value>
+  </data>
+  <data name="Tip04" xml:space="preserve">
+    <value>If there is an error somewhere, click “Restart” button to start over</value>
+  </data>
+  <data name="Tip05" xml:space="preserve">
+    <value>In the last step, application will display the comparison result. By swiping to the left of the app screen, you can also find our lab contacts and more information on how the app finds solution</value>
+  </data>
+  <data name="Tip06" xml:space="preserve">
+    <value>The “Next” button will restart the application. In this case, all entered names will be saved.
+They will not be lost when you open the application the next time you need to make a difficult choice again</value>
+  </data>
+  <data name="TipHeader01" xml:space="preserve">
+    <value>Hello dear user!</value>
+  </data>
+  <data name="TipHeader02" xml:space="preserve">
+    <value>Hint #</value>
+  </data>
+  <data name="WebIsUnavailable" xml:space="preserve">
+    <value>This device has no web browser</value>
   </data>
 </root>

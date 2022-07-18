@@ -117,94 +117,125 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlreadyStarted" xml:space="preserve">
-    <value>Программа {0:S} уже запущена</value>
+  <data name="AboutPage" xml:space="preserve">
+    <value>О приложении</value>
   </data>
-  <data name="AppExit" xml:space="preserve">
-    <value>Выйти из программы?</value>
+  <data name="AcceptButton" xml:space="preserve">
+    <value>Принять</value>
   </data>
-  <data name="HelpText" xml:space="preserve">
-    <value>Программа иллюстрирует математический метод, позволяющий сравнивать некоторые объекты, явления или исходы событий на основе набора критериев и выбирать наиболее «подходящий» из них. Пользователю предлагается самостоятельно указать варианты и критерии для их сравнения, а также оценить значимость каждого критерия и варианта. Результатом будет ответ на вопрос: «какой выбор наиболее удачный».
+  <data name="ActivityLabelText01" xml:space="preserve">
+    <value>Укажите, что необходимо сравнить</value>
+  </data>
+  <data name="ActivityLabelText02" xml:space="preserve">
+    <value>Задайте критерии сравнения и оцените важность каждого из них</value>
+  </data>
+  <data name="ActivityLabelText03" xml:space="preserve">
+    <value>Оцените варианты по критерию «{0:S}»</value>
+  </data>
+  <data name="ActivityLabelText04" xml:space="preserve">
+    <value>Результаты анализа иерархий:
 
-Каждый шаг снабжён пояснениями, излагающими суть метода. При необходимости, все шаги можно повторить заново
+</value>
+  </data>
+  <data name="ActivityLabelText05" xml:space="preserve">
+    <value>
 
-***
-
-Горячие клавиши:
-Home – возврат в начало (без потери введённых значений);
-PageDown – переход к следующему шагу;
-Esc – выход из приложения;
-F1 – вызов этого справочного окна;
-Enter – ввод значения и переход к следующему;
-Del – удалить выбранное значение из списка</value>
+Самый подходящий вариант – </value>
   </data>
-  <data name="IncorrectValueError" xml:space="preserve">
-    <value>Значение оценки должно быть целым числом</value>
+  <data name="ADPPage" xml:space="preserve">
+    <value>Политика и EULA</value>
   </data>
-  <data name="MakeDecisionForm_BExit" xml:space="preserve">
-    <value>В&amp;ыход</value>
+  <data name="AppPage" xml:space="preserve">
+    <value>Страница проекта</value>
   </data>
-  <data name="MakeDecisionForm_BNext" xml:space="preserve">
-    <value>&amp;Далее</value>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Отмена</value>
   </data>
-  <data name="MakeDecisionForm_BReset" xml:space="preserve">
-    <value>&amp;Сначала</value>
+  <data name="CommunitySelect" xml:space="preserve">
+    <value>Выберите сообщество:</value>
   </data>
-  <data name="MakeDecisionForm_SkipUnnecessarySteps" xml:space="preserve">
-    <value>Пропускать необязательные шаги</value>
+  <data name="ComparisonCriteria" xml:space="preserve">
+    <value>Критерии сравнения:</value>
+  </data>
+  <data name="ComparisonObjects" xml:space="preserve">
+    <value>Сравниваемые элементы:</value>
+  </data>
+  <data name="DeclineButton" xml:space="preserve">
+    <value>Читать</value>
+  </data>
+  <data name="DevPage" xml:space="preserve">
+    <value>Спросить разработчика</value>
+  </data>
+  <data name="EmailsAreUnavailable" xml:space="preserve">
+    <value>Почтовый агент отсутствует на этом устройстве</value>
+  </data>
+  <data name="LanguageLabel" xml:space="preserve">
+    <value>Язык интерфейса:</value>
+  </data>
+  <data name="NextButton" xml:space="preserve">
+    <value>Далее</value>
   </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Недостаточно критериев для сравнения</value>
   </data>
-  <data name="NotEnoughData" xml:space="preserve">
-    <value>Заполнены не все ячейки или одна из них имеет нулевое значение</value>
+  <data name="NotEnoughVariants" xml:space="preserve">
+    <value>Недостаточно вариантов для сравнения</value>
   </data>
-  <data name="NotEnoughObjects" xml:space="preserve">
-    <value>Недостаточно элементов для сравнения</value>
-  </data>
-  <data name="ResultLabel" xml:space="preserve">
-    <value>Из них следует, что самым лучшим по заданным критериям является элемент «{0:S}»</value>
-  </data>
-  <data name="Tab01_Label01" xml:space="preserve">
-    <value>Данная программа иллюстрирует применение нелинейного метода анализа иерархий для принятия решений.
+  <data name="PolicyMessage" xml:space="preserve">
+    <value>Перед началом работы с этим инструментом Вы должны принять Политику разработки приложений и Пользовательское соглашение. Хотите открыть их тексты в браузере?
 
-Для начала иллюстрации нажмите «Далее»</value>
+• Нажмите «Принять», если Вы уже ознакомились и полностью приняли их;
+• Нажмите «Читать», если хотите открыть их в браузере;
+• Чтобы отклонить их, закройте приложение</value>
   </data>
-  <data name="Tab02_Label02" xml:space="preserve">
-    <value>Метод позволяет сравнить объекты, явления или варианты развития событий на основе набора критериев и выбрать наиболее «правильный», т.е. тот, у которого итоговый коэффициент будет наивысшим.
-
-Поэтому для начала необходимо задать элементы, которые необходимо сравнить. Для этого просто введите их названия в список ниже</value>
+  <data name="ResetButton" xml:space="preserve">
+    <value>Сброс</value>
   </data>
-  <data name="Tab03_Label03" xml:space="preserve">
-    <value>Теперь Вам необходимо таким же образом выбрать критерии для сравнения ранее указанных элементов, а также указать их «цену», т. е. степень значимости, приоритет.
-
-Её можно задать «по шкале от 1 до 10» (до 100, до 1000), баллами, оценками – как угодно. Главное – чтобы БОЛЬШЕЕ число определяло БОЛЕЕ ЗНАЧИМЫЙ критерий</value>
+  <data name="RestartApp" xml:space="preserve">
+    <value>Перезапустите приложение</value>
   </data>
-  <data name="Tab04_Label04" xml:space="preserve">
-    <value>На этом шаге из полученного вектора приоритетов создаётся матрица сравнений. Для этого выполняется дублирование исходного вектора до тех пор, пока матрица не становится квадратной.
-
-После этого каждый столбец делится на тот свой элемент, номер которого равен номеру столбца в матрице. В результате в матрице на главной диагонали все элементы становятся равными единице</value>
+  <data name="RestartButton" xml:space="preserve">
+    <value>Заново</value>
   </data>
-  <data name="Tab05_Label05" xml:space="preserve">
-    <value>Аналогичным образом задаются и обрабатываются вектора оценок элементов по каждому критерию. Единственное замечание: БОЛЬШЕЕ значение приоритета должно соответствовать ЛУЧШЕМУ элементу, т. е. более подходящему, более качественному, более дешёвому и т.д.</value>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Выберите язык:</value>
   </data>
-  <data name="Tab06_Label06" xml:space="preserve">
-    <value>Итак, теперь всё готово для получения конечных оценок элементов. Делается это следующим образом:
-
-• Для всех нормализованных матриц (и критериев, и элементов) составляются вектора средних гармонических: каждый элемент вектора равен произведению элементов соответствующей строки матрицы, возведённому в степень, обратную количеству элементов в строке;
-• Затем матрицы умножаются на эти вектора;
-• Далее получившиеся вектора цен элементов по разным критериям склеиваются в матрицу в том порядке, в котором эти критерии были объявлены;
-• Наконец, эта матрица умножается на вектор цен критериев.
-
-Полученный вектор будет результатом метода. Самое большое число в нём укажет на «наилучший» элемент в заданных условиях</value>
+  <data name="SolutionAboutPage" xml:space="preserve">
+    <value>Руководство пользователя</value>
   </data>
-  <data name="Tab07_Label07" xml:space="preserve">
-    <value>Результаты метода анализа иерархий:</value>
+  <data name="SolutionPage" xml:space="preserve">
+    <value>Принятие решений</value>
   </data>
-  <data name="TooManyCriteria" xml:space="preserve">
-    <value>Слишком много критериев для сравнения</value>
+  <data name="Tip00" xml:space="preserve">
+    <value>Вас приветствует служба помощи в принятии сложных решений. Этот инструмент помогает применить математику, чтобы сравнить варианты и выбрать лучший из них</value>
   </data>
-  <data name="TooManyObjects" xml:space="preserve">
-    <value>Слишком много элементов для сравнения</value>
+  <data name="Tip01" xml:space="preserve">
+    <value>Для начала укажите названия того, что Вы хотите сравнить (не более {0:D}-и). Затем нажмите кнопку «Далее»</value>
+  </data>
+  <data name="Tip02" xml:space="preserve">
+    <value>Теперь укажите критерии, по которым необходимо выполнить сравнение (не более {0:D}-и).
+После этого оцените важность каждого из них с помощью бегунков справа. Чем правее положение бегунка, тем выше ценность критерия</value>
+  </data>
+  <data name="Tip03" xml:space="preserve">
+    <value>Наконец, оцените указанные варианты по каждому критерию. Для перехода к следующему критерию нажимайте кнопку «Далее»</value>
+  </data>
+  <data name="Tip04" xml:space="preserve">
+    <value>Если где-то случилась ошибка, нажмите кнопку «Заново», чтобы начать сначала</value>
+  </data>
+  <data name="Tip05" xml:space="preserve">
+    <value>На последнем шаге приложение отобразит результат сравнения. Смахнув экран приложения влево, Вы также сможете найти контакты нашей лаборатории и дополнительную информацию о том, как выполняется поиск решения</value>
+  </data>
+  <data name="Tip06" xml:space="preserve">
+    <value>Кнопка «Далее» запустит приложение заново. При этом все введённые названия будут сохранены.
+Не потеряются они и при открытии приложения в следующий раз, когда Вам снова потребуется сделать сложный выбор</value>
+  </data>
+  <data name="TipHeader01" xml:space="preserve">
+    <value>Здравствуйте, уважаемый пользователь!</value>
+  </data>
+  <data name="TipHeader02" xml:space="preserve">
+    <value>Подсказка №</value>
+  </data>
+  <data name="WebIsUnavailable" xml:space="preserve">
+    <value>Веб-браузер отсутствует на этом устройстве</value>
   </data>
 </root>
