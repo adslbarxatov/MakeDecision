@@ -1,5 +1,9 @@
 ﻿Make decision changes log
 
+Version 2.12.2:
+• New system registry call method has been implemented;
+• Cumulative updates and improvements have been applied
+
 Version 2.12:
 • Upgraded the user interface: applied correct icon, fixed flickering splash screen,
   fixed white navigation bar;

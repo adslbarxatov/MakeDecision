@@ -1,4 +1,4 @@
-# MakeDecision v 2.12
+# MakeDecision v 2.12.2
 
 
 Make decision, a tool for making exact decisions

@@ -93,17 +93,24 @@ namespace RD_AAOW
 				}
 
 			// Получение настроек перед инициализацией
-			try
+			for (int i = 0; i < masterLinesCount; i++)
 				{
-				for (int i = 0; i < masterLinesCount; i++)
+				/*objects.Add (Preferences.Get (objectsRegKey + i.ToString ("D2"), ""));
+				criteria.Add (Preferences.Get (criteriaRegKey + i.ToString ("D2"), ""));
+				values.Add (int.Parse (Preferences.Get (valuesRegKey + i.ToString ("D2"), "1")));*/
+
+				objects.Add (RDGenerics.GetAppSettingsValue (objectsRegKey + i.ToString ("D2")));
+				criteria.Add (RDGenerics.GetAppSettingsValue (criteriaRegKey + i.ToString ("D2")));
+				try
 					{
-					objects.Add (Preferences.Get (objectsRegKey + i.ToString ("D2"), ""));
-					criteria.Add (Preferences.Get (criteriaRegKey + i.ToString ("D2"), ""));
-					values.Add (int.Parse (Preferences.Get (valuesRegKey + i.ToString ("D2"), "1")));
+					values.Add (int.Parse (RDGenerics.GetAppSettingsValue (valuesRegKey + i.ToString ("D2"))));
 					}
-				firstStart = Preferences.Get (firstStartRegKey, "") == "";
+				catch
+					{
+					values.Add (1);
+					}
 				}
-			catch { }
+			firstStart = RDGenerics.GetAppSettingsValue (firstStartRegKey) == "";
 
 			// Инициализация зависимых полей
 			ResetApp (false);
@@ -164,7 +171,8 @@ namespace RD_AAOW
 						{
 						ADPButton_Clicked (null, null);
 						}
-					Preferences.Set (firstStartRegKey, ProgramDescription.AssemblyVersion); // Только после принятия
+					/*Preferences.Set (firstStartRegKey, ProgramDescription.AssemblyVersion); // Только после принятия*/
+					RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
 
 					// Первая подсказка
 					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader01", al),
@@ -209,16 +217,28 @@ namespace RD_AAOW
 					{
 					if (phase < 3)
 						{
-						Preferences.Set (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
+						/*Preferences.Set (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
 						Preferences.Set (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
-						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());
+						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());*/
+
+						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
+						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
+						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"), 
+							((int)valueFields[i].Value).ToString ());
 						}
 					else
 						{
-						Preferences.Set (objectsRegKey + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
+						/*Preferences.Set (objectsRegKey + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
 						Preferences.Set (criteriaRegKey + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
 						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((i < values.Count) ?
-							((int)values[i]).ToString () : "1"));
+							((int)values[i]).ToString () : "1"));*/
+
+						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"), 
+							(i < objects.Count) ? objects[i] : "");
+						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"), 
+							(i < criteria.Count) ? criteria[i] : "");
+						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"), (i < values.Count) ?
+							((int)values[i]).ToString () : "1");
 						}
 					}
 
