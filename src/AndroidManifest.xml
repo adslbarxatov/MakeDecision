@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- makedecision.huawei -->
+<!-- makedecision.xiaomi -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.RD_AAOW.MakeDecision"
-		  android:installLocation="internalOnly" android:versionCode="600231" android:versionName="2.12.2">
+		  android:installLocation="internalOnly" android:versionCode="600232" android:versionName="2.13">
 
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="31" />
 

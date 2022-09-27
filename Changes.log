@@ -1,7 +1,9 @@
 ﻿Make decision changes log
 
-ToDo:
-- Correct the background color
+Version 2.13:
+• Fixed the background color;
+• Fixed the keyboard type for text fields: text will now start with the capital letter;
+• Implemented the ability to open localized ADP, SCP and Welcome pages
 
 Version 2.12.2:
 • New system registry call method has been implemented;

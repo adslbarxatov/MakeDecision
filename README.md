@@ -1,4 +1,4 @@
-# MakeDecision v 2.12.2
+# MakeDecision v 2.13
 
 
 Make decision, a tool for making exact decisions
@@ -56,10 +56,12 @@ Each step is provided with explanations for this method. If necessary, all steps
 ## Requirements / Требования
 
 - [Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 5.0 or newer. Interface languages: ru_ru, en_us;
-- Android version is also available for download on [AppGallery](https://appgallery.cloud.huawei.com/ag/n/app/C102653919?channelId=GitHub&id=9e294f4fc1f84e00af29183d5a706fd3&s=9380BD335AB35872FB993207DE1DD83650FABF7D6FF81F9AF4810E8C14BA254E&detailType=0&v=&callType=AGDLINK&installType=0000).
+- Application is available in [AppGallery](https://appgallery.cloud.huawei.com/ag/n/app/C102653919?channelId=GitHub&id=9e294f4fc1f84e00af29183d5a706fd3&s=9380BD335AB35872FB993207DE1DD83650FABF7D6FF81F9AF4810E8C14BA254E&detailType=0&v=&callType=AGDLINK&installType=0000).
+- Application is also available in [GetApps](https://global.app.mi.com/details?id=makedecision.xiaomi).
 
 - Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 5.0 или новее. Языки интерфейса: ru_ru, en_us;
-- Android-версия также доступна для загрузки на платформе [AppGallery](https://appgallery.cloud.huawei.com/ag/n/app/C102653919?channelId=GitHub&id=9e294f4fc1f84e00af29183d5a706fd3&s=9380BD335AB35872FB993207DE1DD83650FABF7D6FF81F9AF4810E8C14BA254E&detailType=0&v=&callType=AGDLINK&installType=0000).
+- Приложение доступно в [AppGallery](https://appgallery.cloud.huawei.com/ag/n/app/C102653919?channelId=GitHub&id=9e294f4fc1f84e00af29183d5a706fd3&s=9380BD335AB35872FB993207DE1DD83650FABF7D6FF81F9AF4810E8C14BA254E&detailType=0&v=&callType=AGDLINK&installType=0000).
+- Приложение также доступно в [GetApps](https://global.app.mi.com/details?id=makedecision.xiaomi).
 
 &nbsp;
 

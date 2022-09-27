@@ -27,8 +27,8 @@ namespace RD_AAOW
 		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
 
 		private readonly Color
-			solutionMasterBackColor = Color.FromHex ("#FFC0E0"),
-			solutionFieldBackColor = Color.FromHex ("#FFA0D0"),
+			solutionMasterBackColor = Color.FromHex ("#FFD0E8"),
+			solutionFieldBackColor = Color.FromHex ("#FFC0E0"),
 
 			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
 			aboutFieldBackColor = Color.FromHex ("#D0FFD0");
@@ -86,19 +86,15 @@ namespace RD_AAOW
 			for (int i = 0; i < masterLinesCount; i++)
 				{
 				objectsFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + i.ToString ("D02"),
-					solutionFieldBackColor, Keyboard.Default, 50, "", ObjectName_TextChanged, true);
+					solutionFieldBackColor, Keyboard.Text, 50, "", ObjectName_TextChanged, true);
 				textFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + i.ToString ("D02"),
-					solutionFieldBackColor, Keyboard.Default, 50, "", CriteriaName_TextChanged, true);
+					solutionFieldBackColor, Keyboard.Text, 50, "", CriteriaName_TextChanged, true);
 				valueFields[i] = AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + i.ToString ("D02"));
 				}
 
 			// Получение настроек перед инициализацией
 			for (int i = 0; i < masterLinesCount; i++)
 				{
-				/*objects.Add (Preferences.Get (objectsRegKey + i.ToString ("D2"), ""));
-				criteria.Add (Preferences.Get (criteriaRegKey + i.ToString ("D2"), ""));
-				values.Add (int.Parse (Preferences.Get (valuesRegKey + i.ToString ("D2"), "1")));*/
-
 				objects.Add (RDGenerics.GetAppSettingsValue (objectsRegKey + i.ToString ("D2")));
 				criteria.Add (RDGenerics.GetAppSettingsValue (criteriaRegKey + i.ToString ("D2")));
 				try
@@ -171,7 +167,6 @@ namespace RD_AAOW
 						{
 						ADPButton_Clicked (null, null);
 						}
-					/*Preferences.Set (firstStartRegKey, ProgramDescription.AssemblyVersion); // Только после принятия*/
 					RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
 
 					// Первая подсказка
@@ -217,25 +212,16 @@ namespace RD_AAOW
 					{
 					if (phase < 3)
 						{
-						/*Preferences.Set (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
-						Preferences.Set (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
-						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((int)valueFields[i].Value).ToString ());*/
-
 						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
 						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
-						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"), 
+						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"),
 							((int)valueFields[i].Value).ToString ());
 						}
 					else
 						{
-						/*Preferences.Set (objectsRegKey + i.ToString ("D2"), ((i < objects.Count) ? objects[i] : ""));
-						Preferences.Set (criteriaRegKey + i.ToString ("D2"), ((i < criteria.Count) ? criteria[i] : ""));
-						Preferences.Set (valuesRegKey + i.ToString ("D2"), ((i < values.Count) ?
-							((int)values[i]).ToString () : "1"));*/
-
-						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"), 
+						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"),
 							(i < objects.Count) ? objects[i] : "");
-						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"), 
+						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"),
 							(i < criteria.Count) ? criteria[i] : "");
 						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"), (i < values.Count) ?
 							((int)values[i]).ToString () : "1");
@@ -323,7 +309,7 @@ namespace RD_AAOW
 			{
 			try
 				{
-				await Launcher.OpenAsync (RDGenerics.ADPLink);
+				await Launcher.OpenAsync (RDGenerics.GetADPLink (al == SupportedLanguages.ru_ru));
 				}
 			catch
 				{

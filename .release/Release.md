@@ -1,5 +1,5 @@
-_Changes for v 2.12.2_:
-- New system registry call method has been implemented;
-- Cumulative updates and improvements have been applied;
-- Upgraded the user interface: applied correct icon, fixed flickering splash screen, fixed white navigation bar;
-- Windows version of the app is no longer supported
+_Changes for v 2.13_:
+- Fixed the background color;
+- Fixed the keyboard type for text fields: text will now start with the capital letter;
+- Implemented the ability to open localized ADP, SCP and Welcome pages;
+- New system registry call method has been implemented
