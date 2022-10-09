@@ -1,5 +1,9 @@
 ﻿Make decision changes log
 
+Version 2.14.2:
+• XPR control has been implemented;
+• Code refactoring has been applied to messages and notifications
+
 Version 2.14:
 • Target Android version changed to T (API 33);
 • Updated Xamarin support packages

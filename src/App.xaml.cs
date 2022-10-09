@@ -11,7 +11,7 @@ namespace RD_AAOW
 	/// <summary>
 	/// Класс описывает функционал приложения
 	/// </summary>
-	public partial class App:Application
+	public partial class App: Application
 		{
 		#region Общие переменные и константы
 
@@ -69,6 +69,7 @@ namespace RD_AAOW
 				Localization.GetText ("SolutionPage", al), solutionMasterBackColor);
 			aboutPage = AndroidSupport.ApplyPageSettings (MainPage, "AboutPage",
 				Localization.GetText ("AboutPage", al), aboutMasterBackColor);
+			AndroidSupport.SetMainPage (MainPage);
 
 			#region Основная страница
 
@@ -153,6 +154,11 @@ namespace RD_AAOW
 		// Метод отображает подсказки при первом запуске
 		private async void ShowTips (uint TipsNumber)
 			{
+			// Контроль XPR
+			while (!Localization.IsXPRClassAcceptable)
+				await AndroidSupport.ShowMessage (Localization.InacceptableXPRClassMessage, "   ");
+
+			// Защита
 			if (!firstStart)
 				return;
 
@@ -160,42 +166,56 @@ namespace RD_AAOW
 				{
 				case 1:
 					// Требование принятия Политики
-					while (!await solutionPage.DisplayAlert (ProgramDescription.AssemblyTitle,
+					/*while (!await solutionPage.DiplayAlert (ProgramDescription.AssemblyTitle,
 										Localization.GetText ("PolicyMessage", al),
 										Localization.GetText ("AcceptButton", al),
-										Localization.GetText ("DeclineButton", al)))
+										Localization.GetText ("DeclineButton", al)))*/
+					while (!await AndroidSupport.ShowMessage (Localization.GetText ("PolicyMessage", al),
+						Localization.GetText ("AcceptButton", al), Localization.GetText ("DeclineButton", al)))
 						{
 						ADPButton_Clicked (null, null);
 						}
 					RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
 
 					// Первая подсказка
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader01", al),
+					/*await solutionPage.DiplayAlert (Localization.GetText ("TipHeader01", al),
 						Localization.GetText ("Tip00", al), Localization.GetText ("NextButton", al));
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "1",
-						string.Format (Localization.GetText ("Tip01", al), masterLinesCount), "OK");
+					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "1",
+						string.Format (Localization.GetText ("Tip01", al), masterLinesCount), "OK");*/
+					await AndroidSupport.ShowMessage (Localization.GetText ("Tip00", al),
+						Localization.GetText ("NextButton", al));
+					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip01", al),
+						masterLinesCount), "OK");
 					break;
 
 				case 2:
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "2",
-						string.Format (Localization.GetText ("Tip02", al), masterLinesCount), "OK");
+				case 3:
+				case 4:
+					/*await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "2",
+						string.Format (Localization.GetText ("Tip02", al), masterLinesCount), "OK");*/
+					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip0" +
+						TipsNumber.ToString (), al), masterLinesCount), "OK");
 					break;
 
-				case 3:
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "3",
+				/*case 3:
+					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "3",
 						Localization.GetText ("Tip03", al), "OK");
 					break;
 
 				case 4:
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "4",
+					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "4",
 						Localization.GetText ("Tip04", al), "OK");
-					break;
+					break;*/
 
 				case 5:
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "5",
+					/*await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "5",
 						Localization.GetText ("Tip05", al), Localization.GetText ("NextButton", al));
-					await solutionPage.DisplayAlert (Localization.GetText ("TipHeader02", al) + "6",
-						Localization.GetText ("Tip06", al), "OK");
+					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "6",
+						Localization.GetText ("Tip06", al), "OK");*/
+					await AndroidSupport.ShowMessage (Localization.GetText ("Tip05", al),
+						Localization.GetText ("NextButton", al));
+					await AndroidSupport.ShowMessage (Localization.GetText ("Tip06", al), "OK");
+
 					firstStart = false;
 					break;
 				}
@@ -241,8 +261,10 @@ namespace RD_AAOW
 		private async void SelectLanguage_Clicked (object sender, EventArgs e)
 			{
 			// Запрос
-			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("SelectLanguage", al),
-				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);
+			/*string res = await aboutPage.DiplayActionSheet (Localization.GetText ("SelectLanguage", al),
+				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);*/
+			string res = await AndroidSupport.ShowList (Localization.GetText ("SelectLanguage", al),
+				Localization.GetText ("CancelButton", al), Localization.LanguagesNames);
 
 			// Сохранение
 			List<string> lngs = new List<string> (Localization.LanguagesNames);
@@ -272,8 +294,10 @@ namespace RD_AAOW
 		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
 			string[] comm = RDGenerics.GetCommunitiesNames (al != SupportedLanguages.ru_ru);
-			string res = await aboutPage.DisplayActionSheet (Localization.GetText ("CommunitySelect", al),
-				Localization.GetText ("CancelButton", al), null, comm);
+			/*string res = await aboutPage.DiplayActionSheet (Localization.GetText ("CommunitySelect", al),
+				Localization.GetText ("CancelButton", al), null, comm);*/
+			string res = await AndroidSupport.ShowList (Localization.GetText ("CommunitySelect", al),
+				Localization.GetText ("CancelButton", al), comm);
 
 			res = RDGenerics.GetCommunityLink (res, al != SupportedLanguages.ru_ru);
 			if (string.IsNullOrWhiteSpace (res))
