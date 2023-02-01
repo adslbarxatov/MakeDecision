@@ -27,8 +27,8 @@ namespace RD_AAOW
 		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
 
 		private readonly Color
-			solutionMasterBackColor = Color.FromHex ("#FFD0E8"),
-			solutionFieldBackColor = Color.FromHex ("#FFC0E0"),
+			solutionMasterBackColor = Color.FromHex ("#FFDEEF"),
+			solutionFieldBackColor = Color.FromHex ("#FFD2E9"),
 
 			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
 			aboutFieldBackColor = Color.FromHex ("#D0FFD0");
@@ -82,7 +82,10 @@ namespace RD_AAOW
 			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
 				AndroidSupport.ButtonsDefaultNames.Share, solutionFieldBackColor, ShareResults);
 
-			activityLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel");
+			activityLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
+				AndroidSupport.LabelTypes.HeaderCenter);
+			activityLabel.HorizontalTextAlignment = TextAlignment.Center;
+			activityLabel.FontSize += 2;
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
@@ -122,7 +125,7 @@ namespace RD_AAOW
 				RDGenerics.AssemblyCopyright + "\nv " +
 				ProgramDescription.AssemblyVersion +
 				"; " + ProgramDescription.AssemblyLastUpdate,
-				Color.FromHex ("#000080"));
+				AndroidSupport.LabelTypes.AppAbout);
 			aboutLabel.FontAttributes = FontAttributes.Bold;
 			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
 
@@ -134,16 +137,18 @@ namespace RD_AAOW
 				aboutFieldBackColor, CommunityButton_Clicked, false);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
 				aboutFieldBackColor, DevButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage", Localization.GetText ("SolutionAboutPage", al),
-				aboutFieldBackColor, SolutionAboutButton_Clicked, false);
+			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage",
+				Localization.GetText ("SolutionAboutPage", al), aboutFieldBackColor, SolutionAboutButton_Clicked,
+				false);
 
 			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
-			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel", al));
+			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel",
+				Localization.GetText ("LanguageLabel", al), AndroidSupport.LabelTypes.Default);
 
 			if (al == SupportedLanguages.ru_ru)
-				AndroidSupport.ApplyLabelSettingsForKKT (aboutPage, "Alert", RDGenerics.RuAlertMessage,
-					false, false);
+				AndroidSupport.ApplyLabelSettings (aboutPage, "Alert", RDGenerics.RuAlertMessage,
+					AndroidSupport.LabelTypes.Default);
 
 			#endregion
 

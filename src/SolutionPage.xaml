@@ -6,7 +6,7 @@
 	<StackLayout>
 		<Label x:Name="HeaderLabel" />
 
-		<Label x:Name="ActivityLabel" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+		<Label x:Name="ActivityLabel" />
 
 		<!-- Общее поле ввода с кнопкой перехода -->
 		<Grid ColumnSpacing="0">
@@ -35,7 +35,8 @@
 
 					<!-- Табличная форма для настраиваемых параметров -->
 					<Grid ColumnSpacing="0">
-						<!-- Таблица определена как саморасширяющаяся по вертикали и с фиксированным размером второго столбца -->
+						<!-- Таблица определена как саморасширяющаяся по вертикали и с фиксированным 
+						размером второго столбца -->
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="Auto" />
