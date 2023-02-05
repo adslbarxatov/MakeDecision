@@ -120,9 +120,6 @@
   <data name="AboutPage" xml:space="preserve">
     <value>О приложении</value>
   </data>
-  <data name="AcceptButton" xml:space="preserve">
-    <value>Принять</value>
-  </data>
   <data name="ActivityLabelText01" xml:space="preserve">
     <value>Укажите, что необходимо сравнить</value>
   </data>
@@ -133,9 +130,7 @@
     <value>Оцените варианты по критерию «{0:S}»</value>
   </data>
   <data name="ActivityLabelText04" xml:space="preserve">
-    <value>Результаты анализа иерархий:
-
-</value>
+    <value>Результаты анализа иерархий:</value>
   </data>
   <data name="ActivityLabelText05" xml:space="preserve">
     <value>
@@ -147,9 +142,6 @@
   </data>
   <data name="AppPage" xml:space="preserve">
     <value>Страница проекта</value>
-  </data>
-  <data name="CancelButton" xml:space="preserve">
-    <value>Отмена</value>
   </data>
   <data name="CommunitySelect" xml:space="preserve">
     <value>Выберите сообщество:</value>
@@ -172,9 +164,6 @@
   <data name="LanguageLabel" xml:space="preserve">
     <value>Язык интерфейса:</value>
   </data>
-  <data name="NextButton" xml:space="preserve">
-    <value>Далее</value>
-  </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Недостаточно критериев для сравнения</value>
   </data>
@@ -188,17 +177,14 @@
 • Нажмите «Читать», если хотите открыть их в браузере;
 • Чтобы отклонить их, закройте приложение</value>
   </data>
-  <data name="ResetButton" xml:space="preserve">
-    <value>Сброс</value>
+  <data name="ResetMessage" xml:space="preserve">
+    <value>При сбросе состояния приложения все значения будут очищены! Продолжить?</value>
   </data>
   <data name="RestartApp" xml:space="preserve">
     <value>Перезапустите приложение</value>
   </data>
-  <data name="RestartButton" xml:space="preserve">
-    <value>Заново</value>
-  </data>
-  <data name="SelectLanguage" xml:space="preserve">
-    <value>Выберите язык:</value>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>Хотите начать алгоритм сначала?</value>
   </data>
   <data name="SolutionAboutPage" xml:space="preserve">
     <value>Руководство пользователя</value>

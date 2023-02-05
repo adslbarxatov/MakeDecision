@@ -8,8 +8,109 @@
 
 		<Label x:Name="ActivityLabel" />
 
+		<Label x:Name="ResultLabel" />
+
+		<!-- Поле кнопок управления -->
+		<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+			<Button x:Name="NextButton" VerticalOptions="Center" />
+			<Label Text="    |    " VerticalOptions="Center" FontSize="20" />
+			<Button x:Name="ShareButton" VerticalOptions="Center" />
+			<Label Text="   " />
+			<Button x:Name="RestartButton" VerticalOptions="Center" />
+			<Label Text="   " />
+			<Button x:Name="ResetButton" VerticalOptions="Center" />
+		</StackLayout>
+
+		<BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" 
+			WidthRequest="200" Color="#505050" Margin="6" />
+
+		<!-- Раздел ввода значений -->
+		<ScrollView HorizontalOptions="Fill">
+			<StackLayout>
+				<Editor x:Name="ObjectField00" />
+				<Editor x:Name="TextField00" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField00" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel00" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField01" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField01" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField01" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel01" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField02" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField02" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField02" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel02" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField03" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField03" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField03" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel03" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField04" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField04" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField04" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel04" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField05" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField05" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField05" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel05" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField06" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField06" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField06" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel06" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField07" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField07" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField07" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel07" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField08" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField08" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField08" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel08" VerticalOptions="Center" />
+				</StackLayout>
+
+				<Editor x:Name="ObjectField09" HorizontalOptions="FillAndExpand" />
+				<Editor x:Name="TextField09" HorizontalOptions="FillAndExpand" />
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Slider x:Name="ValueField09" VerticalOptions="Center" WidthRequest="275" />
+					<Label x:Name="ValueLabel09" VerticalOptions="Center" />
+				</StackLayout>
+			</StackLayout>
+		</ScrollView>
+
 		<!-- Общее поле ввода с кнопкой перехода -->
-		<Grid ColumnSpacing="0">
+		<!--<Grid ColumnSpacing="0">
 			<Grid.RowDefinitions>
 				<RowDefinition />
 			</Grid.RowDefinitions>
@@ -21,7 +122,7 @@
 			<ScrollView Grid.Row="0" Grid.Column="0">
 				<StackLayout>
 
-					<!-- Поля для объектов -->
+					Поля для объектов 
 					<Editor x:Name="ObjectField00" HorizontalOptions="FillAndExpand" />
 					<Editor x:Name="ObjectField01" HorizontalOptions="FillAndExpand" />
 					<Editor x:Name="ObjectField02" HorizontalOptions="FillAndExpand" />
@@ -33,10 +134,10 @@
 					<Editor x:Name="ObjectField08" HorizontalOptions="FillAndExpand" />
 					<Editor x:Name="ObjectField09" HorizontalOptions="FillAndExpand" />
 
-					<!-- Табличная форма для настраиваемых параметров -->
+					Табличная форма для настраиваемых параметров
 					<Grid ColumnSpacing="0">
-						<!-- Таблица определена как саморасширяющаяся по вертикали и с фиксированным 
-						размером второго столбца -->
+						Таблица определена как саморасширяющаяся по вертикали и с фиксированным 
+						размером второго столбца
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="Auto" />
@@ -130,16 +231,7 @@
 
 			<Button Grid.Row="0" Grid.Column="1" x:Name="NextButton" HorizontalOptions="Center" VerticalOptions="Center" />
 
-		</Grid>
-
-		<!-- Поле кнопок управления -->
-		<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-			<Button x:Name="ResetButton" />
-			<Label Text="   " />
-			<Button x:Name="RestartButton" />
-			<Label Text="   " />
-			<Button x:Name="ShareButton" />
-		</StackLayout>
+		</Grid>-->
 
 	</StackLayout>
 </ContentPage>

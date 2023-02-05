@@ -120,9 +120,6 @@
   <data name="AboutPage" xml:space="preserve">
     <value>About the application</value>
   </data>
-  <data name="AcceptButton" xml:space="preserve">
-    <value>Accept</value>
-  </data>
   <data name="ActivityLabelText01" xml:space="preserve">
     <value>Specify, what you want to compare</value>
   </data>
@@ -133,9 +130,7 @@
     <value>Rate variants according to criterion “{0:S}”</value>
   </data>
   <data name="ActivityLabelText04" xml:space="preserve">
-    <value>Hierarchy analysis results:
-
-</value>
+    <value>Hierarchy analysis results:</value>
   </data>
   <data name="ActivityLabelText05" xml:space="preserve">
     <value>
@@ -147,9 +142,6 @@ The most suitable option is </value>
   </data>
   <data name="AppPage" xml:space="preserve">
     <value>App webpage</value>
-  </data>
-  <data name="CancelButton" xml:space="preserve">
-    <value>Cancel</value>
   </data>
   <data name="CommunitySelect" xml:space="preserve">
     <value>Select community:</value>
@@ -172,9 +164,6 @@ The most suitable option is </value>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Interface language:</value>
   </data>
-  <data name="NextButton" xml:space="preserve">
-    <value>Next</value>
-  </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Not enough criteria for comparison</value>
   </data>
@@ -188,17 +177,14 @@ The most suitable option is </value>
 • Click “Read” if you want to open them in browser;
 • To decline them, close the application</value>
   </data>
-  <data name="ResetButton" xml:space="preserve">
-    <value>Clear</value>
+  <data name="ResetMessage" xml:space="preserve">
+    <value>When resetting the app state, all values will be cleared! Continue?</value>
   </data>
   <data name="RestartApp" xml:space="preserve">
     <value>Restart the application</value>
   </data>
-  <data name="RestartButton" xml:space="preserve">
-    <value>Restart</value>
-  </data>
-  <data name="SelectLanguage" xml:space="preserve">
-    <value>Select language:</value>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>Do you want to restart the algorithm?</value>
   </data>
   <data name="SolutionAboutPage" xml:space="preserve">
     <value>User manual</value>

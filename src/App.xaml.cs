@@ -18,7 +18,7 @@ namespace RD_AAOW
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
 		private bool firstStart = true;
-		private SupportedLanguages al = Localization.CurrentLanguage;
+		/*private SupportedLanguages al = Localization.CurrentLanguage;*/
 
 		private List<string> objects = new List<string> (),
 			criteria = new List<string> ();
@@ -44,10 +44,11 @@ namespace RD_AAOW
 
 		private ContentPage solutionPage, aboutPage;
 
-		private Label aboutLabel, activityLabel;
+		private Label aboutLabel, actLabel, resultLabel;
 		private Editor[] textFields = new Editor[masterLinesCount],
 			objectsFields = new Editor[masterLinesCount];
-		private Slider[] valueFields = new Slider[masterLinesCount];
+		private List<Slider> valueFields = new List<Slider> ();
+		private Label[] valueLabels = new Label[masterLinesCount];
 		private Xamarin.Forms.Button restartButton, shareButton;
 
 		#endregion
@@ -66,9 +67,9 @@ namespace RD_AAOW
 			MainPage = new MasterPage ();
 
 			solutionPage = AndroidSupport.ApplyPageSettings (MainPage, "SolutionPage",
-				Localization.GetText ("SolutionPage", al), solutionMasterBackColor);
+				Localization.GetText ("SolutionPage"), solutionMasterBackColor);
 			aboutPage = AndroidSupport.ApplyPageSettings (MainPage, "AboutPage",
-				Localization.GetText ("AboutPage", al), aboutMasterBackColor);
+				Localization.GetText ("AboutPage"), aboutMasterBackColor);
 			AndroidSupport.SetMainPage (MainPage);
 
 			#region Основная страница
@@ -82,18 +83,27 @@ namespace RD_AAOW
 			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
 				AndroidSupport.ButtonsDefaultNames.Share, solutionFieldBackColor, ShareResults);
 
-			activityLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
+			actLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
 				AndroidSupport.LabelTypes.HeaderCenter);
-			activityLabel.HorizontalTextAlignment = TextAlignment.Center;
-			activityLabel.FontSize += 2;
+			/*activityLabel.HorizontalTextAlignment = TextAlignment.Center;*/
+			actLabel.FontSize += 2;
+
+			resultLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ResultLabel", "",
+				AndroidSupport.LabelTypes.FieldMonotype, solutionFieldBackColor);
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
-				objectsFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + i.ToString ("D02"),
+				string s = i.ToString ("D02");
+				objectsFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + s,
 					solutionFieldBackColor, Keyboard.Text, 50, "", ObjectName_TextChanged, true);
-				textFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + i.ToString ("D02"),
+				textFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + s,
 					solutionFieldBackColor, Keyboard.Text, 50, "", CriteriaName_TextChanged, true);
-				valueFields[i] = AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + i.ToString ("D02"));
+
+				valueFields.Add (AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + s,
+					ValueField_ValueChanged));
+				valueLabels[i] = AndroidSupport.ApplyLabelSettings (solutionPage, "ValueLabel" + s,
+					"", AndroidSupport.LabelTypes.Semaphore, solutionFieldBackColor);
+				ValueField_ValueChanged (valueFields[i], null);
 				}
 
 			// Получение настроек перед инициализацией
@@ -126,29 +136,30 @@ namespace RD_AAOW
 				ProgramDescription.AssemblyVersion +
 				"; " + ProgramDescription.AssemblyLastUpdate,
 				AndroidSupport.LabelTypes.AppAbout);
-			aboutLabel.FontAttributes = FontAttributes.Bold;
-			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;
+			/*aboutLabel.FontAttributes = FontAttributes.Bold;
+			aboutLabel.HorizontalTextAlignment = TextAlignment.Center;*/
 
-			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage"),
 				aboutFieldBackColor, AppButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage"),
 				aboutFieldBackColor, ADPButton_Clicked, false);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage", RDGenerics.AssemblyCompany,
 				aboutFieldBackColor, CommunityButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage", al),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage"),
 				aboutFieldBackColor, DevButton_Clicked, false);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "SolutionAboutPage",
-				Localization.GetText ("SolutionAboutPage", al), aboutFieldBackColor, SolutionAboutButton_Clicked,
+				Localization.GetText ("SolutionAboutPage"), aboutFieldBackColor, SolutionAboutButton_Clicked,
 				false);
 
-			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector", Localization.LanguagesNames[(int)al],
+			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector",
+				Localization.LanguagesNames[(int)Localization.CurrentLanguage],
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
 			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel",
-				Localization.GetText ("LanguageLabel", al), AndroidSupport.LabelTypes.Default);
+				Localization.GetText ("LanguageLabel"), AndroidSupport.LabelTypes.DefaultLeft);
 
-			if (al == SupportedLanguages.ru_ru)
+			if (Localization.CurrentLanguage == SupportedLanguages.ru_ru)
 				AndroidSupport.ApplyLabelSettings (aboutPage, "Alert", RDGenerics.RuAlertMessage,
-					AndroidSupport.LabelTypes.Default);
+					AndroidSupport.LabelTypes.DefaultLeft);
 
 			#endregion
 
@@ -171,55 +182,34 @@ namespace RD_AAOW
 				{
 				case 1:
 					// Требование принятия Политики
-					/*while (!await solutionPage.DiplayAlert (ProgramDescription.AssemblyTitle,
-										Localization.GetText ("PolicyMessage", al),
-										Localization.GetText ("AcceptButton", al),
-										Localization.GetText ("DeclineButton", al)))*/
-					while (!await AndroidSupport.ShowMessage (Localization.GetText ("PolicyMessage", al),
-						Localization.GetText ("AcceptButton", al), Localization.GetText ("DeclineButton", al)))
+					while (!await AndroidSupport.ShowMessage (Localization.GetText ("PolicyMessage"),
+						Localization.GetDefaultButtonName (Localization.DefaultButtons.Accept),
+						Localization.GetText ("DeclineButton")))
 						{
 						ADPButton_Clicked (null, null);
 						}
 					RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
 
 					// Первая подсказка
-					/*await solutionPage.DiplayAlert (Localization.GetText ("TipHeader01", al),
-						Localization.GetText ("Tip00", al), Localization.GetText ("NextButton", al));
-					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "1",
-						string.Format (Localization.GetText ("Tip01", al), masterLinesCount), "OK");*/
-					await AndroidSupport.ShowMessage (Localization.GetText ("Tip00", al),
-						Localization.GetText ("NextButton", al));
-					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip01", al),
-						masterLinesCount), "OK");
+					await AndroidSupport.ShowMessage (Localization.GetText ("Tip00"),
+						Localization.GetDefaultButtonName (Localization.DefaultButtons.Next));
+					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip01"),
+						masterLinesCount), Localization.GetDefaultButtonName (Localization.DefaultButtons.OK));
 					break;
 
 				case 2:
 				case 3:
 				case 4:
-					/*await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "2",
-						string.Format (Localization.GetText ("Tip02", al), masterLinesCount), "OK");*/
 					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip0" +
-						TipsNumber.ToString (), al), masterLinesCount), "OK");
+						TipsNumber.ToString ()), masterLinesCount),
+						Localization.GetDefaultButtonName (Localization.DefaultButtons.OK));
 					break;
-
-				/*case 3:
-					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "3",
-						Localization.GetText ("Tip03", al), "OK");
-					break;
-
-				case 4:
-					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "4",
-						Localization.GetText ("Tip04", al), "OK");
-					break;*/
 
 				case 5:
-					/*await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "5",
-						Localization.GetText ("Tip05", al), Localization.GetText ("NextButton", al));
-					await solutionPage.DiplayAlert (Localization.GetText ("TipHeader02", al) + "6",
-						Localization.GetText ("Tip06", al), "OK");*/
-					await AndroidSupport.ShowMessage (Localization.GetText ("Tip05", al),
-						Localization.GetText ("NextButton", al));
-					await AndroidSupport.ShowMessage (Localization.GetText ("Tip06", al), "OK");
+					await AndroidSupport.ShowMessage (Localization.GetText ("Tip05"),
+						Localization.GetDefaultButtonName (Localization.DefaultButtons.Next));
+					await AndroidSupport.ShowMessage (Localization.GetText ("Tip06"),
+						Localization.GetDefaultButtonName (Localization.DefaultButtons.OK));
 
 					firstStart = false;
 					break;
@@ -253,7 +243,7 @@ namespace RD_AAOW
 						}
 					}
 
-				Localization.CurrentLanguage = al;
+				/*Localization.CurrentLanguage = al;*/
 				}
 			catch { }
 			}
@@ -266,17 +256,17 @@ namespace RD_AAOW
 		private async void SelectLanguage_Clicked (object sender, EventArgs e)
 			{
 			// Запрос
-			/*string res = await aboutPage.DiplayActionSheet (Localization.GetText ("SelectLanguage", al),
-				Localization.GetText ("CancelButton", al), null, Localization.LanguagesNames);*/
-			string res = await AndroidSupport.ShowList (Localization.GetText ("SelectLanguage", al),
-				Localization.GetText ("CancelButton", al), Localization.LanguagesNames);
+			string res = await
+				AndroidSupport.ShowList (Localization.GetDefaultButtonName (Localization.DefaultButtons.LanguageSelector),
+				Localization.GetDefaultButtonName (Localization.DefaultButtons.Cancel),
+				Localization.LanguagesNames);
 
 			// Сохранение
 			List<string> lngs = new List<string> (Localization.LanguagesNames);
 			if (lngs.Contains (res))
 				{
-				al = (SupportedLanguages)lngs.IndexOf (res);
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp", al),
+				Localization.CurrentLanguage = (SupportedLanguages)lngs.IndexOf (res);
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp"),
 					ToastLength.Long).Show ();
 				}
 			}
@@ -290,7 +280,7 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable"),
 					ToastLength.Long).Show ();
 				}
 			}
@@ -298,13 +288,12 @@ namespace RD_AAOW
 		// Страница лаборатории
 		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
-			string[] comm = RDGenerics.GetCommunitiesNames (al != SupportedLanguages.ru_ru);
-			/*string res = await aboutPage.DiplayActionSheet (Localization.GetText ("CommunitySelect", al),
-				Localization.GetText ("CancelButton", al), null, comm);*/
-			string res = await AndroidSupport.ShowList (Localization.GetText ("CommunitySelect", al),
-				Localization.GetText ("CancelButton", al), comm);
+			bool ru = (Localization.CurrentLanguage == SupportedLanguages.ru_ru);
+			string[] comm = RDGenerics.GetCommunitiesNames (!ru);
+			string res = await AndroidSupport.ShowList (Localization.GetText ("CommunitySelect"),
+				Localization.GetDefaultButtonName (Localization.DefaultButtons.Cancel), comm);
 
-			res = RDGenerics.GetCommunityLink (res, al != SupportedLanguages.ru_ru);
+			res = RDGenerics.GetCommunityLink (res, !ru);
 			if (string.IsNullOrWhiteSpace (res))
 				return;
 
@@ -314,7 +303,7 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable"),
 					ToastLength.Long).Show ();
 				}
 			}
@@ -328,7 +317,7 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable"),
 					ToastLength.Long).Show ();
 				}
 			}
@@ -338,11 +327,12 @@ namespace RD_AAOW
 			{
 			try
 				{
-				await Launcher.OpenAsync (RDGenerics.GetADPLink (al == SupportedLanguages.ru_ru));
+				await Launcher.OpenAsync (RDGenerics.GetADPLink (Localization.CurrentLanguage ==
+					SupportedLanguages.ru_ru));
 				}
 			catch
 				{
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable", al),
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("WebIsUnavailable"),
 					ToastLength.Long).Show ();
 				}
 			}
@@ -362,7 +352,7 @@ namespace RD_AAOW
 				}
 			catch
 				{
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("EmailsAreUnavailable", al),
+				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("EmailsAreUnavailable"),
 					ToastLength.Long).Show ();
 				}
 			}
@@ -372,22 +362,46 @@ namespace RD_AAOW
 		#region Рабочая зона
 
 		// Сброс на исходное состояние
-		private void ResetButton_Clicked (object sender, EventArgs e)
+		private async void ResetButton_Clicked (object sender, EventArgs e)
 			{
+			if (!await AndroidSupport.ShowMessage (Localization.GetText ("ResetMessage"),
+				Localization.GetDefaultButtonName (Localization.DefaultButtons.Yes),
+				Localization.GetDefaultButtonName (Localization.DefaultButtons.No)))
+				return;
+
 			ResetApp (true);
 			}
 
 		// Запуск с начала
-		private void RestartButton_Clicked (object sender, EventArgs e)
+		private async void RestartButton_Clicked (object sender, EventArgs e)
 			{
+			if (!await AndroidSupport.ShowMessage (Localization.GetText ("RestartMessage"),
+				Localization.GetDefaultButtonName (Localization.DefaultButtons.Yes),
+				Localization.GetDefaultButtonName (Localization.DefaultButtons.No)))
+				return;
+
 			ResetApp (false);
+			}
+
+		/*private void SetValueField (int FieldIndex, double Value)
+			{
+			valueFields[FieldIndex].Value = Value;
+			valueLabels[FieldIndex].Text = valueFields[FieldIndex].Value.ToString () + "%";
+			}*/
+
+		private void ValueField_ValueChanged (object sender, ValueChangedEventArgs e)
+			{
+			int idx = valueFields.IndexOf ((Slider)sender);
+			int v = (int)valueFields[idx].Value;
+			valueLabels[idx].Text = v.ToString () + "%";
 			}
 
 		private void ResetApp (bool Fully)
 			{
 			// Сброс состояния
 			phase = 1;
-			activityLabel.Text = Localization.GetText ("ActivityLabelText01", al);
+			actLabel.Text = Localization.GetText ("ActivityLabelText01");
+			resultLabel.IsVisible = false;
 			restartButton.IsEnabled = shareButton.IsEnabled = false;
 
 			for (int i = 0; i < masterLinesCount; i++)
@@ -398,7 +412,9 @@ namespace RD_AAOW
 				textFields[i].IsVisible = textFields[i].IsReadOnly = false;
 				textFields[i].Text = "";
 
-				valueFields[i].IsVisible = false;
+				valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
+				/*valueFields[i].Value = valueFields[i].Minimum;
+				valueLabels[i].Text = valueFields[i].Value.ToString () + "%";*/
 				valueFields[i].Value = valueFields[i].Minimum;
 				}
 
@@ -412,7 +428,11 @@ namespace RD_AAOW
 					textFields[i].Text = criteria[i];
 
 				for (int i = 0; i < values.Count; i++)
+					{
+					/*valueFields[i].Value = values[i];
+					valueLabels[i].Text = valueFields[i].Value.ToString () + "%";*/
 					valueFields[i].Value = values[i];
+					}
 				}
 
 			// Обнуление
@@ -446,7 +466,7 @@ namespace RD_AAOW
 					if (!objectsFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
 						Toast.MakeText (Android.App.Application.Context,
-							Localization.GetText ("NotEnoughVariants", al), ToastLength.Long).Show ();
+							Localization.GetText ("NotEnoughVariants"), ToastLength.Long).Show ();
 						return;
 						}
 
@@ -462,9 +482,9 @@ namespace RD_AAOW
 					// Изменение состояния
 					for (int i = 0; i < masterLinesCount; i++)
 						objectsFields[i].IsVisible = false;
-					textFields[0].IsVisible = valueFields[0].IsVisible = true;
+					textFields[0].IsVisible = valueFields[0].IsVisible = valueLabels[0].IsVisible = true;
 
-					activityLabel.Text = Localization.GetText ("ActivityLabelText02", al);
+					actLabel.Text = Localization.GetText ("ActivityLabelText02");
 
 					// Принудительный вызов на случай уже имеющихся значений полей
 					CriteriaName_TextChanged (null, null);
@@ -482,7 +502,7 @@ namespace RD_AAOW
 					if (!textFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
 						Toast.MakeText (Android.App.Application.Context,
-							Localization.GetText ("NotEnoughCriteria", al), ToastLength.Long).Show ();
+							Localization.GetText ("NotEnoughCriteria"), ToastLength.Long).Show ();
 						return;
 						}
 
@@ -507,17 +527,20 @@ namespace RD_AAOW
 						textFields[i].IsReadOnly = true;
 						if (i < objects.Count)
 							{
-							textFields[i].IsVisible = valueFields[i].IsVisible = true;
+							textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = true;
 							textFields[i].Text = objects[i];
+
+							/*valueFields[i].Value = valueFields[i].Minimum;
+							valueLabels[i].Text = valueFields[i].Value.ToString () + "%";*/
 							valueFields[i].Value = valueFields[i].Minimum;
 							}
 						else
 							{
-							textFields[i].IsVisible = valueFields[i].IsVisible = false;
+							textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
 							}
 						}
 
-					activityLabel.Text = string.Format (Localization.GetText ("ActivityLabelText03", al), criteria[0]);
+					actLabel.Text = string.Format (Localization.GetText ("ActivityLabelText03"), criteria[0]);
 
 					// Переход далее
 					phase++;
@@ -543,8 +566,12 @@ namespace RD_AAOW
 					if (objectsMaths.Count < criteria.Count)
 						{
 						for (int i = 0; i < objects.Count; i++)
+							{
+							/*valueFields[i].Value = valueFields[i].Minimum;
+							valueLabels[i].Text = valueFields[i].Value.ToString () + "%";*/
 							valueFields[i].Value = valueFields[i].Minimum;
-						activityLabel.Text = string.Format (Localization.GetText ("ActivityLabelText03", al),
+							}
+						actLabel.Text = string.Format (Localization.GetText ("ActivityLabelText03"),
 							criteria[objectsMaths.Count]);
 
 						if (objectsMaths.Count == 1)
@@ -556,7 +583,7 @@ namespace RD_AAOW
 						{
 						// Расчёт
 						List<double> result = MakeDecisionMath.EvaluateHierarchy (criteriaMath, objectsMaths);
-						activityLabel.Text = Localization.GetText ("ActivityLabelText04", al);
+						actLabel.Text = Localization.GetText ("ActivityLabelText04");
 
 						// Подготовка максимума
 						double max = result[0];
@@ -592,13 +619,19 @@ namespace RD_AAOW
 							}
 
 						// Вывод результата
+						resultLabel.Text = "";
+						resultLabel.IsVisible = true;
 						for (int i = 0; i < sortedObjects.Count; i++)
-							activityLabel.Text += ((i + 1).ToString () + ". " + sortedObjects[i] + " (" +
-								((int)(100.0 * result[i] / max)).ToString () + " / 100)\n");
+							{
+							resultLabel.Text += ((i + 1).ToString () + ". " + sortedObjects[i] + " (" +
+								((int)(100.0 * result[i] / max)).ToString () + " / 100)");
+							if (i < sortedObjects.Count - 1)
+								resultLabel.Text += "\n";
+							}
 
 						// Завершение
 						for (int i = 0; i < masterLinesCount; i++)
-							textFields[i].IsVisible = valueFields[i].IsVisible = false;
+							textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
 
 						phase++;
 
@@ -626,7 +659,7 @@ namespace RD_AAOW
 
 			// Обновление
 			for (int i = 1; i < masterLinesCount; i++)
-				textFields[i].IsVisible = valueFields[i].IsVisible =
+				textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible =
 					(textFields[i - 1].Text != "") && textFields[i - 1].IsVisible;
 			}
 
@@ -635,13 +668,13 @@ namespace RD_AAOW
 			{
 			// Сборка результата
 			string text = ProgramDescription.AssemblyVisibleName + "\n\n";
-			text += (Localization.GetText ("ComparisonObjects", al) + "\n");
+			text += (Localization.GetText ("ComparisonObjects") + "\n");
 			for (int i = 0; i < objects.Count; i++)
 				text += ("• " + objects[i] + "\n");
-			text += ("\n" + Localization.GetText ("ComparisonCriteria", al) + "\n");
+			text += ("\n" + Localization.GetText ("ComparisonCriteria") + "\n");
 			for (int i = 0; i < criteria.Count; i++)
 				text += ("• " + criteria[i] + "\n");
-			text += ("\n" + activityLabel.Text);
+			text += ("\n" + actLabel.Text + "\n" + resultLabel.Text);
 
 			// Отправка
 			await Share.RequestAsync (text, ProgramDescription.AssemblyVisibleName);

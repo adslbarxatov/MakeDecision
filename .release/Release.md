@@ -1,4 +1,3 @@
-_Changes for v 2.15_:
-- User interface has been updated;
-- XPR control has been implemented;
-- Code refactoring has been applied to messages and notifications
+_Changes for v 3.0_:
+- User interface has been rebuilt;
+- Numeric values have been added to sliders
