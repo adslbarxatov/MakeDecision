@@ -57,9 +57,11 @@ Each step is provided with explanations for this method. If necessary, all steps
 ## Requirements / Требования
 
 - [Android version](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) needs OS version 5.0 or newer. Interface languages: ru_ru, en_us;
-- Application is also available in [GetApps](https://global.app.mi.com/details?id=makedecision.xiaomi).
+- App is available in [AppGallery](https://url.cloud.huawei.com/kOnqdCKeek?shareTo=qrcode).
+- App is also available in [GetApps](https://global.app.mi.com/details?id=makedecision.xiaomi).
 
 - Для [Android-версии](https://play.google.com/store/apps/details?id=com.RD_AAOW.MakeDecision) требуется ОС версии 5.0 или новее. Языки интерфейса: ru_ru, en_us;
+- Приложение доступно в [AppGallery](https://url.cloud.huawei.com/kOnqdCKeek?shareTo=qrcode).
 - Приложение также доступно в [GetApps](https://global.app.mi.com/details?id=makedecision.xiaomi).
 
 &nbsp;
