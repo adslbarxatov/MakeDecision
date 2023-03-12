@@ -152,30 +152,26 @@ The most suitable option is </value>
   <data name="ComparisonObjects" xml:space="preserve">
     <value>Comparison elements:</value>
   </data>
-  <data name="DeclineButton" xml:space="preserve">
-    <value>Read</value>
-  </data>
   <data name="DevPage" xml:space="preserve">
-    <value>Ask developer</value>
+    <value>Ask the developer</value>
   </data>
-  <data name="EmailsAreUnavailable" xml:space="preserve">
-    <value>This device has no mail agent</value>
+  <data name="HelpLabel" xml:space="preserve">
+    <value>Help and support</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
-    <value>Interface language:</value>
+    <value>Interface language</value>
+  </data>
+  <data name="ManualsLabel" xml:space="preserve">
+    <value>Reference materials</value>
+  </data>
+  <data name="ManualsPage" xml:space="preserve">
+    <value>User guide</value>
   </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Not enough criteria for comparison</value>
   </data>
   <data name="NotEnoughVariants" xml:space="preserve">
     <value>Not enough variants to compare</value>
-  </data>
-  <data name="PolicyMessage" xml:space="preserve">
-    <value>Before you can start using this tool, you must accept Application development policy and EULA. Do you want to open them in browser?
-
-• Click “Accept” if you are already familiar and fully accepted them;
-• Click “Read” if you want to open them in browser;
-• To decline them, close the application</value>
   </data>
   <data name="ResetMessage" xml:space="preserve">
     <value>When resetting the app state, all values will be cleared! Continue?</value>
@@ -185,9 +181,6 @@ The most suitable option is </value>
   </data>
   <data name="RestartMessage" xml:space="preserve">
     <value>Do you want to restart the algorithm?</value>
-  </data>
-  <data name="SolutionAboutPage" xml:space="preserve">
-    <value>User manual</value>
   </data>
   <data name="SolutionPage" xml:space="preserve">
     <value>Making decisions</value>
@@ -220,8 +213,5 @@ They will not be lost when you open the application the next time you need to ma
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Hint #</value>
-  </data>
-  <data name="WebIsUnavailable" xml:space="preserve">
-    <value>This device has no web browser</value>
   </data>
 </root>

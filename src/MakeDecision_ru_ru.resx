@@ -152,30 +152,26 @@
   <data name="ComparisonObjects" xml:space="preserve">
     <value>Сравниваемые элементы:</value>
   </data>
-  <data name="DeclineButton" xml:space="preserve">
-    <value>Читать</value>
-  </data>
   <data name="DevPage" xml:space="preserve">
     <value>Спросить разработчика</value>
   </data>
-  <data name="EmailsAreUnavailable" xml:space="preserve">
-    <value>Почтовый агент отсутствует на этом устройстве</value>
+  <data name="HelpLabel" xml:space="preserve">
+    <value>Помощь и поддержка</value>
   </data>
   <data name="LanguageLabel" xml:space="preserve">
-    <value>Язык интерфейса:</value>
+    <value>Язык интерфейса</value>
+  </data>
+  <data name="ManualsLabel" xml:space="preserve">
+    <value>Справочные материалы</value>
+  </data>
+  <data name="ManualsPage" xml:space="preserve">
+    <value>Руководство пользователя</value>
   </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Недостаточно критериев для сравнения</value>
   </data>
   <data name="NotEnoughVariants" xml:space="preserve">
     <value>Недостаточно вариантов для сравнения</value>
-  </data>
-  <data name="PolicyMessage" xml:space="preserve">
-    <value>Перед началом работы с этим инструментом Вы должны принять Политику разработки приложений и Пользовательское соглашение. Хотите открыть их тексты в браузере?
-
-• Нажмите «Принять», если Вы уже ознакомились и полностью приняли их;
-• Нажмите «Читать», если хотите открыть их в браузере;
-• Чтобы отклонить их, закройте приложение</value>
   </data>
   <data name="ResetMessage" xml:space="preserve">
     <value>При сбросе состояния приложения все значения будут очищены! Продолжить?</value>
@@ -185,9 +181,6 @@
   </data>
   <data name="RestartMessage" xml:space="preserve">
     <value>Хотите начать алгоритм сначала?</value>
-  </data>
-  <data name="SolutionAboutPage" xml:space="preserve">
-    <value>Руководство пользователя</value>
   </data>
   <data name="SolutionPage" xml:space="preserve">
     <value>Принятие решений</value>
@@ -220,8 +213,5 @@
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Подсказка №</value>
-  </data>
-  <data name="WebIsUnavailable" xml:space="preserve">
-    <value>Веб-браузер отсутствует на этом устройстве</value>
   </data>
 </root>
