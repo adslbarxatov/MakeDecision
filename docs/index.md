@@ -20,6 +20,8 @@ of this (and similar) illustrative applications.
 
 ## How does it work
 
+> Translation is in progress. It can take some time
+
 Допустим, мы хотим выбрать между приобретением *ноутбука*, *смартфона*, *планшетного* и *стационарного ПК*. Запустим
 Make decision и укажем сравниваемые устройства. Пунктов для сравнения должно быть, очевидно, не менее двух.
 
