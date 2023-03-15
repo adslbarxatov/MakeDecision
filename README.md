@@ -16,10 +16,8 @@ User is invited to independently select variants and criteria for their
 comparison, as well as specify significance of each criterion and each element.
 As a result, you’ll get the answer for the next question: “what way is the best”.
 
-Each step is provided with explanations for this method. If necessary, all steps can be repeated again.
-
 > First version of application was created in Microsoft Visual Basic 6.0 development environment.
-> This tool and, accordingly, the programming language 8 years ago were no longer the best development
+> This tool and, accordingly, the programming language were already no longer the best development
 > solutions. However, in this case, their capabilities were quite enough. In addition, their simplicity
 > made it possible to complete the application as soon as possible. This implementation only transfers
 > the solution to our common ecosystem for all other projects.
@@ -38,11 +36,8 @@ Each step is provided with explanations for this method. If necessary, all steps
 предлагается самостоятельно задать варианты и критерии для их сравнения, а также оценить значимость каждого
 критерия и варианта. Результатом будет ответ на вопрос: «какой выбор наиболее удачный».
 
-Каждый шаг снабжён пояснениями, излагающими суть метода. При необходимости, все шаги можно
-повторить заново.
-
 > Первая версия программы была выполнена в среде разработки Microsoft Visual Basic 6.0.
-> Данная среда разработки и, соответственно, язык программирования 8 лет назад уже не являлись
+> Данная среда разработки и, соответственно, язык программирования уже тогда не являлись
 > наилучшими средствами разработки. Однако в данном случае их возможностей было вполне достаточно.
 > К тому же их простота позволила выполнить полную разработку программы в кратчайшие сроки.
 > Данная же реализация лишь переносит решение в нашу общую для всех остальных проектов экосистему.
