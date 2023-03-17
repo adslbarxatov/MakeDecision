@@ -3,7 +3,7 @@
 
 
 
-# Page contents
+### Page contents
 
 - [General information](#general-information)
 - [How does it work](#how-does-it-work)
