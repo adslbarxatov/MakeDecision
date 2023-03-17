@@ -23,7 +23,9 @@ As a result, you’ll get the answer for the next question: “what way is the b
 > the solution to our common ecosystem for all other projects.
 >
 > During the development, only lecture material was used, the understanding of which is more
-> than enough to create this (and similar) illustrative applications
+> than enough to create this (and similar) illustrative apps.
+
+The description of the solution method can be found on [this page](https://adslbarxatov.github.io/MakeDecision)
 
 &nbsp;
 
@@ -43,7 +45,9 @@ As a result, you’ll get the answer for the next question: “what way is the b
 > Данная же реализация лишь переносит решение в нашу общую для всех остальных проектов экосистему.
 >
 > При разработке использовался только лекционный материал, понимания которого более чем достаточно
-> для создания данного (и ему подобных) иллюстративного приложения
+> для создания данного (и ему подобных) иллюстративного приложения.
+
+Описание метода поиска решений можно найти на [этой странице](https://adslbarxatov.github.io/MakeDecision/ru)
 
 &nbsp;
 

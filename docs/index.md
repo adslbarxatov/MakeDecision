@@ -1,5 +1,14 @@
 # Make decision: the method description
-> **ƒ** &nbsp;RD AAOW FDL; 16.03.2023; 0:25
+> **ƒ** &nbsp;RD AAOW FDL; 18.03.2023; 1:33
+
+## Table of contents
+
+- [General information](#general-information)
+- [How does it work](#how-does-it-work)
+- [Description of the method](#description-of-the-method)
+- [Conclusion](#conclusion)
+
+---
 
 ## General information
 
@@ -22,86 +31,87 @@ of this (and similar) illustrative applications.
 
 > Translation is in progress. It can take some time
 
-Допустим, мы хотим выбрать между приобретением *ноутбука*, *смартфона*, *планшетного* и *стационарного ПК*. Запустим
-Make decision и укажем сравниваемые устройства. Пунктов для сравнения должно быть, очевидно, не менее двух.
+Let’s say we want to choose between purchasing a *laptop*, *smartphone*, *tablet*, and *desktop*. Let’s run
+Make decision and specify the devices to be compared. There should obviously be at least two points for comparison.
 
 <center><img src="/MakeDecision/img/V_EN_01.png" width="250" /></center>
 
-Заметим, что при необходимости все шаги можно повторить заново в любой момент с помощью кнопки `↺`, а переход
-к следующему шагу (здесь и далее) выполняется кнопкой `▶`.
+Note that if necessary, all steps can be repeated again at any time using the `↺` button, and the transition
+to the next step (hereinafter) is performed with the `▶` button.
 
-Далее укажем критерии, по которым мы будем сравнивать устройства. Допустим, это будет *стоимость*,
-*модернизируемость* (возможность «разгона», замены компонентов и т.д.), *мощность* и *удобство*
-(возможность взять с собой, использовать вне места установки и т.д.).
+Next, we indicate the criteria by which we will compare devices. Let’s say it will be *price*,
+*modernability* (possibility of “overclocking”, replacement of components, etc.), *power* and *convenience*
+(the ability to take with you, use outside, etc.).
 
 <center><img src="/MakeDecision/img/V_EN_02.png" width="250" /></center>
 
-При этом важно указать **«стоимости»** этих критериев при принятии решения. Имеется в виду некое абстрактное число,
-вроде шкалы от 1 до 100, которое для более значимого параметра оказалось бы больше.
+At the same time, it is important to indicate the **“costs”** of these criteria when making a decision. It means some abstract number,
+like a scale from 1 to 100, which would be larger for a more significant parameter.
 
-Допустим, мы больше ценим *удобство* и *мощность*, чем возможность изменять исходную конфигурацию и цену в магазине.
-На снимке выше это показано с помощью слайдеров.
+Let’s say we value *convenience* and *power* more than the ability to change the initial configuration and price in the store.
+The picture above shows this using sliders.
 
-На следующих экранах (по числу критериев сравнения) программа предложит Вам указать оценки для устройств
-по каждому критерию. Заметим, что это именно оценки. Т.е. товар с более высокой стоимостью в нашем случае будет
-иметь более низкую оценку, т.к. высокая стоимость является менее удачным решением (впрочем, это не всегда так).
+On the following screens (according to the number of comparison criteria), the program will prompt you to specify ratings for devices
+for each criterion. Note that these are exactly estimates. Those, the product with a higher price in our case will be
+have a lower score, because high cost is a less successful solution (however, this is not always the case).
 
 <center><img src="/MakeDecision/img/V_EN_03.png" width="250" /></center>
 
-Это, конечно, спорные моменты. Но мы ввели такие данные, исходя из собственного опыта. В идеале эти оценки следует
-производить на основе анализа литературы, описаний, экспертиз, обзоров и комментариев. Впрочем, для менее критичных
-решений может быть достаточно хорошего совета.
+These are, of course, controversial points. But we entered such data based on our own experience. Ideally, these estimates should
+produce on the basis of literature analysis, descriptions, examinations, reviews and comments. However, for less critical
+solutions may be enough good advice.
 
-На последнем экране мы получаем математически обоснованный ответ: нам нужен *планшетный ПК*.
+On the last screen, we get a mathematically sound answer: we need a *tablet PC*.
 
 <center><img src="/MakeDecision/img/V_EN_07.png" width="250" /></center>
 
-Это, в целом, соответствует нашим запросам. Хотя, строго говоря, смартфон несильно отстаёт по суммарному коэффициенту
-и также может быть рассмотрен в качестве решения.
+This, in general, meets our needs. Although, strictly speaking, the smartphone is not far behind in the total coefficient
+and can also be considered as a solution.
 
-Обратим внимание, что приложение поддерживает до 10 элементов и до 10 критериев, т.е. позволяет принимать гораздо более
-сложные и многофакторные решения, чем приведённое в этом примере. И это достаточно просто, ведь математический аппарат
-решения не бросается в глаза пользователю.
+Note that the app supports up to 10 elements and up to 10 criteria, i.e. allows you to take much more
+complex and multifactorial decisions than in this example. And this is quite simple, because the mathematical apparatus
+solutions aren’t evident to the user.
 
-По окончании процедуры программа может быть возвращена в начальное состояние кнопками `↺` и `▶`. Названия объектов
-и критериев при этом сохраняются, пока не будут изменены вручную или сброшены кнопкой `✗`.
+At the end of the procedure, the program can be returned to its initial state using the `↺` and `▶` buttons. Object names
+and criteria are saved until they are changed manually or reset with the `✗` button.
 
 ---
 
-## Описание метода
+## Description of the method
 
-После того, как пользователь формирует списки элементов для сравнения и критериев и оценками, из полученного вектора
-оценок создаётся матрица сравнений. Для этого выполняется дублирование исходного вектора до тех пор, пока матрица
-не становится квадратной. После этого каждый столбец делится на тот свой элемент, номер которого равен номеру
-столбца в матрице. В результате в матрице на главной диагонали все элементы становятся равными единице.
+After the user fills lists of elements for comparison and criteria with their values, from the resulting vector
+ratings, a comparison matrix is created. To do this, duplication of the original vector is performed until the matrix
+doesn’t become square. After that, each column is divided into that element whose number is equal to the number
+columns in a matrix. As a result, in the matrix on the main diagonal, all elements become equal to one
+(this process is known as *matrix normalization*).
 
 <center><img src="/MakeDecision/img/Vector.png" /></center>
 
-Аналогичным образом задаются и обрабатываются векторы оценок элементов по каждому критерию.
+Similarly, the vectors of evaluations of elements for each criterion are set and processed.
 
-Конечные оценки элементов получаются следующим образом:
+The final scores of the elements are obtained as follows:
 
-1. Для всех нормализованных матриц (и критериев, и элементов) составляются вектора средних гармонических:
-каждый элемент вектора равен произведению элементов соответствующей строки матрицы, возведённому в степень,
-обратную количеству элементов в строке.
+1. For all normalized matrices (both criteria and elements), vectors of mean harmonics are compiled:
+each element of the vector is equal to the product of the elements of the corresponding row of the matrix, raised to a power,
+reciprocal of the number of elements in the row.
 
-2. Затем матрицы умножаются на эти вектора.
+2. Then the matrices are multiplied by these vectors.
 
 <center><img src="/MakeDecision/img/Matrix.png" /></center>
 
-3. Далее получившиеся вектора цен элементов по разным критериям склеиваются в матрицу в том порядке,
-в котором эти критерии были объявлены.
+3. Next, the resulting cost vectors of elements according to different criteria are glued into a matrix in the order
+in which these criteria were declared.
 
-4. Наконец, эта матрица умножается на вектор цен критериев.
+4. Finally, this matrix is multiplied by the criterion cost vector.
 
-Полученный вектор будет результатом метода. Самое большое число в нём укажет на «наилучший» элемент
-в заданных условиях.
+The resulting vector will be the result of the method. The largest number in it will indicate the “best” element
+under given conditions.
 
 ---
 
-## Заключение
+## Conclusion
 
-Итак, нелинейный метод анализа иерархий при корректном указании исходных данных может оказаться
-незаменимым при, казалось бы, неразрешимом выборе. Настоятельно рекомендуем опробовать этот инструмент,
-когда вопрос «или-или» встанет особенно остро. Впрочем, он может пригодиться и в профессиональной деятельности,
-поскольку использует доказанный математический аппарат, что означает достоверность и научность получаемых решений.
+So, the non-linear method of analyzing hierarchies, with the correct indication of the initial data, may turn out to be
+indispensable in a seemingly insoluble choice. We strongly recommend that you try out this tool,
+when the question of “either-or” will rise especially sharply. However, it can also be useful in professional activities,
+because it uses a proven mathematical apparatus, which means the reliability and scientific nature of the solutions obtained.
