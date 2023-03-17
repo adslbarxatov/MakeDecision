@@ -1,7 +1,7 @@
 # Make decision: the method description
 > **ƒ** &nbsp;RD AAOW FDL; 18.03.2023; 1:33
 
-## Table of contents
+---
 
 - [General information](#general-information)
 - [How does it work](#how-does-it-work)
@@ -10,7 +10,7 @@
 
 ---
 
-## General information
+### General information
 
 The Make decision app illustrates a **non-linear method for analyzing hierarchies**. The method involves comparing some
 objects, phenomena or outcomes of events based on a set of criteria and the choice of the most “correct” of them, i.e. that one,
@@ -27,7 +27,7 @@ of this (and similar) illustrative applications.
 
 ---
 
-## How does it work
+### How does it work
 
 > Translation is in progress. It can take some time
 
@@ -77,7 +77,7 @@ and criteria are saved until they are changed manually or reset with the `✗` b
 
 ---
 
-## Description of the method
+### Description of the method
 
 After the user fills lists of elements for comparison and criteria with their values, from the resulting vector
 ratings, a comparison matrix is created. To do this, duplication of the original vector is performed until the matrix
@@ -109,7 +109,7 @@ under given conditions.
 
 ---
 
-## Conclusion
+### Conclusion
 
 So, the non-linear method of analyzing hierarchies, with the correct indication of the initial data, may turn out to be
 indispensable in a seemingly insoluble choice. We strongly recommend that you try out this tool,
