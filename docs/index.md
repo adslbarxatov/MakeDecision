@@ -1,7 +1,9 @@
 # Make decision: the method description
 > **ƒ** &nbsp;RD AAOW FDL; 18.03.2023; 1:33
 
----
+
+
+# Page contents
 
 - [General information](#general-information)
 - [How does it work](#how-does-it-work)
