@@ -31,8 +31,6 @@ of this (and similar) illustrative applications.
 
 ### How does it work
 
-> Translation is in progress. It can take some time
-
 Let’s say we want to choose between purchasing a *laptop*, *smartphone*, *tablet*, and *desktop*. Let’s run
 Make decision and specify the devices to be compared. There should obviously be at least two points for comparison.
 

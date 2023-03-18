@@ -8,22 +8,13 @@ Make decision – инструмент принятия точных решен�
 
 #
 
-## About
+## Description
 
 This application illustrates a math method that allows comparing
 some objects or events based on a set of criteria and choosing the most “correct” one.
 User is invited to independently select variants and criteria for their
 comparison, as well as specify significance of each criterion and each element.
 As a result, you’ll get the answer for the next question: “what way is the best”.
-
-> First version of application was created in Microsoft Visual Basic 6.0 development environment.
-> This tool and, accordingly, the programming language were already no longer the best development
-> solutions. However, in this case, their capabilities were quite enough. In addition, their simplicity
-> made it possible to complete the application as soon as possible. This implementation only transfers
-> the solution to our common ecosystem for all other projects.
->
-> During the development, only lecture material was used, the understanding of which is more
-> than enough to create this (and similar) illustrative apps.
 
 The description of the solution method can be found on [this page](https://adslbarxatov.github.io/MakeDecision)
 
@@ -37,15 +28,6 @@ The description of the solution method can be found on [this page](https://adslb
 явления или исходы событий на основе набора критериев и выбирать наиболее «подходящий» из них. Пользователю
 предлагается самостоятельно задать варианты и критерии для их сравнения, а также оценить значимость каждого
 критерия и варианта. Результатом будет ответ на вопрос: «какой выбор наиболее удачный».
-
-> Первая версия программы была выполнена в среде разработки Microsoft Visual Basic 6.0.
-> Данная среда разработки и, соответственно, язык программирования уже тогда не являлись
-> наилучшими средствами разработки. Однако в данном случае их возможностей было вполне достаточно.
-> К тому же их простота позволила выполнить полную разработку программы в кратчайшие сроки.
-> Данная же реализация лишь переносит решение в нашу общую для всех остальных проектов экосистему.
->
-> При разработке использовался только лекционный материал, понимания которого более чем достаточно
-> для создания данного (и ему подобных) иллюстративного приложения.
 
 Описание метода поиска решений можно найти на [этой странице](https://adslbarxatov.github.io/MakeDecision/ru)
 
