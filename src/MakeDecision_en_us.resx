@@ -161,11 +161,11 @@ The most suitable option is </value>
   <data name="LanguageLabel" xml:space="preserve">
     <value>Interface language</value>
   </data>
+  <data name="ManualPage" xml:space="preserve">
+    <value>Method description</value>
+  </data>
   <data name="ManualsLabel" xml:space="preserve">
     <value>Reference materials</value>
-  </data>
-  <data name="ManualsPage" xml:space="preserve">
-    <value>User guide</value>
   </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Not enough criteria for comparison</value>
@@ -213,5 +213,8 @@ They will not be lost when you open the application the next time you need to ma
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Hint #</value>
+  </data>
+  <data name="VideoPage" xml:space="preserve">
+    <value>User guide</value>
   </data>
 </root>

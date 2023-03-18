@@ -16,7 +16,8 @@
 
 				<Label x:Name="ManualsLabel" />
 
-				<Button x:Name="ManualsPage" HorizontalOptions="Center" />
+				<Button x:Name="ManualPage" HorizontalOptions="Center" />
+				<Button x:Name="VideoPage" HorizontalOptions="Center" />
 				<Button x:Name="AppPage" HorizontalOptions="Center" />
 				<Button x:Name="ADPPage" HorizontalOptions="Center" />
 

@@ -158,18 +158,14 @@ namespace RD_AAOW
 				aboutFieldBackColor, CommunityButton_Clicked, false);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage"),
 				aboutFieldBackColor, DevButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "ManualsPage", Localization.GetText ("ManualsPage"),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "VideoPage", Localization.GetText ("VideoPage"),
+				aboutFieldBackColor, VideoButton_Clicked, false);
+			AndroidSupport.ApplyButtonSettings (aboutPage, "ManualPage", Localization.GetText ("ManualPage"),
 				aboutFieldBackColor, ManualButton_Clicked, false);
 
 			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector",
 				Localization.LanguagesNames[(int)Localization.CurrentLanguage],
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
-			/*AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel",
-				Localization.GetText ("LanguageLabel"), AndroidSupport.LabelTypes.DefaultLeft);
-
-			if (Localization.IsCurrentLanguageRuRu)
-				AndroidSupport.ApplyLabelSettings (aboutPage, "Alert", RDGenerics.RuAlertMessage,
-					AndroidSupport.LabelTypes.DefaultLeft);*/
 
 			#endregion
 
@@ -272,7 +268,6 @@ namespace RD_AAOW
 				Localization.GetDefaultButtonName (Localization.DefaultButtons.Cancel), languages);
 
 			// Сохранение
-			/*List<string> lngs = new List<string> (Localization.LanguagesNames);*/
 			if (res >= 0)
 				{
 				Localization.CurrentLanguage = (SupportedLanguages)res;
@@ -286,7 +281,7 @@ namespace RD_AAOW
 			{
 			try
 				{
-				await Launcher.OpenAsync (RDGenerics.AssemblyGitLink + ProgramDescription.AssemblyMainName);
+				await Launcher.OpenAsync (RDGenerics.DefaultGitLink + ProgramDescription.AssemblyMainName);
 				}
 			catch
 				{
@@ -299,13 +294,14 @@ namespace RD_AAOW
 		private async void CommunityButton_Clicked (object sender, EventArgs e)
 			{
 			if (communities.Count < 1)
-				communities = new List<string> (RDGenerics.GetCommunitiesNames (!Localization.IsCurrentLanguageRuRu));
+				communities = new List<string> (RDGenerics.CommunitiesNames);
+
 			int res = await AndroidSupport.ShowList (Localization.GetText ("CommunitySelect"),
 				Localization.GetDefaultButtonName (Localization.DefaultButtons.Cancel), communities);
 			if (res < 0)
 				return;
 
-			string link = RDGenerics.GetCommunityLink (communities[res], !Localization.IsCurrentLanguageRuRu);
+			string link = RDGenerics.GetCommunityLink ((uint)res);
 			if (string.IsNullOrWhiteSpace (link))
 				return;
 
@@ -320,26 +316,12 @@ namespace RD_AAOW
 				}
 			}
 
-		// Страница метода иерархий
-		private async void ManualButton_Clicked (object sender, EventArgs e)
-			{
-			try
-				{
-				await Launcher.OpenAsync (ProgramDescription.AssemblyManualLink);
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
-				}
-			}
-
 		// Страница политики и EULA
 		private async void ADPButton_Clicked (object sender, EventArgs e)
 			{
 			try
 				{
-				await Launcher.OpenAsync (RDGenerics.GetADPLink (Localization.IsCurrentLanguageRuRu));
+				await Launcher.OpenAsync (RDGenerics.ADPLink);
 				}
 			catch
 				{
@@ -355,7 +337,7 @@ namespace RD_AAOW
 				{
 				EmailMessage message = new EmailMessage
 					{
-					Subject = "Wish, advice or bug in " + ProgramDescription.AssemblyTitle,
+					Subject = RDGenerics.LabMailCaption,
 					Body = "",
 					To = new List<string> () { RDGenerics.LabMailLink }
 					};
@@ -365,6 +347,35 @@ namespace RD_AAOW
 				{
 				Toast.MakeText (Android.App.Application.Context,
 					AndroidSupport.GetNoRequiredAppMessage (true), ToastLength.Long).Show ();
+				}
+			}
+
+		// Страница видеоинструкции
+		private async void VideoButton_Clicked (object sender, EventArgs e)
+			{
+			try
+				{
+				await Launcher.OpenAsync (ProgramDescription.AssemblyManualLink);
+				}
+			catch
+				{
+				Toast.MakeText (Android.App.Application.Context,
+					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
+				}
+			}
+
+		// Страница метода иерархий
+		private async void ManualButton_Clicked (object sender, EventArgs e)
+			{
+			try
+				{
+				await Launcher.OpenAsync (RDGenerics.AssemblyGitPageLink +
+					(Localization.IsCurrentLanguageRuRu ? "ru" : ""));
+				}
+			catch
+				{
+				Toast.MakeText (Android.App.Application.Context,
+					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
 				}
 			}
 
