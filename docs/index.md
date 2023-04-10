@@ -10,6 +10,7 @@
 - [Description of the method](#description-of-the-method)
 - [Conclusion](#conclusion)
 - [Download links](https://adslbarxatov.github.io/DPArray#make-decision)
+- [Русская версия](https://adslbarxatov.github.io/MakeDecision/ru)
 
 ---
 

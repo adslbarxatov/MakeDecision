@@ -10,6 +10,7 @@
 - [Описание метода](#section-3)
 - [Заключение](#section-4)
 - [Ссылки для загрузки](https://adslbarxatov.github.io/DPArray/ru#make-decision)
+- [English version](https://adslbarxatov.github.io/MakeDecision)
 
 ---
 
