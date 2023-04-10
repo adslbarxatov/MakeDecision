@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutPage" xml:space="preserve">
-    <value>About the application</value>
-  </data>
   <data name="ActivityLabelText01" xml:space="preserve">
     <value>Specify, what you want to compare</value>
   </data>
@@ -137,35 +134,14 @@
 
 The most suitable option is </value>
   </data>
-  <data name="ADPPage" xml:space="preserve">
-    <value>Policy and EULA</value>
-  </data>
-  <data name="AppPage" xml:space="preserve">
-    <value>App webpage</value>
-  </data>
-  <data name="CommunitySelect" xml:space="preserve">
-    <value>Select community:</value>
-  </data>
   <data name="ComparisonCriteria" xml:space="preserve">
     <value>Comparison criteria:</value>
   </data>
   <data name="ComparisonObjects" xml:space="preserve">
     <value>Comparison elements:</value>
   </data>
-  <data name="DevPage" xml:space="preserve">
-    <value>Ask the developer</value>
-  </data>
-  <data name="HelpLabel" xml:space="preserve">
-    <value>Help and support</value>
-  </data>
-  <data name="LanguageLabel" xml:space="preserve">
-    <value>Interface language</value>
-  </data>
   <data name="ManualPage" xml:space="preserve">
     <value>Method description</value>
-  </data>
-  <data name="ManualsLabel" xml:space="preserve">
-    <value>Reference materials</value>
   </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Not enough criteria for comparison</value>
@@ -175,9 +151,6 @@ The most suitable option is </value>
   </data>
   <data name="ResetMessage" xml:space="preserve">
     <value>When resetting the app state, all values will be cleared! Continue?</value>
-  </data>
-  <data name="RestartApp" xml:space="preserve">
-    <value>Restart the application</value>
   </data>
   <data name="RestartMessage" xml:space="preserve">
     <value>Do you want to restart the algorithm?</value>

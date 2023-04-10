@@ -51,12 +51,16 @@ namespace RD_AAOW
 
 		private ContentPage solutionPage, aboutPage;
 
-		private Label aboutLabel, actLabel, resultLabel;
+		private Label aboutLabel, actLabel, resultLabel, aboutFontSizeField;
+
 		private Editor[] textFields = new Editor[masterLinesCount],
 			objectsFields = new Editor[masterLinesCount];
+
 		private List<Slider> valueFields = new List<Slider> ();
+
 		private Label[] valueLabels = new Label[masterLinesCount];
-		private Xamarin.Forms.Button restartButton, shareButton;
+
+		private Xamarin.Forms.Button restartButton, shareButton, languageButton;
 
 		#endregion
 
@@ -76,26 +80,27 @@ namespace RD_AAOW
 			solutionPage = AndroidSupport.ApplyPageSettings (MainPage, "SolutionPage",
 				Localization.GetText ("SolutionPage"), solutionMasterBackColor);
 			aboutPage = AndroidSupport.ApplyPageSettings (MainPage, "AboutPage",
-				Localization.GetText ("AboutPage"), aboutMasterBackColor);
+				Localization.GetDefaultText (LzDefaultTextValues.Control_AppAbout),
+				aboutMasterBackColor);
 			AndroidSupport.SetMainPage (MainPage);
 
 			#region Основная страница
 
 			AndroidSupport.ApplyButtonSettings (solutionPage, "ResetButton",
-				AndroidSupport.ButtonsDefaultNames.Delete, solutionFieldBackColor, ResetButton_Clicked);
+				ASButtonDefaultTypes.Delete, solutionFieldBackColor, ResetButton_Clicked);
 			restartButton = AndroidSupport.ApplyButtonSettings (solutionPage, "RestartButton",
-				AndroidSupport.ButtonsDefaultNames.Refresh, solutionFieldBackColor, RestartButton_Clicked);
+				ASButtonDefaultTypes.Refresh, solutionFieldBackColor, RestartButton_Clicked);
 			AndroidSupport.ApplyButtonSettings (solutionPage, "NextButton",
-				AndroidSupport.ButtonsDefaultNames.Start, solutionFieldBackColor, NextButton_Clicked);
+				ASButtonDefaultTypes.Start, solutionFieldBackColor, NextButton_Clicked);
 			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
-				AndroidSupport.ButtonsDefaultNames.Share, solutionFieldBackColor, ShareResults);
+				ASButtonDefaultTypes.Share, solutionFieldBackColor, ShareResults);
 
 			actLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
-				AndroidSupport.LabelTypes.HeaderCenter);
+				ASLabelTypes.HeaderCenter);
 			actLabel.FontSize += 2;
 
 			resultLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ResultLabel", "",
-				AndroidSupport.LabelTypes.FieldMonotype, solutionFieldBackColor);
+				ASLabelTypes.FieldMonotype, solutionFieldBackColor);
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
@@ -108,7 +113,7 @@ namespace RD_AAOW
 				valueFields.Add (AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + s,
 					ValueField_ValueChanged));
 				valueLabels[i] = AndroidSupport.ApplyLabelSettings (solutionPage, "ValueLabel" + s,
-					"", AndroidSupport.LabelTypes.Semaphore, solutionFieldBackColor);
+					"", ASLabelTypes.Semaphore, solutionFieldBackColor);
 				ValueField_ValueChanged (valueFields[i], null);
 				}
 
@@ -136,36 +141,57 @@ namespace RD_AAOW
 			#region Страница "О программе"
 
 			aboutLabel = AndroidSupport.ApplyLabelSettings (aboutPage, "AboutLabel",
-				ProgramDescription.AssemblyTitle + "\n" +
-				ProgramDescription.AssemblyDescription + "\n\n" +
-				RDGenerics.AssemblyCopyright + "\nv " +
-				ProgramDescription.AssemblyVersion +
-				"; " + ProgramDescription.AssemblyLastUpdate,
-				AndroidSupport.LabelTypes.AppAbout);
+				RDGenerics.AppAboutLabelText, ASLabelTypes.AppAbout);
 
-			AndroidSupport.ApplyLabelSettings (aboutPage, "ManualsLabel", Localization.GetText ("ManualsLabel"),
-				AndroidSupport.LabelTypes.HeaderLeft);
-			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpLabel", Localization.GetText ("HelpLabel"),
-				AndroidSupport.LabelTypes.HeaderLeft);
-			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel", Localization.GetText ("LanguageLabel"),
-				AndroidSupport.LabelTypes.HeaderLeft);
+			AndroidSupport.ApplyLabelSettings (aboutPage, "ManualsLabel",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_ReferenceMaterials),
+				ASLabelTypes.HeaderLeft);
+			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpLabel",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_HelpSupport),
+				ASLabelTypes.HeaderLeft);
+			AndroidSupport.ApplyLabelSettings (aboutPage, "GenericSettingsLabel",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_GenericSettings),
+				ASLabelTypes.HeaderLeft);
 
-			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage", Localization.GetText ("AppPage"),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_ProjectWebpage),
 				aboutFieldBackColor, AppButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage", Localization.GetText ("ADPPage"),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_PolicyEULA),
 				aboutFieldBackColor, ADPButton_Clicked, false);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage", RDGenerics.AssemblyCompany,
 				aboutFieldBackColor, CommunityButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage", Localization.GetText ("DevPage"),
+			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_AskDeveloper),
 				aboutFieldBackColor, DevButton_Clicked, false);
+
 			AndroidSupport.ApplyButtonSettings (aboutPage, "VideoPage", Localization.GetText ("VideoPage"),
 				aboutFieldBackColor, VideoButton_Clicked, false);
 			AndroidSupport.ApplyButtonSettings (aboutPage, "ManualPage", Localization.GetText ("ManualPage"),
 				aboutFieldBackColor, ManualButton_Clicked, false);
 
-			AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector",
+			AndroidSupport.ApplyLabelSettings (aboutPage, "RestartTipLabel",
+				Localization.GetDefaultText (LzDefaultTextValues.Message_RestartRequired),
+				ASLabelTypes.Tip);
+
+			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_InterfaceLanguage),
+				ASLabelTypes.DefaultLeft);
+			languageButton = AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector",
 				Localization.LanguagesNames[(int)Localization.CurrentLanguage],
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
+
+			AndroidSupport.ApplyLabelSettings (aboutPage, "FontSizeLabel",
+				Localization.GetDefaultText (LzDefaultTextValues.Control_InterfaceFontSize),
+				ASLabelTypes.DefaultLeft);
+			AndroidSupport.ApplyButtonSettings (aboutPage, "FontSizeInc",
+				ASButtonDefaultTypes.Increase, aboutFieldBackColor, FontSizeButton_Clicked);
+			AndroidSupport.ApplyButtonSettings (aboutPage, "FontSizeDec",
+				ASButtonDefaultTypes.Decrease, aboutFieldBackColor, FontSizeButton_Clicked);
+			aboutFontSizeField = AndroidSupport.ApplyLabelSettings (aboutPage, "FontSizeField",
+				" ", ASLabelTypes.DefaultCenter);
+
+			FontSizeButton_Clicked (null, null);
 
 			#endregion
 
@@ -178,47 +204,57 @@ namespace RD_AAOW
 			{
 			// Контроль XPUN
 			while (!Localization.IsXPUNClassAcceptable)
-				await AndroidSupport.ShowMessage (Localization.InacceptableXPUNClassMessage, "   ");
+				await AndroidSupport.ShowMessage (Localization.GetDefaultText (LzDefaultTextValues.Message_XPUNE),
+					"   ");
 
 			// Защита
-			if (!firstStart)
-				return;
-
-			switch (TipsNumber)
+			if (firstStart)
 				{
-				case 1:
-					// Требование принятия Политики
-					while (!await AndroidSupport.ShowMessage (AndroidSupport.PolicyAcceptionMessage,
-						Localization.GetDefaultButtonName (Localization.DefaultButtons.Accept),
-						Localization.GetDefaultButtonName (Localization.DefaultButtons.Read)))
-						{
-						ADPButton_Clicked (null, null);
-						}
-					RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
+				switch (TipsNumber)
+					{
+					case 1:
+						// Требование принятия Политики
+						while (!await AndroidSupport.ShowMessage (
+							Localization.GetDefaultText (LzDefaultTextValues.Message_PolicyAcception),
+							Localization.GetDefaultText (LzDefaultTextValues.Button_Accept),
+							Localization.GetDefaultText (LzDefaultTextValues.Button_Read)))
+							{
+							ADPButton_Clicked (null, null);
+							}
+						RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
 
-					// Первая подсказка
-					await AndroidSupport.ShowMessage (Localization.GetText ("Tip00"),
-						Localization.GetDefaultButtonName (Localization.DefaultButtons.Next));
-					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip01"),
-						masterLinesCount), Localization.GetDefaultButtonName (Localization.DefaultButtons.OK));
-					break;
+						// Первая подсказка
+						await AndroidSupport.ShowMessage (Localization.GetText ("Tip00"),
+							Localization.GetDefaultText (LzDefaultTextValues.Button_Next));
+						await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip01"),
+							masterLinesCount), Localization.GetDefaultText (LzDefaultTextValues.Button_OK));
+						break;
 
-				case 2:
-				case 3:
-				case 4:
-					await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip0" +
-						TipsNumber.ToString ()), masterLinesCount),
-						Localization.GetDefaultButtonName (Localization.DefaultButtons.OK));
-					break;
+					case 2:
+					case 3:
+					case 4:
+						await AndroidSupport.ShowMessage (string.Format (Localization.GetText ("Tip0" +
+							TipsNumber.ToString ()), masterLinesCount),
+							Localization.GetDefaultText (LzDefaultTextValues.Button_OK));
+						break;
 
-				case 5:
-					await AndroidSupport.ShowMessage (Localization.GetText ("Tip05"),
-						Localization.GetDefaultButtonName (Localization.DefaultButtons.Next));
-					await AndroidSupport.ShowMessage (Localization.GetText ("Tip06"),
-						Localization.GetDefaultButtonName (Localization.DefaultButtons.OK));
+					case 5:
+						await AndroidSupport.ShowMessage (Localization.GetText ("Tip05"),
+							Localization.GetDefaultText (LzDefaultTextValues.Button_Next));
+						await AndroidSupport.ShowMessage (Localization.GetText ("Tip06"),
+							Localization.GetDefaultText (LzDefaultTextValues.Button_OK));
 
-					firstStart = false;
-					break;
+						firstStart = false;
+						break;
+					}
+				}
+
+			// Подсказка о размере шрифта интерфейса
+			if (AndroidSupport.AllowFontSizeTip)
+				{
+				await AndroidSupport.ShowMessage (
+					Localization.GetDefaultText (LzDefaultTextValues.Message_FontSizeAvailable),
+					Localization.GetDefaultText (LzDefaultTextValues.Button_OK));
 				}
 			}
 
@@ -264,15 +300,17 @@ namespace RD_AAOW
 				languages = new List<string> (Localization.LanguagesNames);
 
 			int res = await
-				AndroidSupport.ShowList (Localization.GetDefaultButtonName (Localization.DefaultButtons.LanguageSelector),
-				Localization.GetDefaultButtonName (Localization.DefaultButtons.Cancel), languages);
+				AndroidSupport.ShowList (
+					Localization.GetDefaultText (LzDefaultTextValues.Message_LanguageSelectionShort),
+					Localization.GetDefaultText (LzDefaultTextValues.Button_Cancel), languages);
 
 			// Сохранение
 			if (res >= 0)
 				{
 				Localization.CurrentLanguage = (SupportedLanguages)res;
-				Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp"),
-					ToastLength.Long).Show ();
+				languageButton.Text = languages[res];
+				/*Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp"),
+					ToastLength.Long).Show ();*/
 				}
 			}
 
@@ -286,7 +324,8 @@ namespace RD_AAOW
 			catch
 				{
 				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
+					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -296,8 +335,9 @@ namespace RD_AAOW
 			if (communities.Count < 1)
 				communities = new List<string> (RDGenerics.CommunitiesNames);
 
-			int res = await AndroidSupport.ShowList (Localization.GetText ("CommunitySelect"),
-				Localization.GetDefaultButtonName (Localization.DefaultButtons.Cancel), communities);
+			int res = await AndroidSupport.ShowList (
+				Localization.GetDefaultText (LzDefaultTextValues.Message_CommunitySelection),
+				Localization.GetDefaultText (LzDefaultTextValues.Button_Cancel), communities);
 			if (res < 0)
 				return;
 
@@ -312,7 +352,8 @@ namespace RD_AAOW
 			catch
 				{
 				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
+					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -326,7 +367,8 @@ namespace RD_AAOW
 			catch
 				{
 				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
+					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -346,7 +388,8 @@ namespace RD_AAOW
 			catch
 				{
 				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (true), ToastLength.Long).Show ();
+					Localization.GetDefaultText (LzDefaultTextValues.Message_EMailsNotAvailable),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -360,7 +403,8 @@ namespace RD_AAOW
 			catch
 				{
 				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
+					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
+					ToastLength.Long).Show ();
 				}
 			}
 
@@ -375,8 +419,25 @@ namespace RD_AAOW
 			catch
 				{
 				Toast.MakeText (Android.App.Application.Context,
-					AndroidSupport.GetNoRequiredAppMessage (false), ToastLength.Long).Show ();
+					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
+					ToastLength.Long).Show ();
 				}
+			}
+
+		// Изменение размера шрифта интерфейса
+		private void FontSizeButton_Clicked (object sender, EventArgs e)
+			{
+			if (sender != null)
+				{
+				Xamarin.Forms.Button b = (Xamarin.Forms.Button)sender;
+				if (AndroidSupport.IsNameDefault (b.Text, ASButtonDefaultTypes.Increase))
+					AndroidSupport.MasterFontSize += 0.5;
+				else if (AndroidSupport.IsNameDefault (b.Text, ASButtonDefaultTypes.Decrease))
+					AndroidSupport.MasterFontSize -= 0.5;
+				}
+
+			aboutFontSizeField.Text = AndroidSupport.MasterFontSize.ToString ("F1");
+			aboutFontSizeField.FontSize = AndroidSupport.MasterFontSize;
 			}
 
 		#endregion
@@ -387,8 +448,8 @@ namespace RD_AAOW
 		private async void ResetButton_Clicked (object sender, EventArgs e)
 			{
 			if (!await AndroidSupport.ShowMessage (Localization.GetText ("ResetMessage"),
-				Localization.GetDefaultButtonName (Localization.DefaultButtons.Yes),
-				Localization.GetDefaultButtonName (Localization.DefaultButtons.No)))
+				Localization.GetDefaultText (LzDefaultTextValues.Button_Yes),
+				Localization.GetDefaultText (LzDefaultTextValues.Button_No)))
 				return;
 
 			ResetApp (true);
@@ -398,8 +459,8 @@ namespace RD_AAOW
 		private async void RestartButton_Clicked (object sender, EventArgs e)
 			{
 			if (!await AndroidSupport.ShowMessage (Localization.GetText ("RestartMessage"),
-				Localization.GetDefaultButtonName (Localization.DefaultButtons.Yes),
-				Localization.GetDefaultButtonName (Localization.DefaultButtons.No)))
+				Localization.GetDefaultText (LzDefaultTextValues.Button_Yes),
+				Localization.GetDefaultText (LzDefaultTextValues.Button_No)))
 				return;
 
 			ResetApp (false);

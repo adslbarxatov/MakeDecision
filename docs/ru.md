@@ -1,5 +1,5 @@
 # Make decision: описание метода
-> **ƒ** &nbsp;RD AAOW FDL; 18.03.2023; 1:37
+> **ƒ** &nbsp;RD AAOW FDL; 11.04.2023; 2:16
 
 
 
@@ -9,6 +9,7 @@
 - [Как это работает](#section-2)
 - [Описание метода](#section-3)
 - [Заключение](#section-4)
+- [Ссылки для загрузки](https://adslbarxatov.github.io/DPArray/ru#make-decision)
 
 ---
 
