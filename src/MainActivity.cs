@@ -18,7 +18,7 @@ namespace RD_AAOW.Droid
 		Theme = "@style/SplashTheme",
 		MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity:global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+	public class MainActivity: global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 		{
 		/// <summary>
 		/// Обработчик события создания экземпляра
@@ -35,7 +35,11 @@ namespace RD_AAOW.Droid
 			base.OnCreate (savedInstanceState);
 			global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
-			LoadApplication (new App ());
+#if HUAWEI
+			LoadApplication (new App (true));
+#else
+			LoadApplication (new App (false));
+#endif
 			}
 		}
 	}
