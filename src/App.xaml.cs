@@ -30,8 +30,8 @@ namespace RD_AAOW
 
 		// Цветовая схема
 		private readonly Color
-			solutionMasterBackColor = Color.FromHex ("#FFDEEF"),
-			solutionFieldBackColor = Color.FromHex ("#FFD2E9"),
+			solutionMasterBackColor = Color.FromHex ("#ffe7f3"),
+			solutionFieldBackColor = Color.FromHex ("#ffdeef"),
 
 			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
 			aboutFieldBackColor = Color.FromHex ("#D0FFD0");
@@ -43,7 +43,6 @@ namespace RD_AAOW
 		private const string firstStartRegKey = "HelpShownAt";
 
 		// Списки пунктов меню
-		/*private List<string> communities = new List<string> ();*/
 		private List<string> languages = new List<string> ();
 		private List<string> referenceItems = new List<string> ();
 		private List<string> helpItems = new List<string> ();
@@ -146,13 +145,6 @@ namespace RD_AAOW
 			aboutLabel = AndroidSupport.ApplyLabelSettings (aboutPage, "AboutLabel",
 				RDGenerics.AppAboutLabelText, ASLabelTypes.AppAbout);
 
-			/*AndroidSupport.ApplyLabelSettings (aboutPage, "ManualsLabel",
-				Localization.GetDefaultText (LzDefaultTextValues.Control_ReferenceMaterials),
-				ASLabelTypes.HeaderLeft);
-			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpLabel",
-				Localization.GetDefaultText (LzDefaultTextValues.Control_HelpSupport),
-				ASLabelTypes.HeaderLeft);*/
-
 			AndroidSupport.ApplyButtonSettings (aboutPage, "ManualsButton",
 				Localization.GetDefaultText (LzDefaultTextValues.Control_ReferenceMaterials),
 				aboutFieldBackColor, ReferenceButton_Click, false);
@@ -162,23 +154,6 @@ namespace RD_AAOW
 			AndroidSupport.ApplyLabelSettings (aboutPage, "GenericSettingsLabel",
 				Localization.GetDefaultText (LzDefaultTextValues.Control_GenericSettings),
 				ASLabelTypes.HeaderLeft);
-
-			/*AndroidSupport.ApplyButtonSettings (aboutPage, "AppPage",
-				Localization.GetDefaultText (LzDefaultTextValues.Control_ProjectWebpage),
-				aboutFieldBackColor, AppButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "ADPPage",
-				Localization.GetDefaultText (LzDefaultTextValues.Control_PolicyEULA),
-				aboutFieldBackColor, ADPButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "CommunityPage", RDGenerics.AssemblyCompany,
-				aboutFieldBackColor, CommunityButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "DevPage",
-				Localization.GetDefaultText (LzDefaultTextValues.Control_AskDeveloper),
-				aboutFieldBackColor, DevButton_Clicked, false);
-
-			AndroidSupport.ApplyButtonSettings (aboutPage, "VideoPage", Localization.GetText ("VideoPage"),
-				aboutFieldBackColor, VideoButton_Clicked, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "ManualPage", Localization.GetText ("ManualPage"),
-				aboutFieldBackColor, ManualButton_Clicked, false);*/
 
 			AndroidSupport.ApplyLabelSettings (aboutPage, "RestartTipLabel",
 				Localization.GetDefaultText (LzDefaultTextValues.Message_RestartRequired),
@@ -213,15 +188,14 @@ namespace RD_AAOW
 		private async void ShowTips (uint TipsNumber)
 			{
 			// Контроль XPUN
-			while ((TipsNumber == 1) && !Localization.IsXPUNClassAcceptable)
-				await AndroidSupport.ShowMessage (Localization.GetDefaultText (LzDefaultTextValues.Message_XPUNE),
-					"   ");
+			await AndroidSupport.XPUNLoop (TipsNumber == 0);
 
 			// Защита
 			if (firstStart)
 				{
 				switch (TipsNumber)
 					{
+					case 0:
 					case 1:
 						// Требование принятия Политики
 						while (!await AndroidSupport.ShowMessage (
@@ -229,7 +203,6 @@ namespace RD_AAOW
 							Localization.GetDefaultText (LzDefaultTextValues.Button_Accept),
 							Localization.GetDefaultText (LzDefaultTextValues.Button_Read)))
 							{
-							/*ADPButton_Clicked (null, null);*/
 							await CallHelpMaterials (2);
 							}
 						RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
@@ -320,8 +293,6 @@ namespace RD_AAOW
 				{
 				Localization.CurrentLanguage = (SupportedLanguages)res;
 				languageButton.Text = languages[res];
-				/*Toast.MakeText (Android.App.Application.Context, Localization.GetText ("RestartApp"),
-					ToastLength.Long).Show ();*/
 				}
 			}
 
@@ -437,9 +408,11 @@ namespace RD_AAOW
 					}
 				catch
 					{
-					Toast.MakeText (Android.App.Application.Context,
+					/*To ast.MakeText (Android.App.Application.Context,
 						Localization.GetDefaultText (LzDefaultTextValues.Message_EMailsNotAvailable),
-						ToastLength.Long).Show ();
+						ToastLength.Long).Show ();*/
+					AndroidSupport.ShowBalloon
+						(Localization.GetDefaultText (LzDefaultTextValues.Message_EMailsNotAvailable), true);
 					}
 				}
 
@@ -451,127 +424,17 @@ namespace RD_AAOW
 					}
 				catch
 					{
-					Toast.MakeText (Android.App.Application.Context,
+					/*To ast.MakeText (Android.App.Application.Context,
 						Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-						ToastLength.Long).Show ();
+						ToastLength.Long).Show ();*/
+					AndroidSupport.ShowBalloon
+						(Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable), true);
 					}
 				}
 
 			// Успешно
 			return true;
 			}
-
-		/*
-		// Страница проекта
-		private async void AppButton_Clicked (object sender, EventArgs e)
-			{
-			try
-				{
-				await Launcher.OpenAsync (RDGenerics.DefaultGitLink + ProgramDescription.AssemblyMainName);
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-					ToastLength.Long).Show ();
-				}
-			}
-
-		// Страница лаборатории
-		private async void CommunityButton_Clicked (object sender, EventArgs e)
-			{
-			if (communities.Count < 1)
-				communities = new List<string> (RDGenerics.CommunitiesNames);
-
-			int res = await AndroidSupport.ShowList (
-				Localization.GetDefaultText (LzDefaultTextValues.Message_CommunitySelection),
-				Localization.GetDefaultText (LzDefaultTextValues.Button_Cancel), communities);
-			if (res < 0)
-				return;
-
-			string link = RDGenerics.GetCommunityLink ((uint)res);
-			if (string.IsNullOrWhiteSpace (link))
-				return;
-
-			try
-				{
-				await Launcher.OpenAsync (link);
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-					ToastLength.Long).Show ();
-				}
-			}
-
-		// Страница политики и EULA
-		private async void ADPButton_Clicked (object sender, EventArgs e)
-			{
-			try
-				{
-				await Launcher.OpenAsync (RDGenerics.ADPLink);
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-					ToastLength.Long).Show ();
-				}
-			}
-
-		// Страница политики и EULA
-		private async void DevButton_Clicked (object sender, EventArgs e)
-			{
-			try
-				{
-				EmailMessage message = new EmailMessage
-					{
-					Subject = RDGenerics.LabMailCaption,
-					Body = "",
-					To = new List<string> () { RDGenerics.LabMailLink }
-					};
-				await Email.ComposeAsync (message);
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					Localization.GetDefaultText (LzDefaultTextValues.Message_EMailsNotAvailable),
-					ToastLength.Long).Show ();
-				}
-			}
-
-		// Страница видеоинструкции
-		private async void VideoButton_Clicked (object sender, EventArgs e)
-			{
-			try
-				{
-				await Launcher.OpenAsync (ProgramDescription.AssemblyManualLink);
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-					ToastLength.Long).Show ();
-				}
-			}
-
-		// Страница метода иерархий
-		private async void ManualButton_Clicked (object sender, EventArgs e)
-			{
-			try
-				{
-				await Launcher.OpenAsync (RDGenerics.AssemblyGitPageLink +
-					(Localization.IsCurrentLanguageRuRu ? "ru" : ""));
-				}
-			catch
-				{
-				Toast.MakeText (Android.App.Application.Context,
-					Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-					ToastLength.Long).Show ();
-				}
-			}
-		*/
 
 		// Изменение размера шрифта интерфейса
 		private void FontSizeButton_Clicked (object sender, EventArgs e)
@@ -685,8 +548,9 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!objectsFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						Toast.MakeText (Android.App.Application.Context,
-							Localization.GetText ("NotEnoughVariants"), ToastLength.Long).Show ();
+						/*To ast.MakeText (Android.App.Application.Context,
+							Localization.GetText ("NotEnoughVariants"), ToastLength.Long).Show ();*/
+						AndroidSupport.ShowBalloon (Localization.GetText ("NotEnoughVariants"), true);
 						return;
 						}
 
@@ -721,8 +585,9 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!textFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						Toast.MakeText (Android.App.Application.Context,
-							Localization.GetText ("NotEnoughCriteria"), ToastLength.Long).Show ();
+						/*To ast.MakeText (Android.App.Application.Context,
+							Localization.GetText ("NotEnoughCriteria"), ToastLength.Long).Show ();*/
+						AndroidSupport.ShowBalloon (Localization.GetText ("NotEnoughCriteria"), true);
 						return;
 						}
 

@@ -1,7 +1,6 @@
-_Changes for v 3.2.2_:
+_Changes for v 3.3_:
+- New video guide has been added;
+- Cumulative updates applied;
 - Updated Xamarin support packages;
 - Updated the App about interface;
-- Some tips and captions have been replaced or updated;
-- Added the ability to change the font size for the entire interface (available on the last app page);
-- The text tips processing code has been refactored, some methods have been unified and simplified;
-- Removed some redundant code
+- Some tips and captions have been replaced or updated
