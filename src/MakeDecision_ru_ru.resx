@@ -140,9 +140,6 @@
   <data name="ComparisonObjects" xml:space="preserve">
     <value>Сравниваемые элементы:</value>
   </data>
-  <data name="ManualPage" xml:space="preserve">
-    <value>Описание метода</value>
-  </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Недостаточно критериев для сравнения</value>
   </data>
@@ -186,8 +183,5 @@
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Подсказка №</value>
-  </data>
-  <data name="VideoPage" xml:space="preserve">
-    <value>Руководство пользователя</value>
   </data>
 </root>

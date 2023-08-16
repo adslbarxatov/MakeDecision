@@ -1,5 +1,9 @@
 Make decision: changes log
 
+Версия 3.3.5:
+• Added obvious links for video tutorial and text user manual;
+• Xamarin support libraries have been upgraded to AndroidX architecture
+
 Version 3.3:
 • New video guide has been added;
 • Cumulative updates applied

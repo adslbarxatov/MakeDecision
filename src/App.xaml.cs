@@ -1,5 +1,4 @@
-﻿using Android.Widget;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -313,8 +312,8 @@ namespace RD_AAOW
 			if (referenceItems.Count < 1)
 				{
 				referenceItems.Add (Localization.GetDefaultText (LzDefaultTextValues.Control_ProjectWebpage));
-				referenceItems.Add (Localization.GetText ("ManualPage"));
-				referenceItems.Add (Localization.GetText ("VideoPage"));
+				referenceItems.Add (Localization.GetDefaultText (LzDefaultTextValues.Control_UserManual));
+				referenceItems.Add (Localization.GetDefaultText (LzDefaultTextValues.Control_UserVideomanual));
 				referenceItems.Add (Localization.GetDefaultText (LzDefaultTextValues.Control_PolicyEULA));
 				}
 
@@ -363,12 +362,12 @@ namespace RD_AAOW
 
 				// Руководства
 				case 1:
-					url = RDGenerics.AssemblyGitPageLink +
-						(Localization.IsCurrentLanguageRuRu ? "ru" : "");
+					url = RDGenerics.AssemblyGitPageLink /*+
+						(Localization.IsCurrentLanguageRuRu ? "ru" : "")*/;
 					break;
 
 				case 2:
-					url = ProgramDescription.AssemblyVideoLink;
+					url = RDGenerics.StaticYTLink + ProgramDescription.AssemblyReferenceMaterials[0];
 					break;
 
 				// Политика
@@ -408,9 +407,6 @@ namespace RD_AAOW
 					}
 				catch
 					{
-					/*To ast.MakeText (Android.App.Application.Context,
-						Localization.GetDefaultText (LzDefaultTextValues.Message_EMailsNotAvailable),
-						ToastLength.Long).Show ();*/
 					AndroidSupport.ShowBalloon
 						(Localization.GetDefaultText (LzDefaultTextValues.Message_EMailsNotAvailable), true);
 					}
@@ -424,9 +420,6 @@ namespace RD_AAOW
 					}
 				catch
 					{
-					/*To ast.MakeText (Android.App.Application.Context,
-						Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable),
-						ToastLength.Long).Show ();*/
 					AndroidSupport.ShowBalloon
 						(Localization.GetDefaultText (LzDefaultTextValues.Message_BrowserNotAvailable), true);
 					}
@@ -548,8 +541,6 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!objectsFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						/*To ast.MakeText (Android.App.Application.Context,
-							Localization.GetText ("NotEnoughVariants"), ToastLength.Long).Show ();*/
 						AndroidSupport.ShowBalloon (Localization.GetText ("NotEnoughVariants"), true);
 						return;
 						}
@@ -585,8 +576,6 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!textFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						/*To ast.MakeText (Android.App.Application.Context,
-							Localization.GetText ("NotEnoughCriteria"), ToastLength.Long).Show ();*/
 						AndroidSupport.ShowBalloon (Localization.GetText ("NotEnoughCriteria"), true);
 						return;
 						}
@@ -706,7 +695,7 @@ namespace RD_AAOW
 							resultLabel.Text += ((i + 1).ToString () + ". " + sortedObjects[i] + " (" +
 								((int)(100.0 * result[i] / max)).ToString () + " / 100)");
 							if (i < sortedObjects.Count - 1)
-								resultLabel.Text += "\n";
+								resultLabel.Text += Localization.RN;
 							}
 
 						// Завершение
@@ -747,14 +736,14 @@ namespace RD_AAOW
 		private async void ShareResults (object sender, EventArgs e)
 			{
 			// Сборка результата
-			string text = ProgramDescription.AssemblyVisibleName + "\n\n";
-			text += (Localization.GetText ("ComparisonObjects") + "\n");
+			string text = ProgramDescription.AssemblyVisibleName + Localization.RNRN;
+			text += (Localization.GetText ("ComparisonObjects") + Localization.RN);
 			for (int i = 0; i < objects.Count; i++)
-				text += ("• " + objects[i] + "\n");
-			text += ("\n" + Localization.GetText ("ComparisonCriteria") + "\n");
+				text += ("• " + objects[i] + Localization.RN);
+			text += (Localization.RN + Localization.GetText ("ComparisonCriteria") + Localization.RN);
 			for (int i = 0; i < criteria.Count; i++)
-				text += ("• " + criteria[i] + "\n");
-			text += ("\n" + actLabel.Text + "\n" + resultLabel.Text);
+				text += ("• " + criteria[i] + Localization.RN);
+			text += (Localization.RN + actLabel.Text + Localization.RN + resultLabel.Text);
 
 			// Отправка
 			await Share.RequestAsync (text, ProgramDescription.AssemblyVisibleName);

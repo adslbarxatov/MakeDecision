@@ -140,9 +140,6 @@ The most suitable option is </value>
   <data name="ComparisonObjects" xml:space="preserve">
     <value>Comparison elements:</value>
   </data>
-  <data name="ManualPage" xml:space="preserve">
-    <value>Method description</value>
-  </data>
   <data name="NotEnoughCriteria" xml:space="preserve">
     <value>Not enough criteria for comparison</value>
   </data>
@@ -186,8 +183,5 @@ They will not be lost when you open the application the next time you need to ma
   </data>
   <data name="TipHeader02" xml:space="preserve">
     <value>Hint #</value>
-  </data>
-  <data name="VideoPage" xml:space="preserve">
-    <value>User guide</value>
   </data>
 </root>
