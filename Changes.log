@@ -1,6 +1,9 @@
 Make decision: changes log
 
-Версия 3.3.5:
+Version 3.3.6:
+• Fixed missing URL for initial Policy acception
+
+Version 3.3.5:
 • Added obvious links for video tutorial and text user manual;
 • Xamarin support libraries have been upgraded to AndroidX architecture
 
