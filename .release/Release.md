@@ -1,5 +1,3 @@
-_Changes for v 3.3.7_:
-- Fixed missing URL for initial Policy acception;
-- Added obvious links for video tutorial and text user manual;
-- Xamarin support libraries have been upgraded to AndroidX architecture;
+_Changes for v 3.3.8_:
+- Updates and fixes have been applied to some auxiliary functions;
 - New video guide has been added
