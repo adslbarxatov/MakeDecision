@@ -169,6 +169,11 @@ namespace RD_AAOW
 			aboutFontSizeField = AndroidSupport.ApplyLabelSettings (aboutPage, "FontSizeField",
 				" ", ASLabelTypes.DefaultCenter);
 
+			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
+				RDGenerics.GetEncoding (SupportedEncodings.UTF8).
+				GetString ((byte[])RD_AAOW.Properties.Resources.ResourceManager.
+				GetObject (Localization.GetHelpFilePath ())), ASLabelTypes.SmallLeft);
+
 			FontSizeButton_Clicked (null, null);
 
 			#endregion
@@ -220,13 +225,13 @@ namespace RD_AAOW
 					}
 				}
 
-			// Подсказка о размере шрифта интерфейса
+			/* Подсказка о размере шрифта интерфейса
 			if ((TipsNumber == 1) && AndroidSupport.AllowFontSizeTip)
 				{
 				await AndroidSupport.ShowMessage (
 					Localization.GetDefaultText (LzDefaultTextValues.Message_FontSizeAvailable),
 					Localization.GetDefaultText (LzDefaultTextValues.Button_OK));
-				}
+				}*/
 			}
 
 		/// <summary>

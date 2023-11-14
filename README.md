@@ -1,14 +1,8 @@
-# MakeDecision v 3.3.8
-
-
-
-Make decision, a tool for making exact decisions
-
-Make decision – инструмент принятия точных решений
-
-#
+# MakeDecision
 
 ## Description
+
+Make decision, a tool for making exact decisions.
 
 This application illustrates a math method that allows comparing
 some objects or events based on a set of criteria and choosing the most “correct” one.
@@ -23,6 +17,8 @@ The description of the solution method can be found on [this page](https://adslb
 
 
 ## Описание
+
+Make decision – инструмент принятия точных решений.
 
 Программа иллюстрирует математический метод, позволяющий сравнивать некоторые объекты,
 явления или исходы событий на основе набора критериев и выбирать наиболее «подходящий» из них. Пользователю
