@@ -224,14 +224,6 @@ namespace RD_AAOW
 						break;
 					}
 				}
-
-			/* Подсказка о размере шрифта интерфейса
-			if ((TipsNumber == 1) && AndroidSupport.AllowFontSizeTip)
-				{
-				await AndroidSupport.ShowMessage (
-					Localization.GetDefaultText (LzDefaultTextValues.Message_FontSizeAvailable),
-					Localization.GetDefaultText (LzDefaultTextValues.Button_OK));
-				}*/
 			}
 
 		/// <summary>
