@@ -1,5 +1,10 @@
 Make decision: changes log
 
+Version 3.4.3:
+• The font size and scale are now independent from the system settings (old interface bug);
+• Core updates have been applied;
+• Xamarin support packages have been updated
+
 Version 3.4.1:
 • Xamarin support packages have been updated;
 • Added offline help text
