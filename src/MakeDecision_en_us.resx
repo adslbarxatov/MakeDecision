@@ -146,6 +146,9 @@ The most suitable option is </value>
   <data name="NotEnoughVariants" xml:space="preserve">
     <value>Not enough variants to compare</value>
   </data>
+  <data name="RepeatTips" xml:space="preserve">
+    <value>Repeat tips</value>
+  </data>
   <data name="ResetMessage" xml:space="preserve">
     <value>When resetting the app state, all values will be cleared! Continue?</value>
   </data>
@@ -162,8 +165,7 @@ The most suitable option is </value>
     <value>First, specify names of what you want to compare (not more than {0:D}). Then click “Next” button</value>
   </data>
   <data name="Tip02" xml:space="preserve">
-    <value>Now specify criteria by which you want to compare (not more than {0:D}).
-After that, rate importance of each of them using sliders on the right. The more to the right the position of slider, the higher value of criterion</value>
+    <value>Now specify criteria by which you want to compare (not more than {0:D}). After that, rate importance of each of them using sliders. The more to the right the position of slider, the higher value of criterion</value>
   </data>
   <data name="Tip03" xml:space="preserve">
     <value>Finally, rate options listed for each criterion. To go to the next criterion, click “Next” button</value>
@@ -172,10 +174,13 @@ After that, rate importance of each of them using sliders on the right. The more
     <value>If there is an error somewhere, click “Restart” button to start over</value>
   </data>
   <data name="Tip05" xml:space="preserve">
-    <value>In the last step, application will display the comparison result. By swiping to the left of the app screen, you can also find our lab contacts and more information on how the app finds solution</value>
+    <value>In the last step, application displays the comparison result.
+
+By swiping to the left, you can also find the Lab contacts and more information on how the app finds solution</value>
   </data>
   <data name="Tip06" xml:space="preserve">
     <value>The “Next” button will restart the application. In this case, all entered names will be saved.
+
 They will not be lost when you open the application the next time you need to make a difficult choice again</value>
   </data>
   <data name="TipHeader01" xml:space="preserve">

@@ -60,11 +60,13 @@ namespace RD_AAOW.Droid
 			base.OnCreate (savedInstanceState);
 			global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
 
-#if HUAWEI
-			LoadApplication (new App (true));
-#else
-			LoadApplication (new App (false));
-#endif
+			/*#if HUAWEI
+						LoadApplication (new App (true));
+			#else
+						LoadApplication (new App (false));
+			#endif*/
+			RDAppStartupFlags flags = AndroidSupportX.GetAppStartupFlags (RDAppStartupFlags.Huawei, this);
+			LoadApplication (new App (flags));
 			}
 		}
 	}

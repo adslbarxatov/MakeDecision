@@ -3,6 +3,11 @@ Make decision: changes log
 ToDo:
 - Console version?
 
+Version 3.6:
+• Background service code has been reworked, a number of compatibility issues with Android 13 have been fixed;
+• App permissions checker has been rewritten;
+• Tips storage has been rewritten (may cause their repeating once more)
+
 Version 3.5.2:
 • Update for XPUN has been applied
 

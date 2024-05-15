@@ -17,7 +17,8 @@ namespace RD_AAOW
 		// Прочие параметры
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
-		private bool firstStart = true;
+		/*private bool firstStart = true;*/
+		private RDAppStartupFlags flags;
 
 		// Таблицы расчёта результатов
 		private List<string> objects = new List<string> (),
@@ -38,7 +39,7 @@ namespace RD_AAOW
 		private const string objectsRegKey = "Object";
 		private const string criteriaRegKey = "Criteria";
 		private const string valuesRegKey = "Value";
-		private const string firstStartRegKey = "HelpShownAt";
+		/*private const string firstStartRegKey = "HelpShownAt";*/
 
 		#endregion
 
@@ -64,10 +65,11 @@ namespace RD_AAOW
 		/// <summary>
 		/// Конструктор. Точка входа приложения
 		/// </summary>
-		public App (bool Huawei)
+		public App (RDAppStartupFlags Flags)
 			{
 			// Инициализация
 			InitializeComponent ();
+			flags = Flags;
 
 			// Общая конструкция страниц приложения
 			MainPage = new MasterPage ();
@@ -126,7 +128,7 @@ namespace RD_AAOW
 					values.Add (1);
 					}
 				}
-			firstStart = RDGenerics.GetAppSettingsValue (firstStartRegKey) == "";
+			/*firstStart = RDGenerics.GetAppSettingsValue (firstStartRegKey) == "";*/
 
 			// Инициализация зависимых полей
 			ResetApp (false);
@@ -144,6 +146,8 @@ namespace RD_AAOW
 			AndroidSupport.ApplyButtonSettings (aboutPage, "HelpButton",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_HelpSupport),
 				aboutFieldBackColor, HelpButton_Click, false);
+			AndroidSupport.ApplyButtonSettings (aboutPage, "RepeatTips", RDLocale.GetText ("RepeatTips"),
+				aboutFieldBackColor, RepeatTips_Clicked, false);
 			AndroidSupport.ApplyLabelSettings (aboutPage, "GenericSettingsLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_GenericSettings),
 				RDLabelTypes.HeaderLeft);
@@ -179,32 +183,38 @@ namespace RD_AAOW
 			#endregion
 
 			// Отображение подсказок первого старта
-			ShowTips (Huawei ? 0u : 1u);
+			ShowStartupTips ();
 			}
 
 		// Метод отображает подсказки при первом запуске
-		private async void ShowTips (uint TipsNumber)
+		private async void ShowStartupTips ()
 			{
 			// Контроль XPUN
-			await AndroidSupport.XPUNLoop (TipsNumber == 0);
+			if (!flags.HasFlag (RDAppStartupFlags.Huawei))
+				await AndroidSupport.XPUNLoop ();
 
 			// Защита
-			if (firstStart)
+			/*if (firstStart)
 				{
 				switch (TipsNumber)
 					{
 					case 0:
-					case 1:
-						// Требование принятия Политики
-						await AndroidSupport.PolicyLoop ();
-						RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);
+					case 1:*/
 
-						// Первая подсказка
-						await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip00"),
-							RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
-						await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
-							masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-						break;
+			// Требование принятия Политики
+			if (TipsState.HasFlag (TipTypes.PolicyTip))
+				return;
+
+			await AndroidSupport.PolicyLoop ();
+			/*RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);*/
+
+			// Первая подсказка
+			await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip00"),
+				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
+			await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
+				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
+			TipsState |= TipTypes.PolicyTip;
+			/*break;
 
 					case 2:
 					case 3:
@@ -223,7 +233,7 @@ namespace RD_AAOW
 						firstStart = false;
 						break;
 					}
-				}
+				}*/
 			}
 
 		/// <summary>
@@ -254,6 +264,66 @@ namespace RD_AAOW
 					}
 				}
 			catch { }
+			}
+
+		/// <summary>
+		/// Возвращает или задаёт состав флагов просмотра справочных сведений
+		/// </summary>
+		public static TipTypes TipsState
+			{
+			get
+				{
+				if (tipsState < uint.MaxValue)
+					return (TipTypes)tipsState;
+
+				try
+					{
+					tipsState = uint.Parse (RDGenerics.GetAppSettingsValue (tipsStatePar));
+					}
+				catch
+					{
+					tipsState = 0;
+					}
+				return (TipTypes)tipsState;
+				}
+			set
+				{
+				tipsState = (uint)value;
+				RDGenerics.SetAppSettingsValue (tipsStatePar, tipsState.ToString ());
+				}
+			}
+		private static uint tipsState = uint.MaxValue;
+		private const string tipsStatePar = "TipsState";
+
+		/// <summary>
+		/// Доступные типы уведомлений
+		/// </summary>
+		public enum TipTypes
+			{
+			/// <summary>
+			/// Принятие Политики и первая подсказка
+			/// </summary>
+			PolicyTip = 0x0001,
+
+			/// <summary>
+			/// Подсказка по критериям
+			/// </summary>
+			CriteriaTip = 0x0002,
+
+			/// <summary>
+			/// Подсказка по оценкам
+			/// </summary>
+			RateTip = 0x0004,
+
+			/// <summary>
+			/// Подсказка по ошибкам
+			/// </summary>
+			RestartTip = 0x0008,
+
+			/// <summary>
+			/// Подсказка по результатам
+			/// </summary>
+			ResultTip = 0x0010,
 			}
 
 		#endregion
@@ -291,6 +361,17 @@ namespace RD_AAOW
 
 			aboutFontSizeField.Text = AndroidSupport.MasterFontSize.ToString ("F1");
 			aboutFontSizeField.FontSize = AndroidSupport.MasterFontSize;
+			}
+
+		// Запуск с начала
+		private async void RepeatTips_Clicked (object sender, EventArgs e)
+			{
+			TipsState = TipTypes.PolicyTip;
+
+			await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip00"),
+				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
+			await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
+				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 			}
 
 		#endregion
@@ -380,7 +461,7 @@ namespace RD_AAOW
 			}
 
 		// Смена состояния
-		private void NextButton_Clicked (object sender, EventArgs e)
+		private async void NextButton_Clicked (object sender, EventArgs e)
 			{
 			switch (phase)
 				{
@@ -415,7 +496,13 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
-					ShowTips (2);
+					/*ShowTips (2);*/
+					if (!TipsState.HasFlag (TipTypes.CriteriaTip))
+						{
+						await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip02"), masterLinesCount),
+							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
+						TipsState |= TipTypes.CriteriaTip;
+						}
 
 					break;
 
@@ -465,7 +552,13 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
-					ShowTips (3);
+					/*ShowTips (3);*/
+					if (!TipsState.HasFlag (TipTypes.RateTip))
+						{
+						await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip03"),
+							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
+						TipsState |= TipTypes.RateTip;
+						}
 
 					break;
 
@@ -492,7 +585,15 @@ namespace RD_AAOW
 							criteria[objectsMaths.Count]);
 
 						if (objectsMaths.Count == 1)
-							ShowTips (4);
+							{
+							/*ShowTips (4);*/
+							if (!TipsState.HasFlag (TipTypes.RestartTip))
+								{
+								await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip04"),
+									RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
+								TipsState |= TipTypes.RestartTip;
+								}
+							}
 						}
 
 					// Переход к результату
@@ -552,7 +653,15 @@ namespace RD_AAOW
 
 						phase++;
 
-						ShowTips (5);
+						/*ShowTips (5);*/
+						if (!TipsState.HasFlag (TipTypes.ResultTip))
+							{
+							await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip05"),
+								RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
+							await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip06"),
+								RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
+							TipsState |= TipTypes.ResultTip;
+							}
 						}
 					break;
 
