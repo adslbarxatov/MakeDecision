@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- makedecision.huawei -->
-<!-- makedecision.xiaomi -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="makedecision.xiaomi"
-		  android:installLocation="internalOnly" android:versionCode="600306" android:versionName="3.2">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.RD_AAOW.MakeDecision"
+	android:installLocation="internalOnly" android:versionCode="600325" android:versionName="3.7">
 
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="33" />
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34" />
 
 	<application android:label="Make decision" android:icon="@drawable/launcher_foreground" />
 </manifest>

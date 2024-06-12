@@ -1,31 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RD_AAOW.SolutionPage">
 
-	<StackLayout>
-		<Label x:Name="HeaderLabel" />
+	<!-- Раздел ввода значений -->
+	<ScrollView HorizontalOptions="Fill">
+		<StackLayout>
 
-		<Label x:Name="ActivityLabel" />
+			<Label x:Name="ActivityLabel" />
+			<Label x:Name="ResultLabel" />
 
-		<Label x:Name="ResultLabel" />
+			<!-- Поле кнопок управления -->
+			<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+				<Button x:Name="NextButton" VerticalOptions="Center" />
 
-		<!-- Поле кнопок управления -->
-		<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-			<Button x:Name="NextButton" VerticalOptions="Center" />
-			<Label Text="    |    " VerticalOptions="Center" FontSize="20" />
-			<Button x:Name="ShareButton" VerticalOptions="Center" />
-			<Label Text="   " />
-			<Button x:Name="RestartButton" VerticalOptions="Center" />
-			<Label Text="   " />
-			<Button x:Name="ResetButton" VerticalOptions="Center" />
-		</StackLayout>
+				<Label Text="    |    " VerticalOptions="Center" FontSize="20" />
+				<Button x:Name="ShareButton" VerticalOptions="Center" />
+				<Label Text="   " />
+				<Button x:Name="RestartButton" VerticalOptions="Center" />
+				<Label Text="   " />
+				<Button x:Name="ResetButton" VerticalOptions="Center" />
 
-		<BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" 
+				<Label Text="    |    " VerticalOptions="Center" FontSize="20" />
+				<Button x:Name="AboutButton" VerticalOptions="Center" />
+			</StackLayout>
+
+			<BoxView VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="1" 
 			WidthRequest="200" Color="#505050" Margin="6" />
 
-		<!-- Раздел ввода значений -->
-		<ScrollView HorizontalOptions="Fill">
 			<StackLayout>
 				<Editor x:Name="ObjectField00" />
 				<Editor x:Name="TextField00" />
@@ -107,7 +109,7 @@
 					<Label x:Name="ValueLabel09" VerticalOptions="Center" />
 				</StackLayout>
 			</StackLayout>
-		</ScrollView>
 
-	</StackLayout>
+		</StackLayout>
+	</ScrollView>
 </ContentPage>

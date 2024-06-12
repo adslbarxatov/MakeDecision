@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Microsoft.Maui.Controls;
 
 [assembly: XamlCompilation (XamlCompilationOptions.Compile)]
 namespace RD_AAOW
@@ -17,7 +13,6 @@ namespace RD_AAOW
 		// Прочие параметры
 		private const int masterLinesCount = 10;
 		private uint phase = 1;
-		/*private bool firstStart = true;*/
 		private RDAppStartupFlags flags;
 
 		// Таблицы расчёта результатов
@@ -29,17 +24,16 @@ namespace RD_AAOW
 
 		// Цветовая схема
 		private readonly Color
-			solutionMasterBackColor = Color.FromHex ("#ffe7f3"),
-			solutionFieldBackColor = Color.FromHex ("#ffdeef"),
+			solutionMasterBackColor = Color.FromArgb ("#ffe7f3"),
+			solutionFieldBackColor = Color.FromArgb ("#ffdeef"),
 
-			aboutMasterBackColor = Color.FromHex ("#F0FFF0"),
-			aboutFieldBackColor = Color.FromHex ("#D0FFD0");
+			aboutMasterBackColor = Color.FromArgb ("#F0FFF0"),
+			aboutFieldBackColor = Color.FromArgb ("#D0FFD0");
 
 		// Имена хранисых параметров
 		private const string objectsRegKey = "Object";
 		private const string criteriaRegKey = "Criteria";
 		private const string valuesRegKey = "Value";
-		/*private const string firstStartRegKey = "HelpShownAt";*/
 
 		#endregion
 
@@ -56,7 +50,7 @@ namespace RD_AAOW
 
 		private Label[] valueLabels = new Label[masterLinesCount];
 
-		private Xamarin.Forms.Button restartButton, shareButton, languageButton;
+		private Button restartButton, shareButton, languageButton;
 
 		#endregion
 
@@ -65,21 +59,22 @@ namespace RD_AAOW
 		/// <summary>
 		/// Конструктор. Точка входа приложения
 		/// </summary>
-		public App (RDAppStartupFlags Flags)
+		public App ()
 			{
 			// Инициализация
 			InitializeComponent ();
-			flags = Flags;
+			flags = AndroidSupport.GetAppStartupFlags (RDAppStartupFlags.Huawei);
 
 			// Общая конструкция страниц приложения
 			MainPage = new MasterPage ();
 
-			solutionPage = AndroidSupport.ApplyPageSettings (MainPage, "SolutionPage",
+			solutionPage = AndroidSupport.ApplyPageSettings (new SolutionPage (), "SolutionPage",
 				RDLocale.GetText ("SolutionPage"), solutionMasterBackColor);
-			aboutPage = AndroidSupport.ApplyPageSettings (MainPage, "AboutPage",
+			aboutPage = AndroidSupport.ApplyPageSettings (new AboutPage (), "AboutPage",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				aboutMasterBackColor);
-			AndroidSupport.SetMainPage (MainPage);
+
+			AndroidSupport.SetMasterPage (MainPage, solutionPage, solutionMasterBackColor);
 
 			#region Основная страница
 
@@ -91,6 +86,8 @@ namespace RD_AAOW
 				RDDefaultButtons.Start, solutionFieldBackColor, NextButton_Clicked);
 			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
 				RDDefaultButtons.Share, solutionFieldBackColor, ShareResults);
+			AndroidSupport.ApplyButtonSettings (solutionPage, "AboutButton",
+				RDDefaultButtons.Question, solutionFieldBackColor, AboutButton_Clicked);
 
 			actLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
 				RDLabelTypes.HeaderCenter);
@@ -117,18 +114,17 @@ namespace RD_AAOW
 			// Получение настроек перед инициализацией
 			for (int i = 0; i < masterLinesCount; i++)
 				{
-				objects.Add (RDGenerics.GetAppSettingsValue (objectsRegKey + i.ToString ("D2")));
-				criteria.Add (RDGenerics.GetAppSettingsValue (criteriaRegKey + i.ToString ("D2")));
+				objects.Add (RDGenerics.GetAppRegistryValue (objectsRegKey + i.ToString ("D2")));
+				criteria.Add (RDGenerics.GetAppRegistryValue (criteriaRegKey + i.ToString ("D2")));
 				try
 					{
-					values.Add (int.Parse (RDGenerics.GetAppSettingsValue (valuesRegKey + i.ToString ("D2"))));
+					values.Add (int.Parse (RDGenerics.GetAppRegistryValue (valuesRegKey + i.ToString ("D2"))));
 					}
 				catch
 					{
 					values.Add (1);
 					}
 				}
-			/*firstStart = RDGenerics.GetAppSettingsValue (firstStartRegKey) == "";*/
 
 			// Инициализация зависимых полей
 			ResetApp (false);
@@ -193,20 +189,11 @@ namespace RD_AAOW
 			if (!flags.HasFlag (RDAppStartupFlags.Huawei))
 				await AndroidSupport.XPUNLoop ();
 
-			// Защита
-			/*if (firstStart)
-				{
-				switch (TipsNumber)
-					{
-					case 0:
-					case 1:*/
-
 			// Требование принятия Политики
 			if (TipsState.HasFlag (TipTypes.PolicyTip))
 				return;
 
 			await AndroidSupport.PolicyLoop ();
-			/*RDGenerics.SetAppSettingsValue (firstStartRegKey, ProgramDescription.AssemblyVersion);*/
 
 			// Первая подсказка
 			await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip00"),
@@ -214,26 +201,6 @@ namespace RD_AAOW
 			await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
 				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 			TipsState |= TipTypes.PolicyTip;
-			/*break;
-
-					case 2:
-					case 3:
-					case 4:
-						await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip0" +
-							TipsNumber.ToString ()), masterLinesCount),
-							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-						break;
-
-					case 5:
-						await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip05"),
-							RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
-						await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip06"),
-							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-
-						firstStart = false;
-						break;
-					}
-				}*/
 			}
 
 		/// <summary>
@@ -247,18 +214,18 @@ namespace RD_AAOW
 					{
 					if (phase < 3)
 						{
-						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
-						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
-						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"),
+						RDGenerics.SetAppRegistryValue (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
+						RDGenerics.SetAppRegistryValue (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
+						RDGenerics.SetAppRegistryValue (valuesRegKey + i.ToString ("D2"),
 							((int)valueFields[i].Value).ToString ());
 						}
 					else
 						{
-						RDGenerics.SetAppSettingsValue (objectsRegKey + i.ToString ("D2"),
+						RDGenerics.SetAppRegistryValue (objectsRegKey + i.ToString ("D2"),
 							(i < objects.Count) ? objects[i] : "");
-						RDGenerics.SetAppSettingsValue (criteriaRegKey + i.ToString ("D2"),
+						RDGenerics.SetAppRegistryValue (criteriaRegKey + i.ToString ("D2"),
 							(i < criteria.Count) ? criteria[i] : "");
-						RDGenerics.SetAppSettingsValue (valuesRegKey + i.ToString ("D2"), (i < values.Count) ?
+						RDGenerics.SetAppRegistryValue (valuesRegKey + i.ToString ("D2"), (i < values.Count) ?
 							((int)values[i]).ToString () : "1");
 						}
 					}
@@ -273,26 +240,13 @@ namespace RD_AAOW
 			{
 			get
 				{
-				if (tipsState < uint.MaxValue)
-					return (TipTypes)tipsState;
-
-				try
-					{
-					tipsState = uint.Parse (RDGenerics.GetAppSettingsValue (tipsStatePar));
-					}
-				catch
-					{
-					tipsState = 0;
-					}
-				return (TipTypes)tipsState;
+				return (TipTypes)RDGenerics.GetSettings (tipsStatePar, 0);
 				}
 			set
 				{
-				tipsState = (uint)value;
-				RDGenerics.SetAppSettingsValue (tipsStatePar, tipsState.ToString ());
+				RDGenerics.SetSettings (tipsStatePar, (uint)value);
 				}
 			}
-		private static uint tipsState = uint.MaxValue;
 		private const string tipsStatePar = "TipsState";
 
 		/// <summary>
@@ -352,7 +306,7 @@ namespace RD_AAOW
 			{
 			if (sender != null)
 				{
-				Xamarin.Forms.Button b = (Xamarin.Forms.Button)sender;
+				Button b = (Button)sender;
 				if (AndroidSupport.IsNameDefault (b.Text, RDDefaultButtons.Increase))
 					AndroidSupport.MasterFontSize += 0.5;
 				else if (AndroidSupport.IsNameDefault (b.Text, RDDefaultButtons.Decrease))
@@ -413,7 +367,7 @@ namespace RD_AAOW
 			phase = 1;
 			actLabel.Text = RDLocale.GetText ("ActivityLabelText01");
 			resultLabel.IsVisible = false;
-			restartButton.IsEnabled = shareButton.IsEnabled = false;
+			restartButton.IsVisible = shareButton.IsVisible = false;
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
@@ -672,8 +626,8 @@ namespace RD_AAOW
 				}
 
 			// Обновление состояния
-			restartButton.IsEnabled = (phase > 1);
-			shareButton.IsEnabled = (phase == 4);
+			restartButton.IsVisible = (phase > 1);
+			shareButton.IsVisible = (phase == 4);
 			}
 
 		// Реакция на изменение состава объектов
@@ -704,6 +658,12 @@ namespace RD_AAOW
 
 			// Отправка
 			await Share.RequestAsync (text, ProgramDescription.AssemblyVisibleName);
+			}
+
+		// Метод открывает страницу О программе
+		private void AboutButton_Clicked (object sender, EventArgs e)
+			{
+			AndroidSupport.SetCurrentPage (aboutPage, aboutMasterBackColor);
 			}
 
 		#endregion

@@ -1,26 +1,16 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Android.Content.Res;
 using Android.OS;
 
-#if DEBUG
-[assembly: Application (Debuggable = true)]
-#else
-[assembly: Application (Debuggable = false)]
-#endif
-
-namespace RD_AAOW.Droid
+namespace RD_AAOW
 	{
-	/// <summary>
-	/// Класс описывает загрузчик приложения
-	/// </summary>
 	[Activity (Label = "Make decision",
 		Icon = "@drawable/launcher_foreground",
 		Theme = "@style/SplashTheme",
 		MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity: global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+	public class MainActivity: MauiAppCompatActivity
 		{
 		/// <summary>
 		/// Принудительная установка масштаба шрифта
@@ -34,7 +24,7 @@ namespace RD_AAOW.Droid
 				return;
 				}
 
-			Configuration overrideConfiguration = new Configuration ();
+			Android.Content.Res.Configuration overrideConfiguration = new Android.Content.Res.Configuration ();
 			overrideConfiguration = @base.Resources.Configuration;
 			overrideConfiguration.FontScale = 0.9f;
 
@@ -50,23 +40,11 @@ namespace RD_AAOW.Droid
 		/// </summary>
 		protected override void OnCreate (Bundle savedInstanceState)
 			{
-			TabLayoutResource = Resource.Layout.Tabbar;
-			ToolbarResource = Resource.Layout.Toolbar;
-
 			// Отмена темы для splash screen
-			base.SetTheme (Resource.Style.MainTheme);
+			base.SetTheme (Microsoft.Maui.Controls.Resource.Style.MainTheme);
 
 			// Инициализация и запуск
 			base.OnCreate (savedInstanceState);
-			global::Xamarin.Forms.Forms.Init (this, savedInstanceState);
-
-			/*#if HUAWEI
-						LoadApplication (new App (true));
-			#else
-						LoadApplication (new App (false));
-			#endif*/
-			RDAppStartupFlags flags = AndroidSupportX.GetAppStartupFlags (RDAppStartupFlags.Huawei, this);
-			LoadApplication (new App (flags));
 			}
 		}
 	}
