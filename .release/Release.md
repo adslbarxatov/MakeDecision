@@ -1,4 +1,5 @@
-_Changes for v 3.7_:
+_Changes for v 3.7.1_:
+- Fixed some minor interface bugs;
 - App has been translated to NET80 / MAUI platform:
     - App now has unified Android navigation shell;
 - App has been adapted to `Android 14` (API 34);

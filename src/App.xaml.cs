@@ -87,7 +87,7 @@ namespace RD_AAOW
 			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
 				RDDefaultButtons.Share, solutionFieldBackColor, ShareResults);
 			AndroidSupport.ApplyButtonSettings (solutionPage, "AboutButton",
-				RDDefaultButtons.Question, solutionFieldBackColor, AboutButton_Clicked);
+				RDDefaultButtons.Menu, solutionFieldBackColor, AboutButton_Clicked);
 
 			actLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
 				RDLabelTypes.HeaderCenter);
@@ -169,6 +169,9 @@ namespace RD_AAOW
 			aboutFontSizeField = AndroidSupport.ApplyLabelSettings (aboutPage, "FontSizeField",
 				" ", RDLabelTypes.DefaultCenter);
 
+			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpHeaderLabel",
+				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
+				RDLabelTypes.HeaderLeft);
 			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
 				RDGenerics.GetEncoding (RDEncodings.UTF8).
 				GetString ((byte[])RD_AAOW.Properties.Resources.ResourceManager.

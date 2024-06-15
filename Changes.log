@@ -3,6 +3,9 @@ Make decision: changes log
 ToDo:
 - Console version?
 
+Version 3.7.1:
+• Fixed some minor interface bugs
+
 Version 3.7:
 • App has been translated to NET80 / MAUI platform:
   - App now has unified Android navigation shell;
