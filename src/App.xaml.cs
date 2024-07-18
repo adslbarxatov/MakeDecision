@@ -453,7 +453,6 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
-					/*ShowTips (2);*/
 					if (!TipsState.HasFlag (TipTypes.CriteriaTip))
 						{
 						await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip02"), masterLinesCount),
@@ -509,7 +508,6 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
-					/*ShowTips (3);*/
 					if (!TipsState.HasFlag (TipTypes.RateTip))
 						{
 						await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip03"),
@@ -543,7 +541,6 @@ namespace RD_AAOW
 
 						if (objectsMaths.Count == 1)
 							{
-							/*ShowTips (4);*/
 							if (!TipsState.HasFlag (TipTypes.RestartTip))
 								{
 								await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip04"),
@@ -610,7 +607,6 @@ namespace RD_AAOW
 
 						phase++;
 
-						/*ShowTips (5);*/
 						if (!TipsState.HasFlag (TipTypes.ResultTip))
 							{
 							await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip05"),
