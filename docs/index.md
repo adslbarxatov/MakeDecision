@@ -1,5 +1,5 @@
 # Make decision: the method description
-> **ƒ** &nbsp;RD AAOW FDL; 8.02.2024; 2:50
+> **ƒ** &nbsp;RD AAOW FDL; 22.07.2024; 23:12
 
 
 
@@ -9,10 +9,13 @@
 - [How does it work](#how-does-it-work)
 - [Description of the method](#description-of-the-method)
 - [Conclusion](#conclusion)
+- [Controls](#controls)
 - [Download links](https://adslbarxatov.github.io/DPArray#make-decision)
-- [Русская версия](https://adslbarxatov.github.io/MakeDecision/ru)
+- [Версия на русском языке](https://adslbarxatov.github.io/MakeDecision/ru)
 
----
+&nbsp;
+
+
 
 ### General information
 
@@ -31,7 +34,9 @@ of this (and similar) illustrative applications.
 
 More info you can find in [this video guide](https://youtu.be/gjewz9mQMgI).
 
----
+&nbsp;
+
+
 
 ### How does it work
 
@@ -79,7 +84,9 @@ solutions aren’t evident to the user.
 At the end of the procedure, the program can be returned to its initial state using the `↺` and `▶` buttons. Object names
 and criteria are saved until they are changed manually or reset with the `✗` button.
 
----
+&nbsp;
+
+
 
 ### Description of the method
 
@@ -111,7 +118,9 @@ in which these criteria were declared.
 The resulting vector will be the result of the method. The largest number in it will indicate the “best” element
 under given conditions.
 
----
+&nbsp;
+
+
 
 ### Conclusion
 
@@ -119,3 +128,15 @@ So, the non-linear method of analyzing hierarchies, with the correct indication 
 indispensable in a seemingly insoluble choice. We strongly recommend that you try out this tool,
 when the question of “either-or” will rise especially sharply. However, it can also be useful in professional activities,
 because it uses a proven mathematical apparatus, which means the reliability and scientific nature of the solutions obtained.
+
+&nbsp;
+
+
+
+### Controls
+
+For Windows:
+- `Enter` – enter values to lists
+- `Shift` + `Enter` – going to the next step
+- `Home` – restarting the sequence
+- `F1` – opening the App about window
