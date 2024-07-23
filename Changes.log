@@ -1,12 +1,9 @@
 Make decision: changes log
 
-ToDo:
-- Console version?
-
 Version 3.7.3:
-• Fixed some troubles with calling the reference materials;
-• Fixed the generic problem with calling the E-mail client on Android 11 and newer;
-• Updated the MAUI support packages
+• Windows: re-added the Windows version;
+• Android: fixed some troubles with calling the reference materials;
+• Android: fixed the generic problem with calling the E-mail client on Android 11 and newer
 
 Version 3.7.2:
 • MAUI support packages have been updated
