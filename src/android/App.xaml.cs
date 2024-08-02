@@ -172,10 +172,13 @@ namespace RD_AAOW
 			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpHeaderLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				RDLabelTypes.HeaderLeft);
-			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
+			/*AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
 				RDGenerics.GetEncoding (RDEncodings.UTF8).
 				GetString ((byte[])RD_AAOW.Properties.Resources.ResourceManager.
-				GetObject (RDLocale.GetHelpFilePath ())), RDLabelTypes.SmallLeft);
+				GetObject (RDLocale.GetHelpFilePath ())), RDLabelTypes.SmallLeft);*/
+			Label htl = AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
+				AndroidSupport.GetAppHelpText (), RDLabelTypes.SmallLeft);
+			htl.TextType = TextType.Html;
 
 			FontSizeButton_Clicked (null, null);
 

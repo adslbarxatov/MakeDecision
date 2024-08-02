@@ -1,5 +1,9 @@
 Make decision: changes log
 
+Version 3.7.4:
+• Windows: the “App about” interface has been updated;
+• Android: the app description on the “App about” page has been updated
+
 Version 3.7.3:
 • Windows: re-added the Windows version;
 • Android: fixed some troubles with calling the reference materials;
