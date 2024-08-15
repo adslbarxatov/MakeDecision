@@ -16,8 +16,8 @@ namespace RD_AAOW
 		private RDAppStartupFlags flags;
 
 		// Таблицы расчёта результатов
-		private List<string> objects = new List<string> (),
-			criteria = new List<string> ();
+		private List<string> objects = new List<string> ();
+		private List<string> criteria = new List<string> ();
 		private List<int> values = new List<int> ();
 		private MakeDecisionMath criteriaMath;
 		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
@@ -43,11 +43,10 @@ namespace RD_AAOW
 
 		private Label aboutLabel, actLabel, resultLabel, aboutFontSizeField;
 
-		private Editor[] textFields = new Editor[masterLinesCount],
-			objectsFields = new Editor[masterLinesCount];
+		private List<Editor> criteriaFields = new List<Editor> ();
+		private List<Editor> objectsFields = new List<Editor> ();
 
 		private List<Slider> valueFields = new List<Slider> ();
-
 		private Label[] valueLabels = new Label[masterLinesCount];
 
 		private Button restartButton, shareButton, languageButton;
@@ -63,7 +62,7 @@ namespace RD_AAOW
 			{
 			// Инициализация
 			InitializeComponent ();
-			flags = AndroidSupport.GetAppStartupFlags (RDAppStartupFlags.Huawei);
+			flags = AndroidSupport.GetAppStartupFlags (RDAppStartupFlags.DisableXPUN);
 
 			// Общая конструкция страниц приложения
 			MainPage = new MasterPage ();
@@ -99,10 +98,10 @@ namespace RD_AAOW
 			for (int i = 0; i < masterLinesCount; i++)
 				{
 				string s = i.ToString ("D02");
-				objectsFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + s,
-					solutionFieldBackColor, Keyboard.Text, 50, "", ObjectName_TextChanged, true);
-				textFields[i] = AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + s,
-					solutionFieldBackColor, Keyboard.Text, 50, "", CriteriaName_TextChanged, true);
+				objectsFields.Add (AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + s,
+					solutionFieldBackColor, Keyboard.Text, 50, "", ObjectName_TextChanged, true));
+				criteriaFields.Add (AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + s,
+					solutionFieldBackColor, Keyboard.Text, 50, "", CriteriaName_TextChanged, true));
 
 				valueFields.Add (AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + s,
 					ValueField_ValueChanged));
@@ -172,10 +171,6 @@ namespace RD_AAOW
 			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpHeaderLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				RDLabelTypes.HeaderLeft);
-			/*AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
-				RDGenerics.GetEncoding (RDEncodings.UTF8).
-				GetString ((byte[])RD_AAOW.Properties.Resources.ResourceManager.
-				GetObject (RDLocale.GetHelpFilePath ())), RDLabelTypes.SmallLeft);*/
 			Label htl = AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
 				AndroidSupport.GetAppHelpText (), RDLabelTypes.SmallLeft);
 			htl.TextType = TextType.Html;
@@ -192,7 +187,7 @@ namespace RD_AAOW
 		private async void ShowStartupTips ()
 			{
 			// Контроль XPUN
-			if (!flags.HasFlag (RDAppStartupFlags.Huawei))
+			if (!flags.HasFlag (RDAppStartupFlags.DisableXPUN))
 				await AndroidSupport.XPUNLoop ();
 
 			// Требование принятия Политики
@@ -221,7 +216,7 @@ namespace RD_AAOW
 					if (phase < 3)
 						{
 						RDGenerics.SetAppRegistryValue (objectsRegKey + i.ToString ("D2"), objectsFields[i].Text);
-						RDGenerics.SetAppRegistryValue (criteriaRegKey + i.ToString ("D2"), textFields[i].Text);
+						RDGenerics.SetAppRegistryValue (criteriaRegKey + i.ToString ("D2"), criteriaFields[i].Text);
 						RDGenerics.SetAppRegistryValue (valuesRegKey + i.ToString ("D2"),
 							((int)valueFields[i].Value).ToString ());
 						}
@@ -365,6 +360,22 @@ namespace RD_AAOW
 			int idx = valueFields.IndexOf ((Slider)sender);
 			int v = (int)valueFields[idx].Value;
 			valueLabels[idx].Text = v.ToString () + "%";
+
+			// Отзыв клавиатуры
+			if (e == null)
+				return;
+
+			for (int i = 0; i < masterLinesCount; i++)
+				{
+				if (!criteriaFields[i].IsVisible)
+					return;
+
+				if (criteriaFields[i].IsFocused)
+					{
+					AndroidSupport.HideKeyboard (criteriaFields[i]);
+					break;
+					}
+				}
 			}
 
 		private void ResetApp (bool Fully)
@@ -380,8 +391,8 @@ namespace RD_AAOW
 				objectsFields[i].IsVisible = (i == 0);
 				objectsFields[i].Text = "";
 
-				textFields[i].IsVisible = textFields[i].IsReadOnly = false;
-				textFields[i].Text = "";
+				criteriaFields[i].IsVisible = criteriaFields[i].IsReadOnly = false;
+				criteriaFields[i].Text = "";
 
 				valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
 				valueFields[i].Value = valueFields[i].Minimum;
@@ -394,7 +405,7 @@ namespace RD_AAOW
 					objectsFields[i].Text = objects[i];
 
 				for (int i = 0; i < criteria.Count; i++)
-					textFields[i].Text = criteria[i];
+					criteriaFields[i].Text = criteria[i];
 
 				for (int i = 0; i < values.Count; i++)
 					valueFields[i].Value = values[i];
@@ -415,9 +426,56 @@ namespace RD_AAOW
 				return;
 
 			// Обновление
-			for (int i = 1; i < masterLinesCount; i++)
-				objectsFields[i].IsVisible = (!string.IsNullOrWhiteSpace (objectsFields[i - 1].Text)) &&
+			int idx = objectsFields.IndexOf ((Editor)sender);
+			if (idx < 0)
+				return;
+
+			for (int i = Math.Max (1, idx); i < masterLinesCount; i++)
+				objectsFields[i].IsVisible = !string.IsNullOrWhiteSpace (objectsFields[i - 1].Text) &&
 					objectsFields[i - 1].IsVisible;
+
+			// Контроль кнопки Enter
+			string text = objectsFields[idx].Text;
+			if (text.Contains ("\n") || text.Contains ("\r"))
+				{
+				objectsFields[idx].Text = text.Replace ("\r", "").Replace ("\n", "");
+
+				if (idx < masterLinesCount - 1)
+					objectsFields[idx + 1].Focus ();
+				}
+			}
+
+		// Реакция на изменение состава критериев
+		private void CriteriaName_TextChanged (object sender, TextChangedEventArgs e)
+			{
+			// Контроль
+			if (phase > 2)
+				return;
+
+			// Обновление
+			int idx;
+			if (sender == null)
+				idx = 0;
+			else
+				idx = criteriaFields.IndexOf ((Editor)sender);
+
+			if (idx < 0)
+				return;
+
+			// Обновление
+			for (int i = Math.Max (1, idx); i < masterLinesCount; i++)
+				criteriaFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible =
+					!string.IsNullOrWhiteSpace (criteriaFields[i - 1].Text) && criteriaFields[i - 1].IsVisible;
+
+			// Контроль кнопки Enter
+			string text = criteriaFields[idx].Text;
+			if (text.Contains ("\n") || text.Contains ("\r"))
+				{
+				criteriaFields[idx].Text = text.Replace ("\r", "").Replace ("\n", "");
+
+				if (idx < masterLinesCount - 1)
+					criteriaFields[idx + 1].Focus ();
+				}
 			}
 
 		// Смена состояния
@@ -446,7 +504,7 @@ namespace RD_AAOW
 					// Изменение состояния
 					for (int i = 0; i < masterLinesCount; i++)
 						objectsFields[i].IsVisible = false;
-					textFields[0].IsVisible = valueFields[0].IsVisible = valueLabels[0].IsVisible = true;
+					criteriaFields[0].IsVisible = valueFields[0].IsVisible = valueLabels[0].IsVisible = true;
 
 					actLabel.Text = RDLocale.GetText ("ActivityLabelText02");
 
@@ -468,7 +526,7 @@ namespace RD_AAOW
 				// Переход к ранжированию критериев сравнения
 				case 2:
 					// Контроль достаточности объектов
-					if (!textFields[2].IsVisible)    // Возникает при заполнении первых двух строк
+					if (!criteriaFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
 						AndroidSupport.ShowBalloon (RDLocale.GetText ("NotEnoughCriteria"), true);
 						return;
@@ -477,13 +535,13 @@ namespace RD_AAOW
 					// Перенос
 					for (int i = 0; i < masterLinesCount; i++)
 						{
-						if (textFields[i].Text == "")
+						if (criteriaFields[i].Text == "")
 							{
 							break;
 							}
 						else
 							{
-							criteria.Add (textFields[i].Text);
+							criteria.Add (criteriaFields[i].Text);
 							values.Add ((int)valueFields[i].Value);
 							}
 						}
@@ -492,17 +550,17 @@ namespace RD_AAOW
 					// Изменение состояния
 					for (int i = 0; i < masterLinesCount; i++)
 						{
-						textFields[i].IsReadOnly = true;
+						criteriaFields[i].IsReadOnly = true;
 						if (i < objects.Count)
 							{
-							textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = true;
-							textFields[i].Text = objects[i];
+							criteriaFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = true;
+							criteriaFields[i].Text = objects[i];
 
 							valueFields[i].Value = valueFields[i].Minimum;
 							}
 						else
 							{
-							textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
+							criteriaFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
 							}
 						}
 
@@ -526,7 +584,7 @@ namespace RD_AAOW
 					List<int> objectVector = new List<int> ();
 					for (int i = 0; i < masterLinesCount; i++)
 						{
-						if (textFields[i].Text == "")
+						if (criteriaFields[i].Text == "")
 							break;
 						else
 							objectVector.Add ((int)valueFields[i].Value);
@@ -606,7 +664,7 @@ namespace RD_AAOW
 
 						// Завершение
 						for (int i = 0; i < masterLinesCount; i++)
-							textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
+							criteriaFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible = false;
 
 						phase++;
 
@@ -630,19 +688,6 @@ namespace RD_AAOW
 			// Обновление состояния
 			restartButton.IsVisible = (phase > 1);
 			shareButton.IsVisible = (phase == 4);
-			}
-
-		// Реакция на изменение состава объектов
-		private void CriteriaName_TextChanged (object sender, TextChangedEventArgs e)
-			{
-			// Контроль
-			if (phase > 2)
-				return;
-
-			// Обновление
-			for (int i = 1; i < masterLinesCount; i++)
-				textFields[i].IsVisible = valueFields[i].IsVisible = valueLabels[i].IsVisible =
-					(textFields[i - 1].Text != "") && textFields[i - 1].IsVisible;
 			}
 
 		// Метод формирует и отправляет результаты

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace RD_AAOW
@@ -53,10 +52,6 @@ namespace RD_AAOW
 				case Keys.Return | Keys.Shift:
 					BNext_Click (null, null);
 					return true;
-
-				/*case Keys.Escape:
-					BExit_Click (null, null);
-					return true;*/
 
 				// Отображение справки
 				case Keys.F1:
@@ -169,6 +164,7 @@ namespace RD_AAOW
 							{
 							ValuesGrid.Columns.Add (CriteriaList.Items[c].ToString (), CriteriaList.Items[c].ToString ());
 							ValuesGrid.Columns[c].ValueType = Type.GetType ("System.Byte");
+							ValuesGrid.Columns[c].SortMode = DataGridViewColumnSortMode.NotSortable;
 							}
 
 						for (int r = 0; r < ObjectsList.Items.Count; r++)
