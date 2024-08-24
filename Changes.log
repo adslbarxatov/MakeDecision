@@ -1,5 +1,8 @@
 Make decision: changes log
 
+Version 3.8.1:
+• The new identity has been applied
+
 Version 3.8:
 • Windows: the “App about” interface has been updated;
 • Windows: columns in criteria tables aren't sortable anymore;
