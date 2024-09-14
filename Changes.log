@@ -1,5 +1,9 @@
 Make decision: changes log
 
+Version 3.8.2:
+• The E-mail address will be sent to clipboard if the Question or suggestion button
+  is activated
+
 Version 3.8.1:
 • The new identity has been applied
 

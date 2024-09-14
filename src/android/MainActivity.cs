@@ -6,7 +6,7 @@ using Android.OS;
 namespace RD_AAOW
 	{
 	[Activity (Label = "Make decision",
-		Icon = "@drawable/launcher_foreground",
+		Icon = "@drawable/icon",
 		Theme = "@style/SplashTheme",
 		MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
