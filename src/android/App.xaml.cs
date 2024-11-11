@@ -149,7 +149,7 @@ namespace RD_AAOW
 
 			AndroidSupport.ApplyLabelSettings (aboutPage, "RestartTipLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Message_RestartRequired),
-				RDLabelTypes.Tip);
+				RDLabelTypes.TipCenter);
 
 			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguage),
