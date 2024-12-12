@@ -1,5 +1,10 @@
 Make decision: changes log
 
+Version 3.8.6:
+• Access and appearance of the Lab Policy have been updated;
+• Android: app target API has been upgraded to 35;
+• Android: MAUI support packages have been updated
+
 Version 3.8.4:
 • The “App about” interface has been updated;
 • Android: MAUI support packages have been updated
