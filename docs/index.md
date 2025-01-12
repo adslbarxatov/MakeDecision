@@ -1,5 +1,5 @@
 # Make decision: the method description
-> **ƒ** &nbsp;RD AAOW FDL; 22.07.2024; 23:12
+> **ƒ** &nbsp;RD AAOW FDL; 12.01.2025; 20:44
 
 
 
@@ -32,7 +32,7 @@ to create a program in the shortest possible time. This implementation only tran
 During the development, only lecture material was used, the understanding of which is more than enough to create
 of this (and similar) illustrative applications.
 
-More info you can find in [this video guide](https://youtu.be/gjewz9mQMgI).
+More info you can find in [this video guide](https://youtu.be/ISMEm9-F5ZA).
 
 &nbsp;
 
