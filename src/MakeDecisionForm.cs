@@ -55,7 +55,7 @@ namespace RD_AAOW
 
 				// Отображение справки
 				case Keys.F1:
-					RDGenerics.ShowAbout (false);
+					RDInterface.ShowAbout (false);
 					return true;
 
 				// Остальные клавиши обрабатываются стандартной процедурой
@@ -88,7 +88,7 @@ namespace RD_AAOW
 
 		private void MakeDecisionForm_FormClosing (object sender, FormClosingEventArgs e)
 			{
-			if (RDGenerics.LocalizedMessageBox (RDMessageTypes.Question_Center, "AppExit",
+			if (RDInterface.LocalizedMessageBox (RDMessageTypes.Question_Center, "AppExit",
 				RDLDefaultTexts.Button_Yes, RDLDefaultTexts.Button_No) == RDMessageButtons.ButtonTwo)
 				{
 				e.Cancel = true;
@@ -115,7 +115,7 @@ namespace RD_AAOW
 				case 1:
 					if (ObjectsList.Items.Count < 2)
 						{
-						RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NotEnoughObjects",
+						RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NotEnoughObjects",
 							defaultTimeout);
 						return;
 						}
@@ -125,7 +125,7 @@ namespace RD_AAOW
 				case 2:
 					if (CriteriaList.Items.Count < 2)
 						{
-						RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NotEnoughCriteria",
+						RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NotEnoughCriteria",
 							defaultTimeout);
 						return;
 						}
@@ -183,7 +183,7 @@ namespace RD_AAOW
 								(ValuesGrid.Rows[r].Cells[c].Value.ToString () == "") ||
 								(ValuesGrid.Rows[r].Cells[c].Value.ToString () == "0"))
 								{
-								RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NotEnoughData",
+								RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "NotEnoughData",
 									defaultTimeout);
 								return;
 								}
@@ -287,7 +287,7 @@ namespace RD_AAOW
 			{
 			if (ObjectsList.Items.Count >= 100)
 				{
-				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "TooManyObjects",
+				RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "TooManyObjects",
 					defaultTimeout);
 				return;
 				}
@@ -336,7 +336,7 @@ namespace RD_AAOW
 			{
 			if (CriteriaList.Items.Count >= 100)
 				{
-				RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "TooManyCriteria",
+				RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "TooManyCriteria",
 					defaultTimeout);
 				return;
 				}
@@ -392,14 +392,14 @@ namespace RD_AAOW
 		// Контроль значений в таблице оценки
 		private void ValuesGrid_DataError (object sender, DataGridViewDataErrorEventArgs e)
 			{
-			RDGenerics.LocalizedMessageBox (RDMessageTypes.Warning_Center, "IncorrectValueError",
+			RDInterface.LocalizedMessageBox (RDMessageTypes.Warning_Center, "IncorrectValueError",
 				defaultTimeout);
 			}
 
 		// Запрос справки
 		private void BAbout_Click (object sender, EventArgs e)
 			{
-			RDGenerics.ShowAbout (false);
+			RDInterface.ShowAbout (false);
 			}
 		}
 	}

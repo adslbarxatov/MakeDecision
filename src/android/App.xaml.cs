@@ -62,50 +62,50 @@ namespace RD_AAOW
 			{
 			// Инициализация
 			InitializeComponent ();
-			flags = AndroidSupport.GetAppStartupFlags (RDAppStartupFlags.DisableXPUN);
+			flags = RDGenerics.GetAppStartupFlags (RDAppStartupFlags.DisableXPUN);
 
 			// Общая конструкция страниц приложения
 			MainPage = new MasterPage ();
 
-			solutionPage = AndroidSupport.ApplyPageSettings (new SolutionPage (), "SolutionPage",
+			solutionPage = RDInterface.ApplyPageSettings (new SolutionPage (), "SolutionPage",
 				RDLocale.GetText ("SolutionPage"), solutionMasterBackColor);
-			aboutPage = AndroidSupport.ApplyPageSettings (new AboutPage (), "AboutPage",
+			aboutPage = RDInterface.ApplyPageSettings (new AboutPage (), "AboutPage",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				aboutMasterBackColor);
 
-			AndroidSupport.SetMasterPage (MainPage, solutionPage, solutionMasterBackColor);
+			RDInterface.SetMasterPage (MainPage, solutionPage, solutionMasterBackColor);
 
 			#region Основная страница
 
-			AndroidSupport.ApplyButtonSettings (solutionPage, "ResetButton",
+			RDInterface.ApplyButtonSettings (solutionPage, "ResetButton",
 				RDDefaultButtons.Delete, solutionFieldBackColor, ResetButton_Clicked);
-			restartButton = AndroidSupport.ApplyButtonSettings (solutionPage, "RestartButton",
+			restartButton = RDInterface.ApplyButtonSettings (solutionPage, "RestartButton",
 				RDDefaultButtons.Refresh, solutionFieldBackColor, RestartButton_Clicked);
-			AndroidSupport.ApplyButtonSettings (solutionPage, "NextButton",
+			RDInterface.ApplyButtonSettings (solutionPage, "NextButton",
 				RDDefaultButtons.Start, solutionFieldBackColor, NextButton_Clicked);
-			shareButton = AndroidSupport.ApplyButtonSettings (solutionPage, "ShareButton",
+			shareButton = RDInterface.ApplyButtonSettings (solutionPage, "ShareButton",
 				RDDefaultButtons.Share, solutionFieldBackColor, ShareResults);
-			AndroidSupport.ApplyButtonSettings (solutionPage, "AboutButton",
+			RDInterface.ApplyButtonSettings (solutionPage, "AboutButton",
 				RDDefaultButtons.Menu, solutionFieldBackColor, AboutButton_Clicked);
 
-			actLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
+			actLabel = RDInterface.ApplyLabelSettings (solutionPage, "ActivityLabel", "",
 				RDLabelTypes.HeaderCenter);
 			actLabel.FontSize += 2;
 
-			resultLabel = AndroidSupport.ApplyLabelSettings (solutionPage, "ResultLabel", "",
+			resultLabel = RDInterface.ApplyLabelSettings (solutionPage, "ResultLabel", "",
 				RDLabelTypes.FieldMonotype, solutionFieldBackColor);
 
 			for (int i = 0; i < masterLinesCount; i++)
 				{
 				string s = i.ToString ("D02");
-				objectsFields.Add (AndroidSupport.ApplyEditorSettings (solutionPage, "ObjectField" + s,
+				objectsFields.Add (RDInterface.ApplyEditorSettings (solutionPage, "ObjectField" + s,
 					solutionFieldBackColor, Keyboard.Text, 50, "", ObjectName_TextChanged, true));
-				criteriaFields.Add (AndroidSupport.ApplyEditorSettings (solutionPage, "TextField" + s,
+				criteriaFields.Add (RDInterface.ApplyEditorSettings (solutionPage, "TextField" + s,
 					solutionFieldBackColor, Keyboard.Text, 50, "", CriteriaName_TextChanged, true));
 
-				valueFields.Add (AndroidSupport.ApplySliderSettings (solutionPage, "ValueField" + s,
+				valueFields.Add (RDInterface.ApplySliderSettings (solutionPage, "ValueField" + s,
 					ValueField_ValueChanged));
-				valueLabels[i] = AndroidSupport.ApplyLabelSettings (solutionPage, "ValueLabel" + s,
+				valueLabels[i] = RDInterface.ApplyLabelSettings (solutionPage, "ValueLabel" + s,
 					"", RDLabelTypes.Semaphore, solutionFieldBackColor);
 				ValueField_ValueChanged (valueFields[i], null);
 				}
@@ -132,47 +132,47 @@ namespace RD_AAOW
 
 			#region Страница "О программе"
 
-			aboutLabel = AndroidSupport.ApplyLabelSettings (aboutPage, "AboutLabel",
+			aboutLabel = RDInterface.ApplyLabelSettings (aboutPage, "AboutLabel",
 				RDGenerics.AppAboutLabelText, RDLabelTypes.AppAbout);
 
-			AndroidSupport.ApplyButtonSettings (aboutPage, "ManualsButton",
+			RDInterface.ApplyButtonSettings (aboutPage, "ManualsButton",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_ReferenceMaterials),
 				aboutFieldBackColor, ReferenceButton_Click, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "HelpButton",
+			RDInterface.ApplyButtonSettings (aboutPage, "HelpButton",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_HelpSupport),
 				aboutFieldBackColor, HelpButton_Click, false);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "RepeatTips", RDLocale.GetText ("RepeatTips"),
+			RDInterface.ApplyButtonSettings (aboutPage, "RepeatTips", RDLocale.GetText ("RepeatTips"),
 				aboutFieldBackColor, RepeatTips_Clicked, false);
-			AndroidSupport.ApplyLabelSettings (aboutPage, "GenericSettingsLabel",
+			RDInterface.ApplyLabelSettings (aboutPage, "GenericSettingsLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_GenericSettings),
 				RDLabelTypes.HeaderLeft);
 
-			AndroidSupport.ApplyLabelSettings (aboutPage, "RestartTipLabel",
+			RDInterface.ApplyLabelSettings (aboutPage, "RestartTipLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Message_RestartRequired),
 				RDLabelTypes.TipCenter);
 
-			AndroidSupport.ApplyLabelSettings (aboutPage, "LanguageLabel",
+			RDInterface.ApplyLabelSettings (aboutPage, "LanguageLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceLanguage),
 				RDLabelTypes.DefaultLeft);
-			languageButton = AndroidSupport.ApplyButtonSettings (aboutPage, "LanguageSelector",
+			languageButton = RDInterface.ApplyButtonSettings (aboutPage, "LanguageSelector",
 				RDLocale.LanguagesNames[(int)RDLocale.CurrentLanguage],
 				aboutFieldBackColor, SelectLanguage_Clicked, false);
 
-			AndroidSupport.ApplyLabelSettings (aboutPage, "FontSizeLabel",
+			RDInterface.ApplyLabelSettings (aboutPage, "FontSizeLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_InterfaceFontSize),
 				RDLabelTypes.DefaultLeft);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "FontSizeInc",
+			RDInterface.ApplyButtonSettings (aboutPage, "FontSizeInc",
 				RDDefaultButtons.Increase, aboutFieldBackColor, FontSizeButton_Clicked);
-			AndroidSupport.ApplyButtonSettings (aboutPage, "FontSizeDec",
+			RDInterface.ApplyButtonSettings (aboutPage, "FontSizeDec",
 				RDDefaultButtons.Decrease, aboutFieldBackColor, FontSizeButton_Clicked);
-			aboutFontSizeField = AndroidSupport.ApplyLabelSettings (aboutPage, "FontSizeField",
+			aboutFontSizeField = RDInterface.ApplyLabelSettings (aboutPage, "FontSizeField",
 				" ", RDLabelTypes.DefaultCenter);
 
-			AndroidSupport.ApplyLabelSettings (aboutPage, "HelpHeaderLabel",
+			RDInterface.ApplyLabelSettings (aboutPage, "HelpHeaderLabel",
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				RDLabelTypes.HeaderLeft);
-			Label htl = AndroidSupport.ApplyLabelSettings (aboutPage, "HelpTextLabel",
-				AndroidSupport.GetAppHelpText (), RDLabelTypes.SmallLeft);
+			Label htl = RDInterface.ApplyLabelSettings (aboutPage, "HelpTextLabel",
+				RDGenerics.GetAppHelpText (), RDLabelTypes.SmallLeft);
 			htl.TextType = TextType.Html;
 
 			FontSizeButton_Clicked (null, null);
@@ -188,18 +188,18 @@ namespace RD_AAOW
 			{
 			// Контроль XPUN
 			if (!flags.HasFlag (RDAppStartupFlags.DisableXPUN))
-				await AndroidSupport.XPUNLoop ();
+				await RDInterface.XPUNLoop ();
 
 			// Требование принятия Политики
 			if (TipsState.HasFlag (TipTypes.PolicyTip))
 				return;
 
-			await AndroidSupport.PolicyLoop ();
+			await RDInterface.PolicyLoop ();
 
 			// Первая подсказка
-			await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip00"),
+			await RDInterface.ShowMessage (RDLocale.GetText ("Tip00"),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
-			await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
+			await RDInterface.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
 				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 			TipsState |= TipTypes.PolicyTip;
 			}
@@ -288,18 +288,18 @@ namespace RD_AAOW
 		// Выбор языка приложения
 		private async void SelectLanguage_Clicked (object sender, EventArgs e)
 			{
-			languageButton.Text = await AndroidSupport.CallLanguageSelector ();
+			languageButton.Text = await RDInterface.CallLanguageSelector ();
 			}
 
 		// Вызов справочных материалов
 		private async void ReferenceButton_Click (object sender, EventArgs e)
 			{
-			await AndroidSupport.CallHelpMaterials (RDHelpMaterials.ReferenceMaterials);
+			await RDInterface.CallHelpMaterials (RDHelpMaterials.ReferenceMaterials);
 			}
 
 		private async void HelpButton_Click (object sender, EventArgs e)
 			{
-			await AndroidSupport.CallHelpMaterials (RDHelpMaterials.HelpAndSupport);
+			await RDInterface.CallHelpMaterials (RDHelpMaterials.HelpAndSupport);
 			}
 
 		// Изменение размера шрифта интерфейса
@@ -308,14 +308,14 @@ namespace RD_AAOW
 			if (sender != null)
 				{
 				Button b = (Button)sender;
-				if (AndroidSupport.IsNameDefault (b.Text, RDDefaultButtons.Increase))
-					AndroidSupport.MasterFontSize += 0.5;
-				else if (AndroidSupport.IsNameDefault (b.Text, RDDefaultButtons.Decrease))
-					AndroidSupport.MasterFontSize -= 0.5;
+				if (RDInterface.IsNameDefault (b.Text, RDDefaultButtons.Increase))
+					RDInterface.MasterFontSize += 0.5;
+				else if (RDInterface.IsNameDefault (b.Text, RDDefaultButtons.Decrease))
+					RDInterface.MasterFontSize -= 0.5;
 				}
 
-			aboutFontSizeField.Text = AndroidSupport.MasterFontSize.ToString ("F1");
-			aboutFontSizeField.FontSize = AndroidSupport.MasterFontSize;
+			aboutFontSizeField.Text = RDInterface.MasterFontSize.ToString ("F1");
+			aboutFontSizeField.FontSize = RDInterface.MasterFontSize;
 			}
 
 		// Запуск с начала
@@ -323,9 +323,9 @@ namespace RD_AAOW
 			{
 			TipsState = TipTypes.PolicyTip;
 
-			await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip00"),
+			await RDInterface.ShowMessage (RDLocale.GetText ("Tip00"),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
-			await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
+			await RDInterface.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
 				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 			}
 
@@ -336,7 +336,7 @@ namespace RD_AAOW
 		// Сброс на исходное состояние
 		private async void ResetButton_Clicked (object sender, EventArgs e)
 			{
-			if (!await AndroidSupport.ShowMessage (RDLocale.GetText ("ResetMessage"),
+			if (!await RDInterface.ShowMessage (RDLocale.GetText ("ResetMessage"),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Yes),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_No)))
 				return;
@@ -347,7 +347,7 @@ namespace RD_AAOW
 		// Запуск с начала
 		private async void RestartButton_Clicked (object sender, EventArgs e)
 			{
-			if (!await AndroidSupport.ShowMessage (RDLocale.GetText ("RestartMessage"),
+			if (!await RDInterface.ShowMessage (RDLocale.GetText ("RestartMessage"),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Yes),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_No)))
 				return;
@@ -372,7 +372,7 @@ namespace RD_AAOW
 
 				if (criteriaFields[i].IsFocused)
 					{
-					AndroidSupport.HideKeyboard (criteriaFields[i]);
+					RDGenerics.HideKeyboard (criteriaFields[i]);
 					break;
 					}
 				}
@@ -488,7 +488,7 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!objectsFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						AndroidSupport.ShowBalloon (RDLocale.GetText ("NotEnoughVariants"), true);
+						RDInterface.ShowBalloon (RDLocale.GetText ("NotEnoughVariants"), true);
 						return;
 						}
 
@@ -516,7 +516,7 @@ namespace RD_AAOW
 
 					if (!TipsState.HasFlag (TipTypes.CriteriaTip))
 						{
-						await AndroidSupport.ShowMessage (string.Format (RDLocale.GetText ("Tip02"), masterLinesCount),
+						await RDInterface.ShowMessage (string.Format (RDLocale.GetText ("Tip02"), masterLinesCount),
 							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 						TipsState |= TipTypes.CriteriaTip;
 						}
@@ -528,7 +528,7 @@ namespace RD_AAOW
 					// Контроль достаточности объектов
 					if (!criteriaFields[2].IsVisible)    // Возникает при заполнении первых двух строк
 						{
-						AndroidSupport.ShowBalloon (RDLocale.GetText ("NotEnoughCriteria"), true);
+						RDInterface.ShowBalloon (RDLocale.GetText ("NotEnoughCriteria"), true);
 						return;
 						}
 
@@ -571,7 +571,7 @@ namespace RD_AAOW
 
 					if (!TipsState.HasFlag (TipTypes.RateTip))
 						{
-						await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip03"),
+						await RDInterface.ShowMessage (RDLocale.GetText ("Tip03"),
 							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 						TipsState |= TipTypes.RateTip;
 						}
@@ -604,7 +604,7 @@ namespace RD_AAOW
 							{
 							if (!TipsState.HasFlag (TipTypes.RestartTip))
 								{
-								await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip04"),
+								await RDInterface.ShowMessage (RDLocale.GetText ("Tip04"),
 									RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 								TipsState |= TipTypes.RestartTip;
 								}
@@ -670,9 +670,9 @@ namespace RD_AAOW
 
 						if (!TipsState.HasFlag (TipTypes.ResultTip))
 							{
-							await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip05"),
+							await RDInterface.ShowMessage (RDLocale.GetText ("Tip05"),
 								RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
-							await AndroidSupport.ShowMessage (RDLocale.GetText ("Tip06"),
+							await RDInterface.ShowMessage (RDLocale.GetText ("Tip06"),
 								RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
 							TipsState |= TipTypes.ResultTip;
 							}
@@ -710,7 +710,7 @@ namespace RD_AAOW
 		// Метод открывает страницу О программе
 		private void AboutButton_Clicked (object sender, EventArgs e)
 			{
-			AndroidSupport.SetCurrentPage (aboutPage, aboutMasterBackColor);
+			RDInterface.SetCurrentPage (aboutPage, aboutMasterBackColor);
 			}
 
 		#endregion
