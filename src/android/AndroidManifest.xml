@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.RD_AAOW.MakeDecision"
-	android:installLocation="internalOnly" android:versionCode="600336" android:versionName="3.8.8">
+	android:installLocation="internalOnly" android:versionCode="600337" android:versionName="3.8.9">
 
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="35" />
 
-	<application android:label="Make decision" android:icon="@drawable/icon" />
+	<application android:label="Make decision" android:icon="@drawable/icon"
+		android:windowOptOutEdgeToEdgeEnforcement="true"/>
 
 	<queries>
 		<intent>
