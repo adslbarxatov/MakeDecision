@@ -11,7 +11,7 @@ namespace RD_AAOW
 		{
 		// Переменные
 		private MakeDecisionMath criteriaMath;
-		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
+		private List<MakeDecisionMath> objectsMaths = [];
 		private const uint defaultTimeout = 1000;
 
 		/// <summary>
@@ -133,7 +133,7 @@ namespace RD_AAOW
 					else
 						{
 						// Реинициализация основной матрицы сравнений
-						cVector = new List<int> ();
+						cVector = [];
 						for (int i = 0; i < CriteriaValuesList.Items.Count; i++)
 							cVector.Add (int.Parse (CriteriaValuesList.Items[i].ToString ()));
 
@@ -189,7 +189,7 @@ namespace RD_AAOW
 								}
 
 					// Ретрансляция оценок
-					cVector = new List<int> ();
+					cVector = [];
 					objectsMaths.Clear ();
 
 					for (int c = 0; c < ValuesGrid.Columns.Count; c++)
@@ -215,7 +215,7 @@ namespace RD_AAOW
 						}
 
 					// Сортировка
-					List<string> sortedObjects = new List<string> ();
+					List<string> sortedObjects = [];
 					for (int i = 0; i < ObjectsList.Items.Count; i++)
 						sortedObjects.Add (ObjectsList.Items[i].ToString ());
 					bool sorted = false;

@@ -16,19 +16,17 @@ namespace RD_AAOW
 		private RDAppStartupFlags flags;
 
 		// Таблицы расчёта результатов
-		private List<string> objects = new List<string> ();
-		private List<string> criteria = new List<string> ();
-		private List<int> values = new List<int> ();
+		private List<string> objects = [];
+		private List<string> criteria = [];
+		private List<int> values = [];
 		private MakeDecisionMath criteriaMath;
-		private List<MakeDecisionMath> objectsMaths = new List<MakeDecisionMath> ();
+		private List<MakeDecisionMath> objectsMaths = [];
 
 		// Цветовая схема
-		private readonly Color
-			solutionMasterBackColor = Color.FromArgb ("#ffe7f3"),
-			solutionFieldBackColor = Color.FromArgb ("#ffdeef"),
-
-			aboutMasterBackColor = Color.FromArgb ("#F0FFF0"),
-			aboutFieldBackColor = Color.FromArgb ("#D0FFD0");
+		private readonly Color solutionMasterBackColor = Color.FromArgb ("#ffe7f3");
+		private readonly Color solutionFieldBackColor = Color.FromArgb ("#ffdeef");
+		private readonly Color aboutMasterBackColor = Color.FromArgb ("#F0FFF0");
+		private readonly Color aboutFieldBackColor = Color.FromArgb ("#D0FFD0");
 
 		// Имена хранисых параметров
 		private const string objectsRegKey = "Object";
@@ -43,10 +41,10 @@ namespace RD_AAOW
 
 		private Label aboutLabel, actLabel, resultLabel, aboutFontSizeField;
 
-		private List<Editor> criteriaFields = new List<Editor> ();
-		private List<Editor> objectsFields = new List<Editor> ();
+		private List<Editor> criteriaFields = [];
+		private List<Editor> objectsFields = [];
 
-		private List<Slider> valueFields = new List<Slider> ();
+		private List<Slider> valueFields = [];
 		private Label[] valueLabels = new Label[masterLinesCount];
 
 		private Button restartButton, shareButton, languageButton;
@@ -62,10 +60,22 @@ namespace RD_AAOW
 			{
 			// Инициализация
 			InitializeComponent ();
+			}
+
+		// Замена определению MainPage = new MasterPage ()
+		protected override Window CreateWindow (IActivationState activationState)
+			{
+			return new Window (AppShell ());
+			}
+
+		// Настройка разметки интерфейса
+		private Page AppShell ()
+			{
+			Page mainPage = new MasterPage ();
 			flags = RDGenerics.GetAppStartupFlags (RDAppStartupFlags.DisableXPUN);
 
 			// Общая конструкция страниц приложения
-			MainPage = new MasterPage ();
+			/*MainPage = new MasterPage ();*/
 
 			solutionPage = RDInterface.ApplyPageSettings (new SolutionPage (), "SolutionPage",
 				RDLocale.GetText ("SolutionPage"), solutionMasterBackColor);
@@ -73,7 +83,8 @@ namespace RD_AAOW
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				aboutMasterBackColor);
 
-			RDInterface.SetMasterPage (MainPage, solutionPage, solutionMasterBackColor);
+			/*RDInterface.SetMasterPage (MainPage, solutionPage, solutionMasterBackColor);*/
+			RDInterface.SetMasterPage (mainPage, solutionPage, solutionMasterBackColor);
 
 			#region Основная страница
 
@@ -181,6 +192,7 @@ namespace RD_AAOW
 
 			// Отображение подсказок первого старта
 			ShowStartupTips ();
+			return mainPage;
 			}
 
 		// Метод отображает подсказки при первом запуске
@@ -191,7 +203,8 @@ namespace RD_AAOW
 				await RDInterface.XPUNLoop ();
 
 			// Требование принятия Политики
-			if (TipsState.HasFlag (TipTypes.PolicyTip))
+			/*if (TipsState.HasFlag (TipTypes.PolicyTip))*/
+			if ((RDGenerics.TipsState % 2) != 0)
 				return;
 
 			await RDInterface.PolicyLoop ();
@@ -201,7 +214,7 @@ namespace RD_AAOW
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
 			await RDInterface.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
 				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-			TipsState |= TipTypes.PolicyTip;
+			/*TipsState |= TipTypes.PolicyTip;*/
 			}
 
 		/// <summary>
@@ -234,7 +247,7 @@ namespace RD_AAOW
 			catch { }
 			}
 
-		/// <summary>
+		/*/// <summary>
 		/// Возвращает или задаёт состав флагов просмотра справочных сведений
 		/// </summary>
 		public static TipTypes TipsState
@@ -248,17 +261,17 @@ namespace RD_AAOW
 				RDGenerics.SetSettings (tipsStatePar, (uint)value);
 				}
 			}
-		private const string tipsStatePar = "TipsState";
+		private const string tipsStatePar = "TipsState";*/
 
 		/// <summary>
 		/// Доступные типы уведомлений
 		/// </summary>
 		public enum TipTypes
 			{
-			/// <summary>
+			/*/// <summary>
 			/// Принятие Политики и первая подсказка
 			/// </summary>
-			PolicyTip = 0x0001,
+			PolicyTip = 0x0001,*/
 
 			/// <summary>
 			/// Подсказка по критериям
@@ -321,7 +334,8 @@ namespace RD_AAOW
 		// Запуск с начала
 		private async void RepeatTips_Clicked (object sender, EventArgs e)
 			{
-			TipsState = TipTypes.PolicyTip;
+			/*TipsState = TipTypes.PolicyTip;*/
+			RDGenerics.TipsState = 0x0001;
 
 			await RDInterface.ShowMessage (RDLocale.GetText ("Tip00"),
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
@@ -436,7 +450,7 @@ namespace RD_AAOW
 
 			// Контроль кнопки Enter
 			string text = objectsFields[idx].Text;
-			if (text.Contains ("\n") || text.Contains ("\r"))
+			if (text.Contains ('\n') || text.Contains ('\r'))
 				{
 				objectsFields[idx].Text = text.Replace ("\r", "").Replace ("\n", "");
 
@@ -469,7 +483,7 @@ namespace RD_AAOW
 
 			// Контроль кнопки Enter
 			string text = criteriaFields[idx].Text;
-			if (text.Contains ("\n") || text.Contains ("\r"))
+			if (text.Contains ('\n') || text.Contains ('\r'))
 				{
 				criteriaFields[idx].Text = text.Replace ("\r", "").Replace ("\n", "");
 
@@ -514,11 +528,11 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
-					if (!TipsState.HasFlag (TipTypes.CriteriaTip))
+					if (!((TipTypes)RDGenerics.TipsState).HasFlag (TipTypes.CriteriaTip))
 						{
 						await RDInterface.ShowMessage (string.Format (RDLocale.GetText ("Tip02"), masterLinesCount),
 							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-						TipsState |= TipTypes.CriteriaTip;
+						RDGenerics.TipsState |= (uint)TipTypes.CriteriaTip;
 						}
 
 					break;
@@ -569,11 +583,11 @@ namespace RD_AAOW
 					// Переход далее
 					phase++;
 
-					if (!TipsState.HasFlag (TipTypes.RateTip))
+					if (!((TipTypes)RDGenerics.TipsState).HasFlag (TipTypes.RateTip))
 						{
 						await RDInterface.ShowMessage (RDLocale.GetText ("Tip03"),
 							RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-						TipsState |= TipTypes.RateTip;
+						RDGenerics.TipsState |= (uint)TipTypes.RateTip;
 						}
 
 					break;
@@ -581,7 +595,7 @@ namespace RD_AAOW
 				// Последовательные попытки перехода к результату (ввод рангов объектов по критериям)
 				case 3:
 					// Добавление математик
-					List<int> objectVector = new List<int> ();
+					List<int> objectVector = [];
 					for (int i = 0; i < masterLinesCount; i++)
 						{
 						if (criteriaFields[i].Text == "")
@@ -602,11 +616,11 @@ namespace RD_AAOW
 
 						if (objectsMaths.Count == 1)
 							{
-							if (!TipsState.HasFlag (TipTypes.RestartTip))
+							if (!((TipTypes)RDGenerics.TipsState).HasFlag (TipTypes.RestartTip))
 								{
 								await RDInterface.ShowMessage (RDLocale.GetText ("Tip04"),
 									RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-								TipsState |= TipTypes.RestartTip;
+								RDGenerics.TipsState |= (uint)TipTypes.RestartTip;
 								}
 							}
 						}
@@ -668,13 +682,13 @@ namespace RD_AAOW
 
 						phase++;
 
-						if (!TipsState.HasFlag (TipTypes.ResultTip))
+						if (!((TipTypes)RDGenerics.TipsState).HasFlag (TipTypes.ResultTip))
 							{
 							await RDInterface.ShowMessage (RDLocale.GetText ("Tip05"),
 								RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
 							await RDInterface.ShowMessage (RDLocale.GetText ("Tip06"),
 								RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-							TipsState |= TipTypes.ResultTip;
+							RDGenerics.TipsState |= (uint)TipTypes.ResultTip;
 							}
 						}
 					break;
