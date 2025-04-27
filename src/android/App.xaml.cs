@@ -75,15 +75,12 @@ namespace RD_AAOW
 			flags = RDGenerics.GetAppStartupFlags (RDAppStartupFlags.DisableXPUN);
 
 			// Общая конструкция страниц приложения
-			/*MainPage = new MasterPage ();*/
-
-			solutionPage = RDInterface.ApplyPageSettings (new SolutionPage (), "SolutionPage",
+			solutionPage = RDInterface.ApplyPageSettings (new SolutionPage (), /*"SolutionPage",*/
 				RDLocale.GetText ("SolutionPage"), solutionMasterBackColor);
-			aboutPage = RDInterface.ApplyPageSettings (new AboutPage (), "AboutPage",
+			aboutPage = RDInterface.ApplyPageSettings (new AboutPage (), /*"AboutPage",*/
 				RDLocale.GetDefaultText (RDLDefaultTexts.Control_AppAbout),
 				aboutMasterBackColor);
 
-			/*RDInterface.SetMasterPage (MainPage, solutionPage, solutionMasterBackColor);*/
 			RDInterface.SetMasterPage (mainPage, solutionPage, solutionMasterBackColor);
 
 			#region Основная страница
@@ -203,7 +200,6 @@ namespace RD_AAOW
 				await RDInterface.XPUNLoop ();
 
 			// Требование принятия Политики
-			/*if (TipsState.HasFlag (TipTypes.PolicyTip))*/
 			if ((RDGenerics.TipsState % 2) != 0)
 				return;
 
@@ -214,7 +210,6 @@ namespace RD_AAOW
 				RDLocale.GetDefaultText (RDLDefaultTexts.Button_Next));
 			await RDInterface.ShowMessage (string.Format (RDLocale.GetText ("Tip01"),
 				masterLinesCount), RDLocale.GetDefaultText (RDLDefaultTexts.Button_OK));
-			/*TipsState |= TipTypes.PolicyTip;*/
 			}
 
 		/// <summary>
@@ -247,32 +242,11 @@ namespace RD_AAOW
 			catch { }
 			}
 
-		/*/// <summary>
-		/// Возвращает или задаёт состав флагов просмотра справочных сведений
-		/// </summary>
-		public static TipTypes TipsState
-			{
-			get
-				{
-				return (TipTypes)RDGenerics.GetSettings (tipsStatePar, 0);
-				}
-			set
-				{
-				RDGenerics.SetSettings (tipsStatePar, (uint)value);
-				}
-			}
-		private const string tipsStatePar = "TipsState";*/
-
 		/// <summary>
 		/// Доступные типы уведомлений
 		/// </summary>
 		public enum TipTypes
 			{
-			/*/// <summary>
-			/// Принятие Политики и первая подсказка
-			/// </summary>
-			PolicyTip = 0x0001,*/
-
 			/// <summary>
 			/// Подсказка по критериям
 			/// </summary>
@@ -334,7 +308,6 @@ namespace RD_AAOW
 		// Запуск с начала
 		private async void RepeatTips_Clicked (object sender, EventArgs e)
 			{
-			/*TipsState = TipTypes.PolicyTip;*/
 			RDGenerics.TipsState = 0x0001;
 
 			await RDInterface.ShowMessage (RDLocale.GetText ("Tip00"),
