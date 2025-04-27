@@ -6,6 +6,8 @@ A tool for making exact decisions.
 
 The description of the app can be found on [this page](https://adslbarxatov.github.io/MakeDecision).
 
+:warning: ***This repository is no longer updated***
+
 ---
 
 *The product is distributed according to the [Integrated operational policy](https://adslbarxatov.github.io/IOP).
@@ -20,6 +22,8 @@ By starting to work with this product, you fully agree with this Policy and acce
 Инструмент принятия точных решений.
 
 Описание приложения можно найти на [этой странице](https://adslbarxatov.github.io/MakeDecision/ru).
+
+:warning: ***Данный репозиторий более не обновляется***
 
 ---
 
